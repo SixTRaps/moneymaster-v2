@@ -1,22 +1,26 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const [budget, setBudget] = useState(0);
   const [balance, setBalance] = useState(0);
-  let username;
-  async function getUsername() {
-    const res = await fetch("./api/user");
-    username = await res.json().username;
-    console.log("username:", username);
-    console.log("res.body:", res.body.json());
-  }
+  // const [user, setUser] = useState();
+
+  // useEffect(() => {
+  //   getUsername().then((username) => {
+  //     setUser(username);
+  //     console.log(username);
+  //   });
+  // }, []);
 
   return (
     <div>
-      <button onClick={getUsername}>get</button>
-      <h1>Welcome! {username}</h1>
+      {props.username === undefined ? (
+        <h1>Welcome! Visitor!</h1>
+      ) : (
+        <h1>Welcome! {props.username}</h1>
+      )}
       <div>
         Remaining Balance/Budget:{balance}/{budget}
       </div>
@@ -25,3 +29,13 @@ export default function Dashboard() {
     </div>
   );
 }
+
+// async function getUsername() {
+//   const res = await fetch("/api/user");
+//   if (res.status === 200) {
+//     const users = await res.json();
+//     const username = await users.username;
+//     console.log("username:", username);
+//     return username;
+//   }
+// }

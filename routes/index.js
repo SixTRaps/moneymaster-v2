@@ -15,9 +15,18 @@ initializePassport(
 
 /* GET home page. */
 router.get("/user", async function (req, res) {
-  const user = await req.user;
-  console.log("user", user.username);
-  res.send({ username: user.username });
+  if (req.isAuthenticated()) {
+    try {
+      const user = await req.user;
+      console.log("user", user.username);
+      res.status(200).send({ username: user.username });
+    } catch (e) {
+      res.status(400).send({ err: e });
+    }
+  } else {
+    res.status(401).send("Auth required");
+    console.log("auth required");
+  }
 });
 
 /* GET check authentication status */

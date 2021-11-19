@@ -1,83 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
-import axios from "axios";
-// import Signin from "./signin";
+import Signin from "./signin";
 import Signup from "./signup";
 import Ledger from "./ledger";
 import Stat from "./stat";
 import Dashboard from "./dashboard";
 
 export default function App() {
-  const [user, setUser] = useState(null);
-  // const getUser = async () => {
-  //   const username = await fetch("/api/user", {
-  //     method: "GET",
-  //     headers: { "Content-Type": "application/json" },
-  //     credentials: "include",
-  //   });
-  //   setUser(username);
-  // };
+  const [user, setUser] = useState();
 
-  function Signin() {
-    const [values, setValues] = useState({
-      username: "",
-      password: "",
+  useEffect(() => {
+    getUsername().then((username) => {
+      setUser(username);
+      console.log(username);
     });
-
-    async function onSubmit(evt) {
-      evt.preventDefault();
-      const data = {
-        username: values.username,
-        password: values.password,
-      };
-      const res = await fetch("/api/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      alert("Sign in successful!");
-      console.log(res);
-
-      window.location.href = "/dashboard";
-    }
-
-    return (
-      <form className="form" onSubmit={onSubmit}>
-        <h1>Please enter your username and password below</h1>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={values.username}
-            onChange={(e) =>
-              setValues((values) => ({
-                username: e.target.value,
-                password: values.password,
-              }))
-            }
-            required={true}
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={values.password}
-            onChange={(e) =>
-              setValues((values) => ({
-                username: values.username,
-                password: e.target.value,
-              }))
-            }
-            required={true}
-          />
-        </label>
-        <br />
-        <button type="submit">Sign in</button>
-      </form>
-    );
-  }
+  }, []);
 
   return (
     <BrowserRouter>
@@ -85,7 +22,7 @@ export default function App() {
       <div>
         <h2>Your personal budget keeper</h2>
       </div>
-      {!user ? (
+      {user === undefined ? (
         <div>
           <NavLink to="/signin" className="btn">
             Sign in
@@ -106,4 +43,14 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   );
+}
+
+async function getUsername() {
+  const res = await fetch("/api/user");
+  if (res.status === 200) {
+    const users = await res.json();
+    const username = await users.username;
+    console.log("username:", username);
+    return username;
+  }
 }

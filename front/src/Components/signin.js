@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 
 export default function Signin() {
   const [values, setValues] = useState({
@@ -10,17 +9,19 @@ export default function Signin() {
 
   async function onSubmit(evt) {
     evt.preventDefault();
-    axios({
-      method: "post",
-      data: {
-        username: values.username,
-        password: values.password,
-      },
-      withCredentials: true,
-      url: "http://localhost:3001/api/signin",
-    }).then((res) => console.log(res));
+    const data = {
+      username: values.username,
+      password: values.password,
+    };
+    const res = await fetch("/api/signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
     alert("Sign in successful!");
-    window.location.href = "/dashboard";
+    console.log(res);
+
+    window.location.href = "/";
   }
 
   return (
@@ -56,7 +57,7 @@ export default function Signin() {
         />
       </label>
       <br />
-      <input type="submit" value="Sign in" />
+      <button type="submit">Sign in</button>
     </form>
   );
 }
