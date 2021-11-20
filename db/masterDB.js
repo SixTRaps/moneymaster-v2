@@ -6,98 +6,6 @@ function masterDB() {
   const DB_NAME = "masterDB";
   console.log("connecting to the db");
 
-  masterDB.getFiles = async (query = {}) => {
-    let client;
-    try {
-      client = new MongoClient(url, { useUnifiedTopology: true });
-      await client.connect();
-      const db = client.db(DB_NAME);
-      const filesCol = db.collection("files");
-      const files = await filesCol.find(query).toArray();
-      return files;
-    } finally {
-      client.close();
-    }
-  };
-
-  masterDB.createFile = async (file) => {
-    let client;
-    try {
-      client = new MongoClient(url, { useUnifiedTopology: true });
-      await client.connect();
-      const db = client.db(DB_NAME);
-      const filesCol = db.collection("files");
-      const files = await filesCol.insertOne({
-        id: file.id,
-        name: file.name,
-        title: file.title,
-        content: file.content,
-        time: new Date(),
-        like: 0,
-      });
-      return files;
-    } finally {
-      client.close();
-    }
-  };
-
-  masterDB.getMyOwnFiles = async (query) => {
-    let client;
-    try {
-      client = new MongoClient(url, { useUnifiedTopology: true });
-      await client.connect();
-      const db = client.db(DB_NAME);
-      const files = db.collection("files");
-      const result = await files.find(query).toArray();
-      return result;
-    } finally {
-      client.close();
-    }
-  };
-
-  masterDB.deleteMyOwnFiles = async (id) => {
-    let client;
-    try {
-      client = new MongoClient(url, { useUnifiedTopology: true });
-      await client.connect();
-      const db = client.db(DB_NAME);
-      const now = await db.collection("files").deleteOne({ id: id.id });
-      return now;
-    } finally {
-      client.close();
-    }
-  };
-
-  masterDB.editMyOwnFiles = async (id, content) => {
-    let client;
-    try {
-      client = new MongoClient(url, { useUnifiedTopology: true });
-      await client.connect();
-      const db = client.db(DB_NAME);
-      const post = await db.collection("files").updateOne({
-        id: id,
-        $set: { content: content },
-      });
-      return post;
-    } finally {
-      client.close();
-    }
-  };
-
-  masterDB.findFile = async (query) => {
-    let client;
-    try {
-      client = new MongoClient(url, { useUnifiedTopology: true });
-      await client.connect();
-      const db = client.db(DB_NAME);
-      const files = db.collection("files");
-      const result = await files.findOne(query);
-      return result;
-    } finally {
-      client.close();
-    }
-  };
-
   masterDB.findUser = async (query) => {
     let client;
     try {
@@ -149,6 +57,74 @@ function masterDB() {
         lastname: credential.lastname,
       });
       return "Success";
+    } finally {
+      client.close();
+    }
+  };
+
+  masterDB.getMyTransactions = async (query) => {
+    let client;
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const files = db.collection("files");
+      const result = await files.find(query).toArray();
+      return result;
+    } finally {
+      client.close();
+    }
+  };
+
+  masterDB.createTransaction = async (file) => {
+    let client;
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const filesCol = db.collection("files");
+      const files = await filesCol.insertOne({
+        id: file.id,
+        name: file.name,
+        title: file.title,
+        content: file.content,
+        time: new Date(),
+        like: 0,
+      });
+      const user = await db.collection("credentials").findOne({
+        _id: ObjectId(file.id),
+      });
+      const new_balance = user.balance + parseFloat(-file.amount);
+      await db
+        .collection("credentials")
+        .updateOne(
+          { _id: ObjectId(file.id) },
+          { $set: { balance: new_balance } }
+        );
+      return files;
+    } finally {
+      client.close();
+    }
+  };
+
+  masterDB.deleteTransaction = async (file) => {
+    let client;
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const now = await db.collection("files").deleteOne({ id: file.id });
+      const user = await db.collection("credentials").findOne({
+        _id: ObjectId(file.user.id),
+      });
+      const new_balance = user.balance + parseFloat(file.amount);
+      await db
+        .collection("credentials")
+        .updateOne(
+          { _id: ObjectId(file.user.id) },
+          { $set: { balance: new_balance } }
+        );
+      return now;
     } finally {
       client.close();
     }

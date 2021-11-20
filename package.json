@@ -25,6 +25,7 @@
     "dotenv": "^10.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react": "^1.1.7",
+    "eslint-plugin-react": "^7.27.1",
     "nodemon": "^2.0.15",
     "prettier": "^2.4.1"
   }

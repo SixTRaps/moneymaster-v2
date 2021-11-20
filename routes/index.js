@@ -13,7 +13,7 @@ initializePassport(
   (id) => masterDB.findUser({ id: id })
 );
 
-/* GET home page. */
+/* GET User Info. */
 router.get("/user", async function (req, res) {
   const user = await req.user;
   console.log("user", user.username);
@@ -40,6 +40,14 @@ router.post("/signup", async (req, res) => {
       password: hash,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
+      categories: [
+        "Housing",
+        "Transportation",
+        "Consumables",
+        "Living Expense",
+        "Savings",
+        "Debt",
+      ],
     };
     const insertRes = await masterDB.createCredential(newUserData);
     console.log(newUserData);
@@ -73,5 +81,58 @@ router.post("/signin", (req, res, next) => {
     }
   })(req, res, next);
 });
+
+//Anni
+router.get("/allTransactions", async (req, res) => {
+  if (req.isAuthenticated()) {
+    try {
+      const loginUser = await req.user;
+      const files = await masterDB.getMyTransactions({ name: loginUser.id });
+      res.send({ files: files, user: loginUser.firstname });
+    } catch (e) {
+      res.status(401).send({ err: e });
+    }
+  } else {
+    res.status(401).send();
+  }
+
+router.post("/createTransaction", async (req, res) => {
+  if (
+    req.body.type === undefined ||
+    req.body.category === undefined ||
+    req.body.merchant === undefined ||
+    req.body.amount === undefined ||
+    req.body.date === undefined ||
+    req.body.note === undefined
+  ) {
+    return res.sendStatus(400);
+  }
+  try {
+    const loginUser = await req.user;
+    // const newTransData = {
+    //   name: loginUser.username,
+    //   title: req.body.title,
+    //   content: req.body.content,
+    //   like: 0,
+    // };
+    masterDB.createTransaction(req.body);
+    res.sendStatus(201);
+  } catch (e) {
+    res.status(400).send({ err: e });
+  }
+});
+
+router.post("/deleteTransaction", async (req, res) => {
+  if (req.isAuthenticated()) {
+    try {
+      const id = req.body._id;
+      const transaction = await masterDB.deleteTransaction({ id: id });
+      res.sendStatus(201);
+    } catch (e) {
+      res.status(401).send({ err: e });
+    }
+  } else {
+    res.status(401).send();
+  }
 
 module.exports = router;
