@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
-import Badge from "react-bootstrap/Badge";
 import DateTimePicker from "react-datetime-picker";
-import _ from "lodash";
 import "bootstrap/dist/css/bootstrap.min.css";
+import _ from "lodash";
 import _uniqueId from "lodash/uniqueId";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -48,9 +47,6 @@ export function NewTransaction(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    if (!evt.target.checkValidity()) {
-      return evt.target.classList.add("was-validated");
-    }
     const data = {
       category: category,
       merchant: merchant,
@@ -72,7 +68,7 @@ export function NewTransaction(props) {
           });
         } else {
           props.toggle();
-          props.refreshPage();
+          props.refreshPage((prev) => !prev);
           console.log("New transaction created");
         }
       })
@@ -171,7 +167,14 @@ function TransactionRecord(props) {
               alert(res);
             });
           } else {
-            props.refreshPage();
+            const array = _.cloneDeep(props.list);
+            for (let i = 0; i < array.length; i++) {
+              if (array[i].id === props.id) {
+                array.splice(i, 1);
+              }
+            }
+            props.setList(array);
+            props.refreshPage((prev) => !prev);
             console.log("Transaction deleted");
           }
         })
@@ -215,12 +218,15 @@ function TransactionList(props) {
           <ul className="flex-container list-group list-group-flush d-flex justify-content-evenly">
             {props.list.map((i, index) => (
               <TransactionRecord
-                key={"RecentTransaction-" + index}
+                key={"Transaction-" + index}
                 id={i.id}
                 category={i.category}
                 amount={parseFloat(i.amount)}
                 date={i.date}
                 merchant={i.merchant}
+                note={i.note}
+                list={props.list}
+                setList={props.setList}
                 refreshPage={props.refreshPage}
               />
             ))}
@@ -235,7 +241,7 @@ export default function Transaction(props) {
   const [showNewTrans, setShowNewTrans] = useState(false);
   const [list, setList] = useState([]);
 
-  function toggleSelectionPanelContent() {
+  function toggleSelectionContent() {
     setShowNewTrans(!showNewTrans);
   }
 
@@ -267,7 +273,7 @@ export default function Transaction(props) {
         {showNewTrans ? null : (
           <div
             className="position-absolute top-50 translate-middle-y new-btn"
-            onClick={toggleSelectionPanelContent}
+            onClick={toggleSelectionContent}
           >
             <FontAwesomeIcon icon={["fas", "plus"]} />
           </div>
@@ -277,11 +283,15 @@ export default function Transaction(props) {
         {showNewTrans ? (
           <NewTransaction
             user={props.user}
-            toggle={toggleSelectionPanelContent}
+            toggle={toggleSelectionContent}
             refreshPage={props.refreshPage}
           />
         ) : (
-          <TransactionList list={props.list} refreshPage={props.refreshPage} />
+          <TransactionList
+            list={props.list}
+            setList={props.setList}
+            refreshPage={props.refreshPage}
+          />
         )}
       </div>
     </div>
