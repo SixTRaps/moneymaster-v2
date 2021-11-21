@@ -131,6 +131,7 @@ router.get("/allTransactions", async (req, res) => {
   } else {
     res.status(401).send();
   }
+});
 
 router.post("/createTransaction", async (req, res) => {
   if (
@@ -170,5 +171,6 @@ router.post("/deleteTransaction", async (req, res) => {
   } else {
     res.status(401).send();
   }
+});
 
 module.exports = router;

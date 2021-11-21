@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
 import Signin from "./signin";
 import Signup from "./signup";
-import Ledger from "./ledger";
+import Transaction from "./Transaction/transaction";
 import Stat from "./stat";
 import Dashboard from "./dashboard";
 import logo from "../images/logo.png";
@@ -55,7 +55,7 @@ export default function App() {
               <Routes>
                 <Route path="/signin" element={<Signin />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/ledger" element={<Ledger />} />
+                <Route path="/transaction" element={<Transaction />} />
                 <Route path="/stat" element={<Stat />} />
                 <Route path="/dashboard" element={<Dashboard />} />
               </Routes>

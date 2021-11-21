@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import AddBudget from "./addBudget";
+import Transaction from "./Transaction/transaction";
 
 export default function Dashboard(props) {
   const [budget, setBudget] = useState(0);
@@ -29,7 +30,11 @@ export default function Dashboard(props) {
       <div className="container">
         <div className="d-flex flex-column">
           <div className="d-flex justify-content-evenly">
-            <NavLink to="/ledger" className="btn btn-dark" value="Ledger">
+            <NavLink
+              to="/transaction"
+              className="btn btn-dark"
+              value="Transaction"
+            >
               Ledger
             </NavLink>
             <NavLink to="/stat" className="btn btn-dark" value="Statistics">
@@ -50,6 +55,7 @@ export default function Dashboard(props) {
           <div>
             <Routes>
               <Route path="/addBudget" element={<AddBudget />} />
+              <Route path="/transaction" element={<Transaction />} />
             </Routes>
           </div>
         </div>

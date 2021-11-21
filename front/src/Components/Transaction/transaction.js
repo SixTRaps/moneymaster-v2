@@ -221,7 +221,7 @@ export function NewTransaction(props) {
 /**
  * TransactionList is a component that represents a group of transactions.
  */
-export function TransactionList(props) {
+export default function TransactionList(props) {
   return (
     <div className="Transaction-item">
       <h2 className="Transaction-header">
