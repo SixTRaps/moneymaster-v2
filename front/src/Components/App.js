@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
 import Signin from "./signin";
 import Signup from "./signup";
-import Transaction from "./Transaction/transaction";
+import Transaction from "./transaction";
 import Stat from "./stat";
 import Dashboard from "./dashboard";
 import logo from "../images/logo.png";
@@ -10,13 +10,14 @@ import "../stylesheets/style.css";
 
 export default function App() {
   const [user, setUser] = useState();
+  const [flag, refreshPage] = useState(true);
 
   useEffect(() => {
     getUsername().then((username) => {
       setUser(username);
       console.log(username);
     });
-  }, []);
+  }, [flag]);
 
   return (
     <BrowserRouter>
@@ -61,7 +62,11 @@ export default function App() {
               </Routes>
             </div>
           ) : (
-            <Dashboard username={user} />
+            <Dashboard
+              username={user}
+              setUser={setUser}
+              refreshPage={refreshPage}
+            />
           )}
         </div>
       </div>

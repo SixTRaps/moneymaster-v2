@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import AddBudget from "./addBudget";
-import Transaction from "./Transaction/transaction";
+import Transaction from "./transaction";
 
 export default function Dashboard(props) {
   const [budget, setBudget] = useState("0");
@@ -63,7 +63,12 @@ export default function Dashboard(props) {
               <Route path="/addBudget" element={<AddBudget />} />
               <Route
                 path="/transaction"
-                element={<Transaction header="test1123" />}
+                element={
+                  <Transaction
+                    user={props.username}
+                    refreshPage={props.refreshPage}
+                  />
+                }
               />
             </Routes>
           </div>
