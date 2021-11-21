@@ -126,7 +126,9 @@ router.get("/allTransactions", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const loginUser = await req.user;
-      const files = await masterDB.getMyTransactions({ name: loginUser.id });
+      const files = await masterDB.getMyTransactions({
+        username: loginUser.username,
+      });
       res.send({ files: files, user: loginUser.firstname });
     } catch (e) {
       res.status(401).send({ err: e });
@@ -138,7 +140,6 @@ router.get("/allTransactions", async (req, res) => {
 
 router.post("/createTransaction", async (req, res) => {
   if (
-    req.body.type === undefined ||
     req.body.category === undefined ||
     req.body.merchant === undefined ||
     req.body.amount === undefined ||
@@ -149,13 +150,16 @@ router.post("/createTransaction", async (req, res) => {
   }
   try {
     const loginUser = await req.user;
-    // const newTransData = {
-    //   name: loginUser.username,
-    //   title: req.body.title,
-    //   content: req.body.content,
-    //   like: 0,
-    // };
-    masterDB.createTransaction(req.body);
+    const newTransData = {
+      id: Date.now().toString(),
+      username: loginUser.username,
+      category: req.body.category,
+      merchant: req.body.merchant,
+      amount: req.body.amount,
+      date: req.body.date,
+      note: req.body.note,
+    };
+    masterDB.createTransaction(newTransData);
     res.sendStatus(201);
   } catch (e) {
     res.status(400).send({ err: e });
@@ -165,8 +169,13 @@ router.post("/createTransaction", async (req, res) => {
 router.post("/deleteTransaction", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      const id = req.body._id;
-      const transaction = await masterDB.deleteTransaction({ id: id });
+      const loginUser = await req.user;
+      const id = req.body.id;
+      const info = {
+        id: req.body.id,
+        username: loginUser.username,
+      };
+      const transaction = await masterDB.deleteTransaction({ info: info });
       res.sendStatus(201);
     } catch (e) {
       res.status(401).send({ err: e });

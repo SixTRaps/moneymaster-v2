@@ -5,77 +5,10 @@ import DateTimePicker from "react-datetime-picker";
 import _ from "lodash";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _uniqueId from "lodash/uniqueId";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /**
- * Transaction is a component that represents a actual expense record.
- */
-function Transaction(props) {
-  function parseDate(timestamp) {
-    const date = new Date(timestamp);
-    return date.toTimeString().split(" ")[0] + " " + date.toDateString();
-  }
-
-  function deleteTransaction() {
-    if (confirm("Are you sure to delete this transaction?")) {
-      fetch("/transaction/delete", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ _id: props._id }),
-      })
-        .then((resRaw) => {
-          if (!resRaw.ok) {
-            resRaw.text().then((res) => {
-              alert(res);
-            });
-          } else {
-            const array = _.cloneDeep(props.recent);
-            for (let i = 0; i < array.length; i++) {
-              if (array[i]._id === props._id) {
-                array.splice(i, 1);
-              }
-            }
-            props.setRecent(array);
-            props.refreshPage((prev) => !prev);
-            console.log("Transaction deleted");
-          }
-        })
-        .catch((err) => {
-          alert(err);
-        });
-    }
-  }
-
-  return (
-    <div className="mb-3 position-relative">
-      <li
-        className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
-        style={{ fontWeight: "bold" }}
-      >
-        {(props.note ? props.category + ": " : "") + props.merchant}
-        <div>
-          <Badge pill variant={props.type === "Expense" ? "danger" : "primary"}>
-            ${props.amount}
-          </Badge>{" "}
-          {props.refreshPage !== undefined ? (
-            <TiDelete size="1.5em" onClick={deleteTransaction} />
-          ) : null}
-        </div>
-      </li>
-      <li
-        className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
-        style={{ fontSize: "15px" }}
-      >
-        {props.note ? props.note : props.category}
-        <div style={{ fontStyle: "italic" }}>{parseDate(props.date)}</div>
-      </li>
-    </div>
-  );
-}
-
-/**
- * InputBox is a component that represents a input and label.
+ * InputBox is a component that represents a input and label to create a new transaction.
  */
 function InputBox(props) {
   const [id] = useState(_uniqueId("input-"));
@@ -83,7 +16,6 @@ function InputBox(props) {
   return (
     <div className="form-floating my-3">
       <input
-        type={props.type === undefined ? "text" : props.type}
         className="form-control"
         id={id}
         value={props.value}
@@ -126,7 +58,7 @@ export function NewTransaction(props) {
       date: date.getTime(),
       note: note,
     };
-    fetch("/transaction/new", {
+    fetch("/createTransaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -139,11 +71,8 @@ export function NewTransaction(props) {
             alert(res);
           });
         } else {
-          const newDateRange = _.cloneDeep(props.dateRange);
-          newDateRange[1] = new Date();
-          props.setDateRange(newDateRange);
           props.toggle();
-          props.refreshPage((prev) => !prev);
+          props.refreshPage();
           console.log("New transaction created");
         }
       })
@@ -219,41 +148,141 @@ export function NewTransaction(props) {
 }
 
 /**
- * TransactionList is a component that represents a group of transactions.
+ * TransactionRecord is a component that shows a exisiting transaction.
  */
-export function TransactionList(props) {
+function TransactionRecord(props) {
+  function parseDate(timestamp) {
+    const date = new Date(timestamp);
+    return date.toTimeString().split(" ")[0] + " " + date.toDateString();
+  }
+
+  function deleteTransaction() {
+    if (window.confirm("Are you sure to delete this transaction?")) {
+      fetch("/deleteTransaction", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: props.id }),
+      })
+        .then((resRaw) => {
+          if (!resRaw.ok) {
+            resRaw.text().then((res) => {
+              alert(res);
+            });
+          } else {
+            props.refreshPage();
+            console.log("Transaction deleted");
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }
+
   return (
-    <div className="Transaction-item">
-      <h2 className="Transaction-header">
-        <button
-          className="Transaction-button collapsed fw-bold text-black-50"
-          data-bs-toggle="collapse"
-          data-bs-target={"#" + props.header.replace(/\s+/g, "")}
-        >
-          {props.header}
-        </button>
-      </h2>
-      <div
-        id={props.header.replace(/\s+/g, "")}
-        className="Transaction-collapse collapse"
+    <div className="mb-3 position-relative">
+      <li
+        className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
+        style={{ fontWeight: "bold" }}
       >
-        <div className="Transaction-body">
-          {props.transactions.map((i, index) => (
-            <Transaction
-              key={"Transaction-" + index}
-              _id={i._id}
-              category={i.category}
-              amount={parseFloat(i.amount)}
-              date={i.date}
-              merchant={i.merchant}
-              type={i.type}
-              recent={props.recent}
-              setRecent={props.setRecent}
-              refreshPage={props.refreshPage}
-              note={i.note}
-            />
-          ))}
+        {(props.note ? props.category + ": " : "") + props.merchant}
+        <div>
+          ${props.amount}
+          <TiDelete size="1.5em" onClick={deleteTransaction} />
         </div>
+      </li>
+      <li
+        className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
+        style={{ fontSize: "15px" }}
+      >
+        {props.note ? props.note : props.category}
+        <div style={{ fontStyle: "italic" }}>{parseDate(props.date)}</div>
+      </li>
+    </div>
+  );
+}
+
+/**
+ * TransactionList is a component that shows all transactions.
+ */
+function TransactionList(props) {
+  return (
+    <div className="flex-container d-flex flex-column">
+      <div className="flex-grow-1 d-flex flex-column">
+        <div className="my-3 mx-2 text-center flex-grow-1">
+          <ul className="flex-container list-group list-group-flush d-flex justify-content-evenly">
+            {props.list.map((i, index) => (
+              <TransactionRecord
+                key={"RecentTransaction-" + index}
+                id={i.id}
+                category={i.category}
+                amount={parseFloat(i.amount)}
+                date={i.date}
+                merchant={i.merchant}
+                refreshPage={props.refreshPage}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Transaction(props) {
+  const [showNewTrans, setShowNewTrans] = useState(false);
+  const [list, setList] = useState([]);
+
+  function toggleSelectionPanelContent() {
+    setShowNewTrans(!showNewTrans);
+  }
+
+  useEffect(() => {
+    fetch("/allTransactions", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setList(res);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
+
+  return (
+    <div className="border-end flex-container d-flex flex-column">
+      <div
+        className="text-center border-bottom py-3 position-relative"
+        style={{ fontSize: "20px", fontWeight: "bold" }}
+      >
+        Transactions
+        {showNewTrans ? null : (
+          <div
+            className="position-absolute top-50 translate-middle-y new-btn"
+            onClick={toggleSelectionPanelContent}
+          >
+            <FontAwesomeIcon icon={["fas", "plus"]} />
+          </div>
+        )}
+      </div>
+      <div className="flex-grow-1" id="panel_content">
+        {showNewTrans ? (
+          <NewTransaction
+            user={props.user}
+            toggle={toggleSelectionPanelContent}
+            refreshPage={props.refreshPage}
+          />
+        ) : (
+          <TransactionList list={props.list} refreshPage={props.refreshPage} />
+        )}
       </div>
     </div>
   );

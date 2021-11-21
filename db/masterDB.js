@@ -85,20 +85,21 @@ function masterDB() {
       const filesCol = db.collection("files");
       const files = await filesCol.insertOne({
         id: file.id,
-        name: file.name,
-        title: file.title,
-        content: file.content,
-        time: new Date(),
-        like: 0,
+        username: file.username,
+        category: file.category,
+        merchant: file.merchant,
+        amount: file.amount,
+        date: file.date,
+        note: file.note,
       });
-      const user = await db.collection("credentials").findOne({
-        _id: ObjectId(file.id),
-      });
-      const new_balance = user.balance + parseFloat(-file.amount);
+      const userBudget = await db
+        .collection("budgetBalance")
+        .findOne(file.username);
+      const new_balance = userBudget.balance + parseFloat(-file.amount);
       await db
-        .collection("credentials")
+        .collection("budgetBalance")
         .updateOne(
-          { _id: ObjectId(file.id) },
+          { username: file.username },
           { $set: { balance: new_balance } }
         );
       return files;
@@ -107,33 +108,21 @@ function masterDB() {
     }
   };
 
-  masterDB.deleteTransaction = async (file) => {
+  masterDB.deleteTransaction = async (info) => {
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
       const db = client.db(DB_NAME);
-      const now = await db.collection("files").deleteOne({ id: file.id });
-      const user = await db.collection("credentials").findOne({
-        _id: ObjectId(file.user.id),
-      });
-      // if username not found, return
-      if (currentUser !== null) {
-        return "username alreay exists";
-      }
-      await credentials.insertOne({
-        id: credential.id,
-        username: credential.username,
-        password: credential.password,
-        firstname: credential.firstname,
-        lastname: credential.lastname,
-      });
-      return "Success";
-      const new_balance = user.balance + parseFloat(file.amount);
+      const now = await db.collection("files").deleteOne({ id: info.id });
+      const userBudget = await db
+        .collection("budgetBalance")
+        .findOne(info.username);
+      const new_balance = userBudget.balance + parseFloat(file.amount);
       await db
-        .collection("credentials")
+        .collection("budgetBalance")
         .updateOne(
-          { _id: ObjectId(file.user.id) },
+          { username: info.username },
           { $set: { balance: new_balance } }
         );
       return now;
