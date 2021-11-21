@@ -5,6 +5,8 @@ import Signup from "./signup";
 import Ledger from "./ledger";
 import Stat from "./stat";
 import Dashboard from "./dashboard";
+import logo from "../images/logo.png";
+import "../stylesheets/style.css";
 
 export default function App() {
   const [user, setUser] = useState();
@@ -18,29 +20,51 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <h1>Money Master</h1>
-      <div>
-        <h2>Your personal budget keeper</h2>
-      </div>
-      {user === undefined ? (
-        <div>
-          <NavLink to="/signin" className="btn">
-            Sign in
-          </NavLink>
-          <NavLink to="/signup" className="btn">
-            Sign up
-          </NavLink>
+      <div className="main-part">
+        <nav className="navbar navbar-light bg-light">
+          <div className="container-fluid">
+            <div className="navbar-brand">
+              <img
+                src={logo}
+                alt="moneyMaster logo"
+                width="40"
+                height="40"
+                className="d-inline-block"
+              />
+              <span className="brand">Money Master</span>
+            </div>
+          </div>
+        </nav>
+        <div className="welcome container">
+          {user === undefined ? (
+            <div>
+              <div className="d-flex align-items-center flex-column">
+                <h1>Money Master</h1>
+              </div>
+              <div className="d-flex align-items-center flex-column">
+                <h2>Your personal budget keeper</h2>
+              </div>
+              <div className="sign-buttons d-flex justify-content-evenly align-items-center">
+                <NavLink to="/signin" className="btn btn-warning">
+                  Sign in
+                </NavLink>
+                <NavLink to="/signup" className="btn btn-warning">
+                  Sign up
+                </NavLink>
+              </div>
+              <Routes>
+                <Route path="/signin" element={<Signin />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/ledger" element={<Ledger />} />
+                <Route path="/stat" element={<Stat />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Routes>
+            </div>
+          ) : (
+            <Dashboard username={user} />
+          )}
         </div>
-      ) : (
-        <Dashboard username={user} />
-      )}
-      <Routes>
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/ledger" element={<Ledger />} />
-        <Route path="/stat" element={<Stat />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
+      </div>
     </BrowserRouter>
   );
 }

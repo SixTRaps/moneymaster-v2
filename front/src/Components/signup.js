@@ -29,69 +29,75 @@ export default function Signin() {
   };
 
   return (
-    <form className="form" onSubmit={onSubmit}>
-      <h1>Please enter your username and password below</h1>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={values.username}
-          onChange={(e) =>
-            setValues((values) => ({
-              ...values,
-              username: e.target.value,
-            }))
-          }
-          required={true}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={values.password}
-          onChange={(e) =>
-            setValues((values) => ({
-              ...values,
-              password: e.target.value,
-            }))
-          }
-          required={true}
-        />
-      </label>
-      <br />
-      <label>
-        Firstname:
-        <input
-          type="text"
-          value={values.firstname}
-          onChange={(e) =>
-            setValues((values) => ({
-              ...values,
-              firstname: e.target.value,
-            }))
-          }
-          required={true}
-        />
-      </label>
-      <br />
-      <label>
-        Lastname:
-        <input
-          type="text"
-          value={values.lastname}
-          onChange={(e) =>
-            setValues((values) => ({
-              ...values,
-              lastname: e.target.value,
-            }))
-          }
-          required={true}
-        />
-      </label>
-      <br />
-      <input type="submit" value="Sign up" />
-    </form>
+    <div className="container auth">
+      <form className="form d-flex flex-column" onSubmit={onSubmit}>
+        <p className="d-flex justify-content-center">
+          Please enter following infos below
+        </p>
+        <label className="d-flex justify-content-center">
+          Username:
+          <input
+            type="text"
+            value={values.username}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                username: e.target.value,
+              }))
+            }
+            required={true}
+          />
+        </label>
+        <br />
+        <label className="d-flex justify-content-center">
+          Password:
+          <input
+            type="password"
+            value={values.password}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                password: e.target.value,
+              }))
+            }
+            required={true}
+          />
+        </label>
+        <br />
+        <label className="d-flex justify-content-center">
+          Firstname:
+          <input
+            type="text"
+            value={values.firstname}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                firstname: e.target.value,
+              }))
+            }
+            required={true}
+          />
+        </label>
+        <br />
+        <label className="d-flex justify-content-center">
+          Lastname:
+          <input
+            type="text"
+            value={values.lastname}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                lastname: e.target.value,
+              }))
+            }
+            required={true}
+          />
+        </label>
+        <br />
+        <div className="d-flex justify-content-center">
+          <input className="btn btn-dark" type="submit" value="Sign up" />
+        </div>
+      </form>
+    </div>
   );
 }

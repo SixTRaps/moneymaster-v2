@@ -138,7 +138,7 @@ function masterDB() {
         username: credential.username,
       });
       // if username not found, return
-      if (currentUser != null) {
+      if (currentUser !== null) {
         return "username alreay exists";
       }
       await credentials.insertOne({
@@ -148,6 +148,53 @@ function masterDB() {
         firstname: credential.firstname,
         lastname: credential.lastname,
       });
+      return "Success";
+    } finally {
+      client.close();
+    }
+  };
+
+  masterDB.getBalanceAndBudget = async (query) => {
+    let client;
+    console.log("getting balance and budget!");
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const data = await db.collection("budgetBalance").findOne(query);
+      return data;
+    } finally {
+      client.close();
+    }
+  };
+
+  masterDB.updateBudget = async (query) => {
+    let client;
+    console.log("updating budget");
+    try {
+      client = new MongoClient(url, { useUnifiedTopoly: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const lookup = await db
+        .collection("budgetBalance")
+        .findOne(query.username);
+      console.log("query.username:", query.username);
+      if (lookup !== null) {
+        await db
+          .collection("budgetBalance")
+          .updateOne(
+            { username: query.username },
+            { $set: { budget: query.budget } }
+          );
+      } else {
+        const data = {
+          username: query.username,
+          budget: query.budget,
+          balance: query.budget,
+        };
+        await db.collection("budgetBalance").insertOne(data);
+        console.log("inserted", data);
+      }
       return "Success";
     } finally {
       client.close();

@@ -1,0 +1,46 @@
+.main-part {
+  font-family: "Calibri", sans-serif;
+}
+
+.brand {
+  margin-left: 10px;
+}
+
+.welcome {
+  height: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.welcome h1 {
+  font-family: "Georgia", serif;
+  font-weight: bold;
+  font-size: 8rem;
+  margin-bottom: 50px;
+}
+
+.sign-buttons {
+  margin-top: 80px;
+}
+
+.data {
+  font-size: 1.8rem;
+  font-family: "Georgia", serif;
+}
+
+.auth {
+  justify-content: center;
+  height: 300px;
+}
+
+.auth p {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 150px;
+  margin-bottom: 60px;
+}

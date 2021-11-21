@@ -29,13 +29,45 @@ router.get("/user", async function (req, res) {
   }
 });
 
-/* GET check authentication status */
-router.get("/checkAuth", async (req, res) => {
+/* GET balance and budget */
+router.get("/getBalanceAndBudget", async (req, res) => {
   if (req.isAuthenticated()) {
-    const user = await req.user;
-    res.status(200).send({ username: user.username });
+    try {
+      const user = await req.user;
+      const data = await masterDB.getBalanceAndBudget({
+        username: user.username,
+      });
+      if (data) res.status(200).send(JSON.stringify(data));
+      else res.status(404).send();
+    } catch (e) {
+      res.status(400).send({ error: e });
+    }
   } else {
-    res.status(401).send();
+    res.status(401).send("Auth required");
+    console.log("auth required");
+  }
+});
+
+/* POST update budget */
+router.get("/changeBudget", async (req, res) => {
+  if (req.isAuthenticated()) {
+    try {
+      const user = await req.user;
+      const newBudget = {
+        username: user.username,
+        budget: req.body.budget,
+      };
+      const updateRes = await masterDB.updateBudget(newBudget);
+      console.log("new budget", newBudget);
+      console.log("res", updateRes);
+      if (updateRes === "Success") res.status(200).send();
+      else res.status(400).send();
+    } catch (e) {
+      res.status(400).send();
+    }
+  } else {
+    res.status(401).send("Auth required");
+    console.log("auth required");
   }
 });
 
@@ -61,13 +93,8 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/signin", (req, res, next) => {
-  console.log("in!");
-
   passport.authenticate("local", (err, user) => {
-    console.log("in2!");
-
     if (err) {
-      console.log("err!");
       throw err;
     }
     if (!user) {

@@ -25,39 +25,47 @@ export default function Signin() {
   }
 
   return (
-    <form className="form" onSubmit={onSubmit}>
-      <h1>Please enter your username and password below</h1>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={values.username}
-          onChange={(e) =>
-            setValues((values) => ({
-              username: e.target.value,
-              password: values.password,
-            }))
-          }
-          required={true}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={values.password}
-          onChange={(e) =>
-            setValues((values) => ({
-              username: values.username,
-              password: e.target.value,
-            }))
-          }
-          required={true}
-        />
-      </label>
-      <br />
-      <button type="submit">Sign in</button>
-    </form>
+    <div className="container auth">
+      <form className="form d-flex flex-column" onSubmit={onSubmit}>
+        <p className="d-flex justify-content-center">
+          Please enter your username and password below
+        </p>
+        <label className="d-flex justify-content-center">
+          Username:
+          <input
+            type="text"
+            value={values.username}
+            onChange={(e) =>
+              setValues((values) => ({
+                username: e.target.value,
+                password: values.password,
+              }))
+            }
+            required={true}
+          />
+        </label>
+        <br />
+        <label className="d-flex justify-content-center">
+          Password:
+          <input
+            type="password"
+            value={values.password}
+            onChange={(e) =>
+              setValues((values) => ({
+                username: values.username,
+                password: e.target.value,
+              }))
+            }
+            required={true}
+          />
+        </label>
+        <br />
+        <div className="d-flex justify-content-center">
+          <button className="btn btn-dark" type="submit">
+            Sign in
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
