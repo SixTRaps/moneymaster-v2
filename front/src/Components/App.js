@@ -62,11 +62,7 @@ export default function App() {
               </Routes>
             </div>
           ) : (
-            <Dashboard
-              username={user}
-              setUser={setUser}
-              refreshPage={refreshPage}
-            />
+            <Dashboard username={user} refreshPage={refreshPage} />
           )}
         </div>
       </div>
