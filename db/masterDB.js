@@ -160,14 +160,13 @@ function masterDB() {
     let client;
     console.log("updating budget");
     try {
-      client = new MongoClient(url, { useUnifiedTopoly: true });
+      client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
       const db = client.db(DB_NAME);
       const lookup = await db
         .collection("budgetBalance")
-        .findOne(query.username);
-      console.log("query.username:", query.username);
-      if (lookup !== null) {
+        .findOne({ username: query.username });
+      if (lookup) {
         await db
           .collection("budgetBalance")
           .updateOne(

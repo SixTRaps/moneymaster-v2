@@ -33,10 +33,12 @@ router.get("/user", async function (req, res) {
 router.get("/getBalanceAndBudget", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
+      console.log("in router get balance");
       const user = await req.user;
       const data = await masterDB.getBalanceAndBudget({
         username: user.username,
       });
+      console.log("data", data);
       if (data) res.status(200).send(JSON.stringify(data));
       else res.status(404).send();
     } catch (e) {
@@ -49,9 +51,10 @@ router.get("/getBalanceAndBudget", async (req, res) => {
 });
 
 /* POST update budget */
-router.get("/changeBudget", async (req, res) => {
+router.post("/changeBudget", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
+      console.log("change budget");
       const user = await req.user;
       const newBudget = {
         username: user.username,
