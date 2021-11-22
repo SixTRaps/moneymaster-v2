@@ -69,7 +69,7 @@ function masterDB() {
       await client.connect();
       const db = client.db(DB_NAME);
       const files = db.collection("files");
-      const result = await files.find(query).toArray();
+      const result = await files.find(query).sort({ date: -1 }).toArray();
       return result;
     } finally {
       client.close();
@@ -78,6 +78,7 @@ function masterDB() {
 
   masterDB.createTransaction = async (file) => {
     let client;
+    console.log("new transaction created!");
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
@@ -92,40 +93,51 @@ function masterDB() {
         date: file.date,
         note: file.note,
       });
+      console.log("created", files);
       const userBudget = await db
         .collection("budgetBalance")
-        .findOne(file.username);
-      const new_balance = userBudget.balance + parseFloat(-file.amount);
+        .findOne({ username: file.username });
+      const new_balance =
+        parseFloat(userBudget.balance) + parseFloat(-file.amount);
       await db
         .collection("budgetBalance")
         .updateOne(
           { username: file.username },
           { $set: { balance: new_balance } }
         );
+      console.log("balance updated", new_balance);
       return files;
     } finally {
       client.close();
     }
   };
 
-  masterDB.deleteTransaction = async (info) => {
+  masterDB.deleteTransaction = async (file) => {
     let client;
+    console.log("transaction deleted!");
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
       const db = client.db(DB_NAME);
-      const now = await db.collection("files").deleteOne({ id: info.id });
+      const trans = await db.collection("files").findOne({ id: file.id });
+      const del = await db.collection("files").deleteOne({ id: file.id });
       const userBudget = await db
         .collection("budgetBalance")
-        .findOne(info.username);
-      const new_balance = userBudget.balance + parseFloat(file.amount);
+        .findOne({ username: file.username });
+      console.log(userBudget.balance);
+      console.log(parseFloat(userBudget.balance));
+      console.log(file.amount);
+      consolo.log(parseFloat(file.amount));
+      const new_balance =
+        parseFloat(userBudget.balance) + parseFloat(file.amount);
       await db
         .collection("budgetBalance")
         .updateOne(
-          { username: info.username },
+          { username: file.username },
           { $set: { balance: new_balance } }
         );
-      return now;
+      console.log("balance updated", new_balance);
+      return del;
     } finally {
       client.close();
     }

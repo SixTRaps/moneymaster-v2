@@ -2,11 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import AddBudget from "./addBudget";
-import Transaction from "./transaction";
+import NewTransaction from "./newTransaction";
+import ShowTransaction from "./showTransaction";
 
 export default function Dashboard(props) {
   const [budget, setBudget] = useState("0");
   const [balance, setBalance] = useState("0");
+  const [list, setList] = useState([]);
 
   useEffect(() => {
     async function lookup() {
@@ -22,6 +24,24 @@ export default function Dashboard(props) {
     lookup();
   }, [balance, budget]);
 
+  useEffect(() => {
+    fetch("/api/allTransactions", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setList(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
+
   return (
     <div>
       {props.username === undefined ? (
@@ -35,11 +55,18 @@ export default function Dashboard(props) {
         <div className="d-flex flex-column">
           <div className="d-flex justify-content-evenly">
             <NavLink
-              to="/transaction"
+              to="/newTransaction"
               className="btn btn-dark"
-              value="Transaction"
+              value="NewTransaction"
             >
-              Transaction
+              New Transaction
+            </NavLink>
+            <NavLink
+              to="/showTransactions"
+              className="btn btn-dark"
+              value="ShowTransaction"
+            >
+              All Transactions
             </NavLink>
             <NavLink to="/stat" className="btn btn-dark" value="Statistics">
               Statistics
@@ -62,13 +89,17 @@ export default function Dashboard(props) {
             <Routes>
               <Route path="/addBudget" element={<AddBudget />} />
               <Route
-                path="/transaction"
+                path="/newTransaction"
+                element={<NewTransaction user={props.username} />}
+              />
+              <Route
+                path="/showTransactions"
                 element={
-                  // <Transaction
-                  //   user={props.username}
-                  //   refreshPage={props.refreshPage}
-                  // />
-                  <Transaction user={props.username} />
+                  <ShowTransaction
+                    user={props.username}
+                    list={list}
+                    setList={setList}
+                  />
                 }
               />
             </Routes>

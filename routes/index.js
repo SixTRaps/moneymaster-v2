@@ -121,7 +121,7 @@ router.get("/allTransactions", async (req, res) => {
       const files = await masterDB.getMyTransactions({
         username: loginUser.username,
       });
-      res.send({ files: files, user: loginUser.firstname });
+      res.send({ files: files });
     } catch (e) {
       res.status(401).send({ err: e });
     }
@@ -167,7 +167,8 @@ router.post("/deleteTransaction", async (req, res) => {
         id: req.body.id,
         username: loginUser.username,
       };
-      const transaction = await masterDB.deleteTransaction({ info: info });
+      console.log("delete info", info);
+      const transaction = await masterDB.deleteTransaction(info);
       res.sendStatus(201);
     } catch (e) {
       res.status(401).send({ err: e });
