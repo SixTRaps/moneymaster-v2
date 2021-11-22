@@ -124,12 +124,8 @@ function masterDB() {
       const userBudget = await db
         .collection("budgetBalance")
         .findOne({ username: file.username });
-      console.log(userBudget.balance);
-      console.log(parseFloat(userBudget.balance));
-      console.log(file.amount);
-      consolo.log(parseFloat(file.amount));
       const new_balance =
-        parseFloat(userBudget.balance) + parseFloat(file.amount);
+        parseFloat(userBudget.balance) + parseFloat(trans.amount);
       await db
         .collection("budgetBalance")
         .updateOne(

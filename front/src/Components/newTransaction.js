@@ -47,7 +47,7 @@ function CreateTransaction(props) {
       category: category,
       merchant: merchant,
       amount: amount,
-      date: Date.now().toLocaleString(),
+      date: date.getTime(),
       note: note,
     };
     fetch("/api/createTransaction", {
