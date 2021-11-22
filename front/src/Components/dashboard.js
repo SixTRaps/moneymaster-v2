@@ -64,10 +64,11 @@ export default function Dashboard(props) {
               <Route
                 path="/transaction"
                 element={
-                  <Transaction
-                    user={props.username}
-                    refreshPage={props.refreshPage}
-                  />
+                  // <Transaction
+                  //   user={props.username}
+                  //   refreshPage={props.refreshPage}
+                  // />
+                  <Transaction user={props.username} />
                 }
               />
             </Routes>

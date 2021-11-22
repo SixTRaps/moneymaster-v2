@@ -84,14 +84,6 @@ router.post("/signup", async (req, res) => {
       password: hash,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      categories: [
-        "Housing",
-        "Transportation",
-        "Consumables",
-        "Living Expense",
-        "Savings",
-        "Debt",
-      ],
     };
     const insertRes = await masterDB.createCredential(newUserData);
     console.log(newUserData);

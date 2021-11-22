@@ -4,7 +4,7 @@ import DateTimePicker from "react-datetime-picker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _ from "lodash";
 import _uniqueId from "lodash/uniqueId";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "react-fontawesome";
 
 /**
  * InputBox is a component that represents a input and label to create a new transaction.
@@ -37,11 +37,10 @@ function InputBox(props) {
 /**
  * NewTransaction is a component that creates a new expense transaction.
  */
-export function NewTransaction(props) {
+export default function NewTransaction(props) {
   const [merchant, setMerchant] = useState("");
   const [amount, setAmount] = useState("");
-  const [categories, setCategories] = useState(props.user.categories);
-  const [category, setCategory] = useState(props.user.categories[0]);
+  const [category, setCategory] = useState("");
   const [note, setNote] = useState("");
   const [date, setDate] = useState(new Date());
 
@@ -51,10 +50,10 @@ export function NewTransaction(props) {
       category: category,
       merchant: merchant,
       amount: amount,
-      date: date.getTime(),
+      date: Date.now().toLocaleString(),
       note: note,
     };
-    fetch("/createTransaction", {
+    fetch("/api/createTransaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,8 +66,8 @@ export function NewTransaction(props) {
             alert(res);
           });
         } else {
-          props.toggle();
-          props.refreshPage((prev) => !prev);
+          // props.toggle();
+          // props.refreshPage((prev) => !prev);
           console.log("New transaction created");
         }
       })
@@ -86,7 +85,7 @@ export function NewTransaction(props) {
         <div className="row py-3 text-center btn-group mx-3" role="group">
           <div
             className="col-3 border-end btn btn-secondary"
-            onClick={props.toggle}
+            // onClick={props.toggle}
           >
             Cancel
           </div>
@@ -97,21 +96,21 @@ export function NewTransaction(props) {
           <DateTimePicker onChange={setDate} value={date} clearIcon={null} />
         </div>
         <div className="form-floating my-3">
-          <select
-            className="form-select"
-            id="select"
-            value={category}
-            onChange={(evt) => {
-              setCategory(evt.target.value);
-            }}
-          >
-            {categories.map((item, index) => (
-              <option value={item} key={"option-" + index}>
-                {item}
-              </option>
-            ))}
-          </select>
           <label htmlFor="select">Category</label>
+          <select
+            name="Category"
+            id="cate"
+            onChange={(evt) => setCategory(evt.target.value)}
+            required={true}
+            feedback="Please choose from one of the categories"
+          >
+            <option value="housing">Housing</option>
+            <option value="transportation">Transportation</option>
+            <option value="consumables">Consumables</option>
+            <option value="livingExpense">Living Expense</option>
+            <option value="savings">Savings</option>
+            <option value="debt">Debt</option>
+          </select>
         </div>
         <InputBox
           label="Merchant name"
@@ -154,7 +153,7 @@ function TransactionRecord(props) {
 
   function deleteTransaction() {
     if (window.confirm("Are you sure to delete this transaction?")) {
-      fetch("/deleteTransaction", {
+      fetch("/api/deleteTransaction", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -237,7 +236,7 @@ function TransactionList(props) {
   );
 }
 
-export default function Transaction(props) {
+function Transaction(props) {
   const [showNewTrans, setShowNewTrans] = useState(false);
   const [list, setList] = useState([]);
 
@@ -246,7 +245,7 @@ export default function Transaction(props) {
   }
 
   useEffect(() => {
-    fetch("/allTransactions", {
+    fetch("/api/allTransactions", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -256,7 +255,7 @@ export default function Transaction(props) {
         return res.json();
       })
       .then((res) => {
-        setList(res);
+        setList(res[0]);
       })
       .catch((err) => {
         alert(err);
@@ -288,8 +287,8 @@ export default function Transaction(props) {
           />
         ) : (
           <TransactionList
-            list={props.list}
-            setList={props.setList}
+            list={list}
+            setList={setList}
             refreshPage={props.refreshPage}
           />
         )}
