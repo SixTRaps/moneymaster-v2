@@ -35,7 +35,6 @@ function TransactionRecord(props) {
                 array.splice(i, 1);
               }
             }
-            props.setList(array);
             console.log("Transaction deleted");
           }
         })
@@ -72,14 +71,32 @@ function TransactionRecord(props) {
  * TransactionList is a component that shows all transactions.
  */
 function TransactionList(props) {
+  const [list, setList] = useState([]);
+  useEffect(() => {
+    async function getTransactions() {
+      const transactions = await fetch("/api/allTransactions", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const res = await transactions.json();
+      if (res) {
+        const data = [];
+        for (const d of res) {
+          data.push(d);
+        }
+        setList(data);
+      }
+    }
+    getTransactions();
+  });
+
   return (
     <div className="flex-container d-flex flex-column">
       <div className="flex-grow-1 d-flex flex-column">
         <div className="my-3 mx-2 text-center flex-grow-1">
-          {_.cloneDeep(props.list)}
           <ul className="flex-container list-group list-group-flush d-flex justify-content-evenly">
-            {/*            {props.list.map((i, index) => ({
-                            <TransactionRecord
+            {list.map((i, index) => (
+              <TransactionRecord
                 key={"Transaction-" + index}
                 id={i.id}
                 category={i.category}
@@ -87,10 +104,10 @@ function TransactionList(props) {
                 date={i.date}
                 merchant={i.merchant}
                 note={i.note}
-                list={props.list}
-                setList={props.setList}
+                list={list}
+                // setList={props.setList}
               />
-            }))}*/}
+            ))}
           </ul>
         </div>
       </div>
@@ -108,7 +125,7 @@ export default function ShowTransaction(props) {
         Show All Transactions
       </div>
       <div className="flex-grow-1" id="panel_content">
-        <TransactionList list={props.list} setList={props.setList} />
+        <TransactionList />
       </div>
     </div>
   );

@@ -18,9 +18,11 @@ export default function Signin() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    alert("Sign in successful!");
-    console.log(res);
-
+    if (res.status === 200) {
+      alert("Sign in successful!");
+    } else {
+      alert("Sign in failure, please check your username or password");
+    }
     window.location.href = "/";
   }
 

@@ -13,6 +13,7 @@ initializePassport(
   (id) => masterDB.findUser({ id: id })
 );
 
+// Xuejia Yang
 /* GET User Info. */
 router.get("/user", async function (req, res) {
   if (req.isAuthenticated()) {
@@ -89,28 +90,34 @@ router.post("/signup", async (req, res) => {
     console.log(newUserData);
     console.log(insertRes);
     if (insertRes === "Success") res.status(200).send();
+    else if (insertRes === "username alreay exists") res.status(409).send();
     else res.status(401).send();
   } catch (e) {
     res.status(401).send();
   }
 });
 
+/* POST user logout */
 router.post("/signin", (req, res, next) => {
   passport.authenticate("local", (err, user) => {
     if (err) {
       throw err;
     }
     if (!user) {
-      console.log("no user");
-      res.send("No User Exists");
+      res.status(404).send("No User Exists");
     } else {
       req.logIn(user, (err) => {
         if (err) throw err;
-        res.send("Successfully Authenticated");
-        console.log("login:", req.user);
+        res.status(200).send("Successfully Authenticated");
       });
     }
   })(req, res, next);
+});
+
+/* User Log-Out Request. */
+router.delete("/logout", (req, res) => {
+  req.logOut();
+  res.redirect("/");
 });
 
 //Anni
@@ -121,7 +128,7 @@ router.get("/allTransactions", async (req, res) => {
       const files = await masterDB.getMyTransactions({
         username: loginUser.username,
       });
-      res.send({ files: files });
+      res.status(200).send(files);
     } catch (e) {
       res.status(401).send({ err: e });
     }

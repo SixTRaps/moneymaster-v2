@@ -1205,7 +1205,7 @@ merge-descriptors@1.0.1:
 
 method-override@^3.0.0:
   version "3.0.0"
-  resolved "https://registry.npmjs.org/method-override/-/method-override-3.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/method-override/-/method-override-3.0.0.tgz#6ab0d5d574e3208f15b0c9cf45ab52000468d7a2"
   integrity sha512-IJ2NNN/mSl9w3kzWB92rcdHpz+HjkxhDJWNDBqSlas+zQdP8wBiJzITPg08M/k2uVvMow7Sk41atndNtt/PHSA==
   dependencies:
     debug "3.1.0"

@@ -8,39 +8,17 @@ import ShowTransaction from "./showTransaction";
 export default function Dashboard(props) {
   const [budget, setBudget] = useState("0");
   const [balance, setBalance] = useState("0");
-  const [list, setList] = useState([]);
 
   useEffect(() => {
     async function lookup() {
       const data = await getBalanceAndBudget();
-      console.log("useEffect data", data);
       if (data) {
         setBalance(data[0]);
         setBudget(data[1]);
       }
-      console.log("balance", balance);
-      console.log("budget", budget);
     }
     lookup();
   }, [balance, budget]);
-
-  useEffect(() => {
-    fetch("/api/allTransactions", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setList(res.data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }, []);
 
   return (
     <div>
@@ -71,6 +49,11 @@ export default function Dashboard(props) {
             <NavLink to="/stat" className="btn btn-dark" value="Statistics">
               Statistics
             </NavLink>
+            <form action="/api/logout?_method=DELETE" method="POST">
+              <button className="btn btn-warning btn-width" type="submit">
+                Log Out
+              </button>
+            </form>
           </div>
           <div className="data d-flex flex-column">
             <p className="d-flex justify-content-center">
@@ -94,13 +77,7 @@ export default function Dashboard(props) {
               />
               <Route
                 path="/showTransactions"
-                element={
-                  <ShowTransaction
-                    user={props.username}
-                    list={list}
-                    setList={setList}
-                  />
-                }
+                element={<ShowTransaction user={props.username} />}
               />
             </Routes>
           </div>
@@ -117,7 +94,6 @@ async function getBalanceAndBudget() {
   });
   if (res.status === 200) {
     const data = await res.json();
-    console.log("getBalanceAndBudget success", data);
     const balance = await data.balance;
     const budget = await data.budget;
     return [balance, budget];

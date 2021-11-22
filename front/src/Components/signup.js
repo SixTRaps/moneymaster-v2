@@ -17,15 +17,17 @@ export default function Signin() {
       firstname: values.firstname,
       lastname: values.lastname,
     };
-    console.log(data);
     const res = await fetch("/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    console.log(res);
-    alert("Sign up successful!");
-    // window.location.href = "/dashboard";
+    if (res.status === 409) {
+      alert("Username exists, please go to sign in");
+    } else if (res.status === 200) {
+      alert("Sign up successful!");
+      window.location.href = "/dashboard";
+    }
   };
 
   return (
