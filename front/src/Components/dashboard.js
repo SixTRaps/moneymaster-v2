@@ -20,33 +20,12 @@ export default function Dashboard(props) {
         return res.json();
       })
       .then((res) => {
-        console.log("Transaction list", res);
-        console.log("data form", res[0].date);
         setList(res);
       })
       .catch((err) => {
         alert(err);
       });
   }, []);
-
-  // useEffect(() => {
-  //   async function getTransactions() {
-  //     const transactions = await fetch("/api/allTransactions", {
-  //       method: "GET",
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-  //     const res = await transactions.json();
-  //     setList(res);
-  // if (res) {
-  //   const data = [];
-  //   for (const d of res) {
-  //     data.push(d);
-  //   }
-  //   setList(data);
-  // }
-  //   }
-  //   getTransactions();
-  // });
 
   useEffect(() => {
     async function lookup() {
