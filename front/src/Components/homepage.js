@@ -1,14 +1,11 @@
 import React from "react";
+import Dashboard from "./dashboard";
 import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
   return (
     <div className="welcome container">
       {props.user === undefined ? (
-        <div className="nav-link" style={{ color: "rgba(255,255,255,1)" }}>
-          Welcome, Visitor
-        </div>
-      ) : (
         <div>
           <div className="d-flex align-items-center flex-column">
             <h1>Money Master</h1>
@@ -25,6 +22,8 @@ export default function Homepage(props) {
             </Link>
           </div>
         </div>
+      ) : (
+        <Dashboard username={props.user} />
       )}
     </div>
   );

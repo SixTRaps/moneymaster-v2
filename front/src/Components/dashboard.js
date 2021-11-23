@@ -86,25 +86,23 @@ export default function Dashboard(props) {
               </NavLink>
             </div>
           </div>
-          <div>
-            <Routes>
-              <Route path="/addBudget" element={<AddBudget />} />
-              <Route
-                path="/newTransaction"
-                element={<NewTransaction user={props.username} />}
-              />
-              <Route
-                path="/showTransactions"
-                element={
-                  <ShowTransaction
-                    user={props.username}
-                    list={list}
-                    setList={setList}
-                  />
-                }
-              />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/addBudget" element={<AddBudget />} />
+            <Route
+              path="/newTransaction"
+              element={<NewTransaction user={props.username} />}
+            />
+            <Route
+              path="/showTransactions"
+              element={
+                <ShowTransaction
+                  user={props.username}
+                  list={list}
+                  setList={setList}
+                />
+              }
+            />
+          </Routes>
         </div>
       </div>
     </div>

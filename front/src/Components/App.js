@@ -35,13 +35,7 @@ export default function App() {
         </div>
       </nav>
       <Routes>
-        <Route path="/" exact element={<HomePage user={user} />}>
-          {user === undefined ? (
-            <Route path="*" element={<Navigate to="/" />} />
-          ) : (
-            <Dashboard username={user} />
-          )}
-        </Route>
+        <Route path="/" exact element={<HomePage user={user} />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/stat" element={<Stat />} />
