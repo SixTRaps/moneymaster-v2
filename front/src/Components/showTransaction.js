@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TiDelete } from "react-icons/ti";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _ from "lodash";
-import _uniqueId from "lodash/uniqueId";
-import { FontAwesomeIcon } from "react-fontawesome";
 
 /**
  * TransactionRecord is a component that shows a exisiting transaction.

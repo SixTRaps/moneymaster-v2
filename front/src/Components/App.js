@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import HomePage from "./homepage";
 import Signin from "./signin";
 import Signup from "./signup";
 import Stat from "./stat";
@@ -19,50 +20,33 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="main-part">
-        <nav className="navbar navbar-light bg-light">
-          <div className="container-fluid">
-            <div className="navbar-brand">
-              <img
-                src={logo}
-                alt="moneyMaster logo"
-                width="40"
-                height="40"
-                className="d-inline-block"
-              />
-              <span className="brand">Money Master</span>
-            </div>
+      <nav className="navbar navbar-light bg-light">
+        <div className="container-fluid">
+          <div className="navbar-brand">
+            <img
+              src={logo}
+              alt="moneyMaster logo"
+              width="40"
+              height="40"
+              className="d-inline-block"
+            />
+            <span className="brand">Money Master</span>
           </div>
-        </nav>
-        <div className="welcome container">
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/" exact element={<HomePage user={user} />}>
           {user === undefined ? (
-            <div>
-              <div className="d-flex align-items-center flex-column">
-                <h1>Money Master</h1>
-              </div>
-              <div className="d-flex align-items-center flex-column">
-                <h2>Your personal budget keeper</h2>
-              </div>
-              <div className="sign-buttons d-flex justify-content-evenly align-items-center">
-                <NavLink to="/signin" className="btn btn-warning">
-                  Sign in
-                </NavLink>
-                <NavLink to="/signup" className="btn btn-warning">
-                  Sign up
-                </NavLink>
-              </div>
-              <Routes>
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/stat" element={<Stat />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-              </Routes>
-            </div>
+            <Route path="*" element={<Navigate to="/" />} />
           ) : (
             <Dashboard username={user} />
           )}
-        </div>
-      </div>
+        </Route>
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/stat" element={<Stat />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </BrowserRouter>
   );
 }
