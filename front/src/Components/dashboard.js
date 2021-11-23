@@ -1,31 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink, Routes, Route } from "react-router-dom";
-import AddBudget from "./addBudget";
-import NewTransaction from "./newTransaction";
-import ShowTransaction from "./showTransaction";
+import { NavLink } from "react-router-dom";
 
 export default function Dashboard(props) {
   const [budget, setBudget] = useState("0");
   const [balance, setBalance] = useState("0");
-  const [list, setList] = useState([]);
-  useEffect(() => {
-    fetch("/api/allTransactions", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setList(res);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }, []);
 
   useEffect(() => {
     async function lookup() {
@@ -86,23 +65,6 @@ export default function Dashboard(props) {
               </NavLink>
             </div>
           </div>
-          <Routes>
-            <Route path="/addBudget" element={<AddBudget />} />
-            <Route
-              path="/newTransaction"
-              element={<NewTransaction user={props.username} />}
-            />
-            <Route
-              path="/showTransactions"
-              element={
-                <ShowTransaction
-                  user={props.username}
-                  list={list}
-                  setList={setList}
-                />
-              }
-            />
-          </Routes>
         </div>
       </div>
     </div>

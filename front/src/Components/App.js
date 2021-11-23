@@ -7,15 +7,37 @@ import Stat from "./stat";
 import Dashboard from "./dashboard";
 import logo from "../images/logo.png";
 import "../stylesheets/style.css";
+import AddBudget from "./addBudget";
+import NewTransaction from "./newTransaction";
+import ShowTransaction from "./showTransaction";
 
 export default function App() {
   const [user, setUser] = useState();
+  const [list, setList] = useState([]);
 
   useEffect(() => {
     getUsername().then((username) => {
       setUser(username);
       console.log(username);
     });
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/allTransactions", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setList(res);
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }, []);
 
   return (
@@ -38,8 +60,19 @@ export default function App() {
         <Route path="/" exact element={<HomePage user={user} />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard username={user} />} />
+        <Route path="/addBudget" element={<AddBudget />} />
+        <Route
+          path="/newTransaction"
+          element={<NewTransaction user={user} />}
+        />
+        <Route
+          path="/showTransactions"
+          element={
+            <ShowTransaction user={user} list={list} setList={setList} />
+          }
+        />
         <Route path="/stat" element={<Stat />} />
-        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
