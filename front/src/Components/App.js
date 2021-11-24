@@ -44,12 +44,12 @@ export default function App() {
   useEffect(() => {
     setExpense({});
     const categories = [
-      "Housing",
-      "Transportation",
-      "Consumables",
-      "Living Expense",
-      "Savings",
-      "Debt",
+      "housing",
+      "transportation",
+      "consumables",
+      "livingExpense",
+      "savings",
+      "debt",
     ];
     for (let category of categories) {
       const array = list.filter((item) => item.category === category);

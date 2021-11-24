@@ -16,55 +16,16 @@ export default function Statistics(props) {
     lookup();
   }, [balance, budget]);
 
-  const data = [
-    {
-      id: "c",
-      label: "c",
-      value: 250,
-      color: "hsl(17, 70%, 50%)",
-    },
-    {
-      id: "lisp",
-      label: "lisp",
-      value: 217,
-      color: "hsl(320, 70%, 50%)",
-    },
-    {
-      id: "python",
-      label: "python",
-      value: 342,
-      color: "hsl(167, 70%, 50%)",
-    },
-    {
-      id: "java",
-      label: "java",
-      value: 327,
-      color: "hsl(219, 70%, 50%)",
-    },
-    {
-      id: "css",
-      label: "css",
-      value: 213,
-      color: "hsl(25, 70%, 50%)",
-    },
-    {
-      id: "h5",
-      label: "h5",
-      value: 300,
-      color: "hsl(25, 70%, 50%)",
-    },
-  ];
-
   const balance_data = [
     {
-      id: "balance",
-      label: "balance",
+      id: "Balance",
+      label: "Balance",
       value: balance,
       color: "hsl(25, 70%, 50%)",
     },
     {
-      id: "budget",
-      label: "budget",
+      id: "Budget",
+      label: "Budget",
       value: budget,
       color: "hsl(320, 70%, 50%)",
     },
@@ -72,18 +33,14 @@ export default function Statistics(props) {
 
   function typeData(type) {
     if (Object.keys(type).length === 0) return [];
-    console.log("I'm coming!!!!!");
     const data = [];
     Object.keys(type).map((item) => {
       const object = {};
-      console.log("itemmmmmm", item);
       const r = (Math.random() * 255).toFixed(0);
       const g = (Math.random() * 255).toFixed(0);
       const b = (Math.random() * 255).toFixed(0);
       let value = 0;
-      type[item].map((item) => {
-        value += item.amount;
-      });
+      type[item].map((item) => (value += item.amount));
 
       object["value"] = parseFloat(value).toFixed(2);
       object["id"] = item;
@@ -121,8 +78,7 @@ export default function Statistics(props) {
               style={{ height: "80%" }}
             >
               <div className="flex-container" style={{ width: "90%" }}>
-                <DataPie data={data} />
-                {/*<DataPie data={typeData(props.expense)} />*/}
+                <DataPie data={typeData(props.expense)} />
               </div>
             </div>
           </div>
