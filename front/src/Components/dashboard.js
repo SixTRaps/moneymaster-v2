@@ -43,7 +43,11 @@ export default function Dashboard(props) {
             >
               All Transactions
             </NavLink>
-            <NavLink to="/stat" className="btn btn-dark" value="Statistics">
+            <NavLink
+              to="/statistics"
+              className="btn btn-dark"
+              value="Statistics"
+            >
               Statistics
             </NavLink>
             <form action="/api/logout?_method=DELETE" method="POST">

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./homepage";
 import Signin from "./signin";
 import Signup from "./signup";
-import Stat from "./stat";
 import Dashboard from "./dashboard";
 import logo from "../images/logo.png";
 import "../stylesheets/style.css";
 import AddBudget from "./addBudget";
 import NewTransaction from "./newTransaction";
 import ShowTransaction from "./showTransaction";
+import Statistics from "./statistics";
 
 export default function App() {
   const [user, setUser] = useState();
   const [list, setList] = useState([]);
+  const [expense, setExpense] = useState({});
 
   useEffect(() => {
     getUsername().then((username) => {
@@ -39,6 +40,23 @@ export default function App() {
         alert(err);
       });
   }, []);
+
+  useEffect(() => {
+    setExpense({});
+    const categories = [
+      "Housing",
+      "Transportation",
+      "Consumables",
+      "Living Expense",
+      "Savings",
+      "Debt",
+    ];
+    for (let category of categories) {
+      const array = list.filter((item) => item.category === category);
+      if (array.length === 0) continue;
+      setExpense((prev) => ({ ...prev, [category]: array }));
+    }
+  }, [list]);
 
   return (
     <BrowserRouter>
@@ -72,7 +90,7 @@ export default function App() {
             <ShowTransaction user={user} list={list} setList={setList} />
           }
         />
-        <Route path="/stat" element={<Stat />} />
+        <Route path="/statistics" element={<Statistics expense={expense} />} />
       </Routes>
     </BrowserRouter>
   );
