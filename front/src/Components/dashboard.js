@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import BasicLayout from "./basicLayout.js";
+import dashboardPic from "../images/dashboard-pic.png";
+import AddBudget from "./addBudget.js";
 
 export default function Dashboard(props) {
   const [budget, setBudget] = useState("0");
@@ -18,60 +20,24 @@ export default function Dashboard(props) {
   }, [balance, budget]);
 
   return (
-    <div>
-      {props.username === undefined ? (
-        <h1>Welcome! Visitor!</h1>
-      ) : (
-        <div>
-          <h1>Welcome! {props.username}</h1>
+    <BasicLayout>
+      <div className="dashboard d-flex align-items-center flex-column justify-content-center">
+        {props.username === undefined ? (
+          <h2>Welcome to the Money Master, visitor!</h2>
+        ) : (
+          <h2>Welcome to the Money Master, {props.username}!</h2>
+        )}
+        <div className="d-flex align-items-center flex-column justify-content-center">
+          <h3>Balance/Budget</h3>
+          <h3>
+            {balance}/{budget}
+          </h3>
         </div>
-      )}
-      <div className="container">
-        <div className="d-flex flex-column">
-          <div className="d-flex justify-content-evenly">
-            <NavLink
-              to="/newTransaction"
-              className="btn btn-dark"
-              value="NewTransaction"
-            >
-              New Transaction
-            </NavLink>
-            <NavLink
-              to="/showTransactions"
-              className="btn btn-dark"
-              value="ShowTransaction"
-            >
-              All Transactions
-            </NavLink>
-            <NavLink
-              to="/statistics"
-              className="btn btn-dark"
-              value="Statistics"
-            >
-              Statistics
-            </NavLink>
-            <form action="/api/logout?_method=DELETE" method="POST">
-              <button className="btn btn-warning btn-width" type="submit">
-                Log Out
-              </button>
-            </form>
-          </div>
-          <div className="data d-flex flex-column">
-            <p className="d-flex justify-content-center">
-              Remaining Balance/Budget
-            </p>
-            <p className="d-flex justify-content-center">
-              {balance}/{budget}
-            </p>
-            <div className="d-flex justify-content-center">
-              <NavLink to="/addBudget" className="btn btn-dark">
-                Change Budget
-              </NavLink>
-            </div>
-          </div>
-        </div>
+        <AddBudget />
+        <br />
+        <img src={dashboardPic} alt="dashboard pic" />
       </div>
-    </div>
+    </BasicLayout>
   );
 }
 

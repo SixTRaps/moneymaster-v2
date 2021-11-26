@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataPie from "./pie";
+import BasicLayout from "./basicLayout.js";
 
 export default function Statistics(props) {
   const [budget, setBudget] = useState("0");
@@ -53,38 +54,46 @@ export default function Statistics(props) {
   }
 
   return (
-    <div className="flex-grow-1 d-flex flex-column">
-      <div className="flex-grow-1">
-        <div className="row flex-container">
-          <div style={{ height: "calc(100vh - 6rem)" }} className="col-6 px-0">
-            <button className="btn btn-secondary">
-              Show Balance/Budget Pie
-            </button>
+    <BasicLayout>
+      <div className="view-port container">
+        <div className="d-flex flex-column">
+          <div className="row">
             <div
-              className="d-flex justify-content-center me-2"
-              style={{ height: "80%" }}
+              style={{ height: "calc(100vh - 6rem)" }}
+              className="col-6 px-0"
             >
-              <div className="flex-container" style={{ width: "90%" }}>
-                <DataPie data={balance_data} />
+              <button className="btn btn-secondary">
+                Show Balance/Budget Pie
+              </button>
+              <div
+                className="d-flex justify-content-center me-2"
+                style={{ height: "60%" }}
+              >
+                <div className="flex-container" style={{ width: "90%" }}>
+                  <DataPie data={balance_data} />
+                </div>
               </div>
             </div>
-          </div>
-          <div style={{ height: "calc(100vh - 6rem)" }} className="col-6 px-0">
-            <button className="btn btn-secondary">
-              Show Expense Category Pie
-            </button>
             <div
-              className="d-flex justify-content-center me-2"
-              style={{ height: "80%" }}
+              style={{ height: "calc(100vh - 6rem)" }}
+              className="col-6 px-0"
             >
-              <div className="flex-container" style={{ width: "90%" }}>
-                <DataPie data={typeData(props.expense)} />
+              <button className="btn btn-secondary">
+                Show Expense Category Pie
+              </button>
+              <div
+                className="d-flex justify-content-center me-2"
+                style={{ height: "60%" }}
+              >
+                <div className="flex-container" style={{ width: "90%" }}>
+                  <DataPie data={typeData(props.expense)} />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </BasicLayout>
   );
 }
 

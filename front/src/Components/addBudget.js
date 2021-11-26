@@ -9,25 +9,21 @@ export default function Signin() {
     const data = {
       budget: budget,
     };
-    console.log("chang!");
     const res = await fetch("/api/changeBudget", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    console.log(res);
-
-    window.location.href = "/dashboard";
+    window.location.href = "/";
   }
 
   return (
     <div className="container auth">
       <form className="form d-flex flex-column" onSubmit={onSubmit}>
-        <p className="d-flex justify-content-center">
+        <h4 className="d-flex justify-content-center">
           Please enter your budget below
-        </p>
+        </h4>
         <label className="d-flex justify-content-center">
-          New Budget:
           <input
             type="number"
             value={budget}
@@ -38,7 +34,7 @@ export default function Signin() {
         <br />
         <div className="d-flex justify-content-center">
           <button className="btn btn-dark" type="submit">
-            Add
+            Change
           </button>
         </div>
       </form>

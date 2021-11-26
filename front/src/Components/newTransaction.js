@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _uniqueId from "lodash/uniqueId";
+import BasicLayout from "./basicLayout.js";
 
 /**
  * InputBox is a component that represents a input and label to create a new transaction.
@@ -80,7 +81,8 @@ function CreateTransaction(props) {
         <div className="text-center my-3">
           <DateTimePicker onChange={setDate} value={date} clearIcon={null} />
         </div>
-        <div className="form-floating my-3">
+        <label htmlFor="select">Category</label>
+        <div className="form-floating">
           <select
             name="Category"
             id="cate"
@@ -95,7 +97,6 @@ function CreateTransaction(props) {
             <option value="savings">Savings</option>
             <option value="debt">Debt</option>
           </select>
-          <label htmlFor="select">Category</label>
         </div>
         <InputBox
           label="Merchant name"
@@ -123,7 +124,7 @@ function CreateTransaction(props) {
           <label htmlFor="note">Note</label>
         </div>
         <div className="d-flex justify-content-center">
-          <button className="btn btn-secondary" type="submit">
+          <button className="btn btn-warning" type="submit">
             Save
           </button>
         </div>
@@ -137,16 +138,18 @@ function CreateTransaction(props) {
  */
 export default function NewTransaction(props) {
   return (
-    <div className="border-end flex-container d-flex flex-column">
-      <div
-        className="text-center border-bottom py-3 position-relative"
-        style={{ fontSize: "20px", fontWeight: "bold" }}
-      >
-        Create New Transactions
+    <BasicLayout>
+      <div className="view-port container d-flex flex-column">
+        <div
+          className="text-center border-bottom py-3 position-relative"
+          style={{ fontSize: "20px", fontWeight: "bold" }}
+        >
+          <h3>Create New Transactions</h3>
+        </div>
+        <div className="flex-grow-1" id="panel_content">
+          <CreateTransaction user={props.user} />
+        </div>
       </div>
-      <div className="flex-grow-1" id="panel_content">
-        <CreateTransaction user={props.user} />
-      </div>
-    </div>
+    </BasicLayout>
   );
 }

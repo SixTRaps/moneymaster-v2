@@ -2,6 +2,7 @@ import React from "react";
 import { TiDelete } from "react-icons/ti";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _ from "lodash";
+import BasicLayout from "./basicLayout.js";
 
 /**
  * TransactionRecord is a component that shows a exisiting transaction.
@@ -97,16 +98,18 @@ function TransactionList(props) {
 
 export default function ShowTransaction(props) {
   return (
-    <div className="border-end flex-container d-flex flex-column">
-      <div
-        className="text-center border-bottom py-3 position-relative"
-        style={{ fontSize: "20px", fontWeight: "bold" }}
-      >
-        Show All Transactions
+    <BasicLayout>
+      <div className="view-port container d-flex flex-column">
+        <div
+          className="text-center py-3 position-relative"
+          style={{ fontSize: "20px", fontWeight: "bold" }}
+        >
+          <h3 className="border-bottom">Show All Transactions</h3>
+        </div>
+        <div className="flex-grow-1" id="panel_content">
+          <TransactionList list={props.list} setList={props.setList} />
+        </div>
       </div>
-      <div className="flex-grow-1" id="panel_content">
-        <TransactionList list={props.list} setList={props.setList} />
-      </div>
-    </div>
+    </BasicLayout>
   );
 }

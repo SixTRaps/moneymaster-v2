@@ -1,46 +1,301 @@
-.main-part {
-  font-family: "Calibri", sans-serif;
+.homepage-container {
+  width: 100%;
+  min-height: 90vh;
+}
+
+.signin-container {
+  width: 100%;
+  min-height: 90vh;
 }
 
 .brand {
-  margin-left: 10px;
+  font-family: Georgia, serif;
 }
 
-.welcome {
-  height: 1000px;
+.col-6 {
+  height: 50vh;
+}
+
+.col-6 h2 {
+  font-family: Georgia, serif;
+  font-size: 60px;
+}
+
+.col-6 h3 {
+  font-size: 35px;
+  color: #707070;
+  font-weight: 100;
+  margin: 20px 0 10px;
+}
+
+.col-6 p {
+  font-size: 25px;
+  color: #b7b7b7;
+  font-weight: 100;
+}
+
+.col-6 .homepage-animate {
+  width: 150%;
+}
+
+.col-6 .link {
+  font-family: serif;
+  text-decoration: none;
+  text-align: center;
+  width: 140px;
+  border: 0;
+  padding: 12px 10px;
+  outline: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background: linear-gradient(to right, #74bec1, #cfe9ea);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: width 0.5s;
+}
+
+.col-6 .link img {
+  display: none;
+  width: 40px;
+}
+
+.col-6 .link:hover img {
+  display: block;
+}
+
+.col-6 .link:hover {
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.left::after {
+  content: "";
+  width: 18px;
+  height: 380px;
+  background: linear-gradient(#ff469f, #ff6062);
+  position: relative;
+  left: -680px;
+  top: 6px;
+}
+
+.signin .signin-animate img {
+  width: 50%;
+  top: 23vh;
+  position: absolute;
+  right: 0;
+  border-radius: 20px;
+}
+
+.signin p {
+  font-size: 1.4rem;
+  color: #b7b7b7;
+  font-weight: 250;
+}
+
+.signin h2 {
+  font-family: Georgia, serif;
+  font-size: 40px;
+}
+
+.signin .form {
+  position: absolute;
+  top: 30%;
+  right: 60%;
+  width: 600px;
+}
+
+.signin .form::after {
+  content: "";
+  width: 18px;
+  height: 380px;
+  background: linear-gradient(#ff469f, #ff6062);
+  position: absolute;
+  left: -61px;
+  top: -29px;
+}
+
+.signin .btn {
+  font-weight: bold;
+  font-family: Calibri;
+  width: 140px;
+  border: none;
+  margin-left: auto;
+}
+
+.signin .btn:hover {
+  background: #b0dddf;
+  color: #000;
+  border: none;
+}
+
+.signin span {
+  margin-left: auto;
+}
+
+.signup .signup-animate img {
+  width: 40%;
+  top: 20vh;
+  position: absolute;
+  left: 0;
+  border-radius: 20px;
+}
+
+.signup p {
+  font-size: 1.4rem;
+  color: #b7b7b7;
+  font-weight: 250;
+}
+
+.signup h2 {
+  font-family: Georgia, serif;
+  font-size: 40px;
+}
+
+.signup .form {
+  position: absolute;
+  top: 30%;
+  left: 55%;
+  width: 600px;
+}
+
+.signup .form::after {
+  content: "";
+  width: 18px;
+  height: 427px;
+  background: linear-gradient(#489ac7, #ff6062);
+  position: absolute;
+  left: 735px;
+  top: -4px;
+}
+
+.signup .btn {
+  font-weight: bold;
+  font-family: Calibri;
+  width: 140px;
+  border: none;
+  margin-left: auto;
+}
+
+.signup .btn:hover {
+  background: #489ac7;
+  border: none;
+}
+
+.signup span {
+  margin-left: auto;
+}
+
+.basicLayout .btn {
+  margin-right: 30px;
+  font-weight: bold;
+  font-family: Calibri;
+}
+
+.basicLayout .row {
+  min-height: 93.6vh;
+}
+
+.basicLayout .sidebar {
+  background: #f8f9fa;
+  box-shadow: 3px 0px 3px #b7b7b7;
+  line-height: 100px;
+}
+
+.basicLayout .sidebar .sidebar-btn {
+  width: auto;
+  height: 80px;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 80%;
-}
+  font-family: Georgia, serif;
+  background: #fff;
+  border: solid;
+  border-width: 2px;
+  border-radius: 20px;
 
-.welcome h1 {
-  font-family: "Georgia", serif;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
   font-weight: bold;
-  font-size: 8rem;
-  margin-bottom: 50px;
+
+  margin-left: 35px;
+  margin-right: 35px;
+  margin-top: 120px;
+  margin-bottom: 80px;
 }
 
-.sign-buttons {
-  margin-top: 80px;
+.basicLayout .sidebar .sidebar-btn:hover {
+  box-shadow: 5px 5px 5px #b7b7b7;
 }
 
-.data {
-  font-size: 1.8rem;
-  font-family: "Georgia", serif;
+.view-port {
+  font-family: Calibri;
+  border: solid;
+  border-width: 2px;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  padding-bottom: 100px;
+  padding-top: 30px;
+  background: #f8f9fa;
+  height: 1000px;
 }
 
-.auth {
-  justify-content: center;
-  height: 300px;
+.view-port h3 {
+  font-weight: bold;
 }
 
-.auth p {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.view-port .btn {
+  width: 140px;
 }
 
-.btn {
-  width: 150px;
+.dashboard h2 {
+  margin-top: 60px;
   margin-bottom: 60px;
+  font-family: Georgia, serif;
+  font-size: 40px;
+}
+
+.dashboard h3 {
+  font-weight: 100;
+}
+
+.dashboard img {
+  width: 40%;
+  border: none;
+  border-radius: 30px;
+  margin-top: 30px;
+}
+
+#root
+  > div
+  > div
+  > div
+  > div.col-10
+  > div
+  > div.container.auth
+  > form
+  > div
+  > button {
+  width: 140px;
+}
+
+#root
+  > div
+  > div
+  > div
+  > div.col-10
+  > div
+  > div.container.auth
+  > form
+  > div
+  > button:hover {
+  background: #489ac7;
+  border: none;
 }

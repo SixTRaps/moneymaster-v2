@@ -1,25 +1,41 @@
 import React from "react";
 import Dashboard from "./dashboard";
 import { Link } from "react-router-dom";
+import animate from "../images/animate.jpg";
+import arrow from "../images/arrow.png";
 
 export default function Homepage(props) {
   return (
-    <div className="welcome container">
+    <div>
       {props.user === undefined ? (
-        <div>
-          <div className="d-flex align-items-center flex-column">
-            <h1>Money Master</h1>
-          </div>
-          <div className="d-flex align-items-center flex-column">
-            <h2>Your personal budget keeper</h2>
-          </div>
-          <div className="sign-buttons d-flex justify-content-evenly align-items-center">
-            <Link to="/signin" className="btn btn-warning">
-              Sign in
-            </Link>
-            <Link to="/signup" className="btn btn-warning">
-              Sign up
-            </Link>
+        <div className="container homepage-container d-flex align-items-center">
+          <div className="row">
+            <div className="col-6 d-flex align-items-center left">
+              <div className="d-flex flex-column">
+                <h2>Money Master</h2>
+                <h3>Your personal budget keeper</h3>
+                <p>
+                  Records all your daily expenses and displays them in data and
+                  diagrams!
+                </p>
+                <Link to="/signin" className="link">
+                  Sign in
+                  <img src={arrow} alt="register-arrow" />
+                </Link>
+                <br />
+                <Link to="/signup" className="link">
+                  Sign up
+                  <img src={arrow} alt="register-arrow" />
+                </Link>
+              </div>
+            </div>
+            <div className="col-6">
+              <img
+                src={animate}
+                alt="homepage animate"
+                className="homepage-animate"
+              />
+            </div>
           </div>
         </div>
       ) : (

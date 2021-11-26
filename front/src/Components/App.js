@@ -4,7 +4,6 @@ import HomePage from "./homepage";
 import Signin from "./signin";
 import Signup from "./signup";
 import Dashboard from "./dashboard";
-import logo from "../images/logo.png";
 import "../stylesheets/style.css";
 import AddBudget from "./addBudget";
 import NewTransaction from "./newTransaction";
@@ -35,10 +34,10 @@ export default function App() {
       })
       .then((res) => {
         setList(res);
-      })
-      .catch((err) => {
-        alert(err);
       });
+    // .catch((err) => {
+    //   alert(err);
+    // });
   }, []);
 
   useEffect(() => {
@@ -60,20 +59,6 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-light bg-light">
-        <div className="container-fluid">
-          <div className="navbar-brand">
-            <img
-              src={logo}
-              alt="moneyMaster logo"
-              width="40"
-              height="40"
-              className="d-inline-block"
-            />
-            <span className="brand">Money Master</span>
-          </div>
-        </div>
-      </nav>
       <Routes>
         <Route path="/" exact element={<HomePage user={user} />} />
         <Route path="/signin" element={<Signin />} />

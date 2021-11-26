@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../images/logo.png";
+import signinAnimate from "../images/signin-animate.jpg";
 
 export default function Signin() {
   const [values, setValues] = useState({
@@ -27,47 +30,71 @@ export default function Signin() {
   }
 
   return (
-    <div className="container auth">
-      <form className="form d-flex flex-column" onSubmit={onSubmit}>
-        <p className="d-flex justify-content-center">
-          Please enter your username and password below
-        </p>
-        <label className="d-flex justify-content-center">
-          Username:
-          <input
-            type="text"
-            value={values.username}
-            onChange={(e) =>
-              setValues((values) => ({
-                username: e.target.value,
-                password: values.password,
-              }))
-            }
-            required={true}
-          />
-        </label>
-        <br />
-        <label className="d-flex justify-content-center">
-          Password:
-          <input
-            type="password"
-            value={values.password}
-            onChange={(e) =>
-              setValues((values) => ({
-                username: values.username,
-                password: e.target.value,
-              }))
-            }
-            required={true}
-          />
-        </label>
-        <br />
-        <div className="d-flex justify-content-center">
-          <button className="btn btn-dark" type="submit">
-            Sign in
-          </button>
+    <div className="signin">
+      <nav className="navbar navbar-light bg-light">
+        <div className="navbar-brand">
+          <NavLink to="/">
+            <img
+              src={logo}
+              alt="moneyMaster logo"
+              width="40"
+              height="40"
+              className="d-inline-block"
+            />
+          </NavLink>
+          <span className="brand">MONEY MASTER</span>
         </div>
-      </form>
+      </nav>
+      <div className="container signin-container d-flex align-items-center">
+        <form className="form" onSubmit={onSubmit}>
+          <h2 className="">Please enter your username and password below</h2>
+          <br />
+          <label className="d-flex justify-content-center">
+            <p>Username:&nbsp;</p>
+            <input
+              type="text"
+              value={values.username}
+              onChange={(e) =>
+                setValues((values) => ({
+                  username: e.target.value,
+                  password: values.password,
+                }))
+              }
+              required={true}
+            />
+          </label>
+          <br />
+          <label className="d-flex justify-content-center">
+            <p>Password:&nbsp;</p>
+            <input
+              type="password"
+              value={values.password}
+              onChange={(e) =>
+                setValues((values) => ({
+                  username: values.username,
+                  password: e.target.value,
+                }))
+              }
+              required={true}
+            />
+          </label>
+          <br />
+          <div className="d-flex justify-content-center">
+            <button className="btn btn-dark" type="submit">
+              Sign in
+            </button>
+            <span>
+              No account yet?&nbsp;
+              <NavLink to="/signup" className="btn btn-warning">
+                Sign Up
+              </NavLink>
+            </span>
+          </div>
+        </form>
+        <div className="signin-animate">
+          <img src={signinAnimate} alt="signin pic" />
+        </div>
+      </div>
     </div>
   );
 }
