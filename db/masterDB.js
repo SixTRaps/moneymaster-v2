@@ -2,7 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 
 function masterDB() {
   const masterDB = {};
-  const url = MONGO_URL || "mongodb://localhost:27017";
+  const url = process.env.MONGO_URL || "mongodb://localhost:27017";
   const DB_NAME = "masterDB";
 
   /* Function used to find if a username exists or not. */
