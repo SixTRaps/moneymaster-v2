@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 
+/* This is a basic layout component containing a navbar 
+   and a sidebar. */
 export default function BasicLayout({ children }) {
   return (
     <div className="basicLayout">

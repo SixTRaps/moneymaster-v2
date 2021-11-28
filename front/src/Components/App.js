@@ -10,6 +10,7 @@ import NewTransaction from "./newTransaction";
 import ShowTransaction from "./showTransaction";
 import Statistics from "./statistics";
 
+/* This is the App component that consists all kinds of routing. */
 export default function App() {
   const [user, setUser] = useState();
   const [list, setList] = useState([]);
@@ -18,7 +19,6 @@ export default function App() {
   useEffect(() => {
     getUsername().then((username) => {
       setUser(username);
-      console.log(username);
     });
   }, []);
 
@@ -83,7 +83,6 @@ async function getUsername() {
   if (res.status === 200) {
     const users = await res.json();
     const username = await users.username;
-    console.log("username:", username);
     return username;
   }
 }

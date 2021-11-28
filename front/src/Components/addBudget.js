@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
-export default function Signin() {
+/* This is the AddBudget component that enables user to change
+   their budget value. */
+export default function AddBudget() {
   const [budget, setBudget] = useState(0);
 
   async function onSubmit(evt) {

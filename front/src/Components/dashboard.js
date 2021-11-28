@@ -4,6 +4,8 @@ import BasicLayout from "./basicLayout.js";
 import dashboardPic from "../images/dashboard-pic.png";
 import AddBudget from "./addBudget.js";
 
+/* This is the dashboard component. It displays user's current
+   balance and budget values. */
 export default function Dashboard(props) {
   const [budget, setBudget] = useState(0);
   const [balance, setBalance] = useState(0);

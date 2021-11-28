@@ -35,7 +35,6 @@ function TransactionRecord(props) {
               }
             }
             props.setList(array);
-            console.log("Transaction deleted");
           }
         })
         .catch((err) => {

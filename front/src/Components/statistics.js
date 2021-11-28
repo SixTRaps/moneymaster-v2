@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import DataPie from "./pie";
 import BasicLayout from "./basicLayout.js";
 
+/* This is the Statistics component that display pie charts
+   to the user regarding their datas. */
 export default function Statistics(props) {
   const [budget, setBudget] = useState("0");
   const [balance, setBalance] = useState("0");

@@ -19,14 +19,12 @@ router.get("/user", async function (req, res) {
   if (req.isAuthenticated()) {
     try {
       const user = await req.user;
-      console.log("user", user.username);
       res.status(200).send({ username: user.username });
     } catch (e) {
       res.status(400).send({ err: e });
     }
   } else {
     res.status(401).send("Auth required");
-    console.log("auth required");
   }
 });
 
@@ -34,12 +32,10 @@ router.get("/user", async function (req, res) {
 router.get("/getBalanceAndBudget", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      console.log("in router get balance");
       const user = await req.user;
       const data = await masterDB.getBalanceAndBudget({
         username: user.username,
       });
-      console.log("data", data);
       if (data) res.status(200).send(JSON.stringify(data));
       else res.status(404).send();
     } catch (e) {
@@ -47,7 +43,6 @@ router.get("/getBalanceAndBudget", async (req, res) => {
     }
   } else {
     res.status(401).send("Auth required");
-    console.log("auth required");
   }
 });
 
@@ -55,15 +50,12 @@ router.get("/getBalanceAndBudget", async (req, res) => {
 router.post("/startOver", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      console.log("change budget");
       const user = await req.user;
       const newBudget = {
         username: user.username,
         budget: req.body.budget,
       };
       const updateRes = await masterDB.updateBudget(newBudget);
-      console.log("new budget", newBudget);
-      console.log("res", updateRes);
       if (updateRes === "Success") res.status(200).send();
       else res.status(400).send();
     } catch (e) {
@@ -71,7 +63,6 @@ router.post("/startOver", async (req, res) => {
     }
   } else {
     res.status(401).send("Auth required");
-    console.log("auth required");
   }
 });
 
@@ -87,8 +78,6 @@ router.post("/signup", async (req, res) => {
       lastname: req.body.lastname,
     };
     const insertRes = await masterDB.createCredential(newUserData);
-    console.log(newUserData);
-    console.log(insertRes);
     if (insertRes === "Success") res.status(200).send();
     else if (insertRes === "username alreay exists") res.status(409).send();
     else res.status(401).send();
@@ -174,7 +163,6 @@ router.post("/deleteTransaction", async (req, res) => {
         id: req.body.id,
         username: loginUser.username,
       };
-      console.log("delete info", info);
       const transaction = await masterDB.deleteTransaction(info);
       res.sendStatus(201);
     } catch (e) {

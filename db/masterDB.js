@@ -4,8 +4,8 @@ function masterDB() {
   const masterDB = {};
   const url = "mongodb://localhost:27017";
   const DB_NAME = "masterDB";
-  console.log("connecting to the db");
 
+  /* Function used to find if a username exists or not. */
   masterDB.findUser = async (query) => {
     let client;
     try {
@@ -20,6 +20,7 @@ function masterDB() {
     }
   };
 
+  /* Function used to retrieve user's password. */
   masterDB.getPassword = async (query) => {
     let client;
     try {
@@ -34,9 +35,9 @@ function masterDB() {
     }
   };
 
+  /* Function used to create new account. */
   masterDB.createCredential = async (credential) => {
     let client;
-    console.log("create credential!");
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
@@ -45,7 +46,6 @@ function masterDB() {
       const currentUser = await credentials.findOne({
         username: credential.username,
       });
-      // if username not found, return
       if (currentUser != null) {
         return "username alreay exists";
       }
@@ -62,6 +62,7 @@ function masterDB() {
     }
   };
 
+  /* Function used to retrieve all transactions. */
   masterDB.getMyTransactions = async (query) => {
     let client;
     try {
@@ -76,9 +77,9 @@ function masterDB() {
     }
   };
 
+  /* Function used to create new transaction. */
   masterDB.createTransaction = async (file) => {
     let client;
-    console.log("new transaction created!");
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
@@ -93,7 +94,6 @@ function masterDB() {
         date: file.date,
         note: file.note,
       });
-      console.log("created", files);
       const userBudget = await db
         .collection("budgetBalance")
         .findOne({ username: file.username });
@@ -105,16 +105,15 @@ function masterDB() {
           { username: file.username },
           { $set: { balance: new_balance } }
         );
-      console.log("balance updated", new_balance);
       return files;
     } finally {
       client.close();
     }
   };
 
+  /* Function used to delete transaction. */
   masterDB.deleteTransaction = async (file) => {
     let client;
-    console.log("transaction deleted!");
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
@@ -132,16 +131,15 @@ function masterDB() {
           { username: file.username },
           { $set: { balance: new_balance } }
         );
-      console.log("balance updated", new_balance);
       return del;
     } finally {
       client.close();
     }
   };
 
+  /* Function used to retrieve user's current balance and budget values. */
   masterDB.getBalanceAndBudget = async (query) => {
     let client;
-    console.log("getting balance and budget!");
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
@@ -153,9 +151,9 @@ function masterDB() {
     }
   };
 
+  /* Function used to update budget value. */
   masterDB.updateBudget = async (query) => {
     let client;
-    console.log("updating budget");
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
@@ -170,7 +168,6 @@ function masterDB() {
         balance: query.budget,
       };
       await db.collection("budgetBalance").insertOne(data);
-      console.log("inserted", data);
       return "Success";
     } finally {
       client.close();

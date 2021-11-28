@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 import signinAnimate from "../images/signin-animate.jpg";
 
+/* This is the Signin component that enables user to sign in. */
 export default function Signin() {
   const [values, setValues] = useState({
     username: "",

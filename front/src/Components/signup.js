@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import signupAnimate from "../images/signup-animate.jpg";
 
+/* This is the Signup component that enables user to sign up an new account. */
 export default function Signup() {
   const [values, setValues] = useState({
     username: "",

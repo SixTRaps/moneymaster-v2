@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import animate from "../images/animate.jpg";
 import arrow from "../images/arrow.png";
 
+/* This is the Homepage component that displays welcome message
+   if the user has not signed in. Otherwise, it will display the
+   Dashboard. */
 export default function Homepage(props) {
   return (
     <div>
