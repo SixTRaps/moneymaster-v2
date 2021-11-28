@@ -9,7 +9,7 @@ export default function Signin() {
     const data = {
       budget: budget,
     };
-    const res = await fetch("/api/changeBudget", {
+    fetch("/api/startOver", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -21,7 +21,7 @@ export default function Signin() {
     <div className="container auth">
       <form className="form d-flex flex-column" onSubmit={onSubmit}>
         <h4 className="d-flex justify-content-center">
-          Please enter your budget below
+          Start over from budget:
         </h4>
         <label className="d-flex justify-content-center">
           <input
@@ -34,7 +34,7 @@ export default function Signin() {
         <br />
         <div className="d-flex justify-content-center">
           <button className="btn btn-dark" type="submit">
-            Change
+            Submit
           </button>
         </div>
       </form>

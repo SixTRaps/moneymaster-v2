@@ -53,7 +53,11 @@ function TransactionRecord(props) {
         {(props.note ? props.category + ": " : "") + props.merchant}
         <div>
           ${props.amount}
-          <TiDelete size="1.5em" onClick={deleteTransaction} />
+          <TiDelete
+            className="delete-icon"
+            size="1.5em"
+            onClick={deleteTransaction}
+          />
         </div>
       </li>
       <li

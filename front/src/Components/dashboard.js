@@ -5,15 +5,15 @@ import dashboardPic from "../images/dashboard-pic.png";
 import AddBudget from "./addBudget.js";
 
 export default function Dashboard(props) {
-  const [budget, setBudget] = useState("0");
-  const [balance, setBalance] = useState("0");
+  const [budget, setBudget] = useState(0);
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     async function lookup() {
       const data = await getBalanceAndBudget();
       if (data) {
-        setBalance(data[0]);
-        setBudget(data[1]);
+        setBalance(parseFloat(data[0]).toFixed(2));
+        setBudget(parseFloat(data[1]).toFixed(2));
       }
     }
     lookup();

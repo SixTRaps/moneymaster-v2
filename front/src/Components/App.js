@@ -35,9 +35,6 @@ export default function App() {
       .then((res) => {
         setList(res);
       });
-    // .catch((err) => {
-    //   alert(err);
-    // });
   }, []);
 
   useEffect(() => {

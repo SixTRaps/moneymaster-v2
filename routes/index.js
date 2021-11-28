@@ -52,7 +52,7 @@ router.get("/getBalanceAndBudget", async (req, res) => {
 });
 
 /* POST update budget */
-router.post("/changeBudget", async (req, res) => {
+router.post("/startOver", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       console.log("change budget");

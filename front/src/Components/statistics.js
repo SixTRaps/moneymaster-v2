@@ -21,17 +21,18 @@ export default function Statistics(props) {
     {
       id: "Balance",
       label: "Balance",
-      value: balance,
+      value: parseFloat(balance).toFixed(2),
       color: "hsl(25, 70%, 50%)",
     },
     {
       id: "Budget",
       label: "Budget",
-      value: budget,
+      value: parseFloat(budget).toFixed(2),
       color: "hsl(320, 70%, 50%)",
     },
   ];
 
+  // TD
   function typeData(type) {
     if (Object.keys(type).length === 0) return [];
     const data = [];
@@ -62,9 +63,7 @@ export default function Statistics(props) {
               style={{ height: "calc(100vh - 6rem)" }}
               className="col-6 px-0"
             >
-              <button className="btn btn-secondary">
-                Show Balance/Budget Pie
-              </button>
+              <div className="pie-title">Balance/Budget</div>
               <div
                 className="d-flex justify-content-center me-2"
                 style={{ height: "60%" }}
@@ -78,9 +77,7 @@ export default function Statistics(props) {
               style={{ height: "calc(100vh - 6rem)" }}
               className="col-6 px-0"
             >
-              <button className="btn btn-secondary">
-                Show Expense Category Pie
-              </button>
+              <div className="pie-title">Expense Category</div>
               <div
                 className="d-flex justify-content-center me-2"
                 style={{ height: "60%" }}

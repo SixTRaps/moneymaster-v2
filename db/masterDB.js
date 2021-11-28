@@ -160,25 +160,17 @@ function masterDB() {
       client = new MongoClient(url, { useUnifiedTopology: true });
       await client.connect();
       const db = client.db(DB_NAME);
-      const lookup = await db
+      await db
         .collection("budgetBalance")
-        .findOne({ username: query.username });
-      if (lookup) {
-        await db
-          .collection("budgetBalance")
-          .updateOne(
-            { username: query.username },
-            { $set: { budget: query.budget } }
-          );
-      } else {
-        const data = {
-          username: query.username,
-          budget: query.budget,
-          balance: query.budget,
-        };
-        await db.collection("budgetBalance").insertOne(data);
-        console.log("inserted", data);
-      }
+        .deleteOne({ username: query.username });
+      await db.collection("files").deleteMany({ username: query.username });
+      const data = {
+        username: query.username,
+        budget: query.budget,
+        balance: query.budget,
+      };
+      await db.collection("budgetBalance").insertOne(data);
+      console.log("inserted", data);
       return "Success";
     } finally {
       client.close();

@@ -299,3 +299,18 @@
   background: #489ac7;
   border: none;
 }
+
+.delete-icon {
+  cursor: pointer;
+}
+
+.pie-title {
+  width: 220px;
+  font-size: 1.6rem;
+  margin-left: 30px;
+  border: solid;
+  border-radius: 18px;
+  border-width: 2px;
+  text-align: center;
+  font-family: Georgia;
+}

@@ -18,6 +18,7 @@ function InputBox(props) {
         value={props.value}
         onChange={props.onChange}
         placeholder={""}
+        type={props.type}
         required={props.required || false}
       />
       <label htmlFor={id}>{props.label}</label>
@@ -38,7 +39,7 @@ function InputBox(props) {
 function CreateTransaction(props) {
   const [merchant, setMerchant] = useState("");
   const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("housing");
   const [note, setNote] = useState("");
   const [date, setDate] = useState(new Date());
 
@@ -64,7 +65,8 @@ function CreateTransaction(props) {
             alert(res);
           });
         } else {
-          console.log("New transaction created");
+          alert("New transaction created");
+          window.location.href = "/";
         }
       })
       .catch((err) => {

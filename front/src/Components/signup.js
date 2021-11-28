@@ -4,7 +4,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import signupAnimate from "../images/signup-animate.jpg";
 
-export default function Signin() {
+export default function Signup() {
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -29,7 +29,7 @@ export default function Signin() {
       alert("Username exists, please go to sign in");
     } else if (res.status === 200) {
       alert("Sign up successful!");
-      window.location.href = "/dashboard";
+      window.location.href = "/signin";
     }
   };
 
@@ -101,7 +101,7 @@ export default function Signin() {
           <label className="d-flex justify-content-center">
             <p>Lastname:&nbsp;</p>
             <input
-              type="password"
+              type="text"
               value={values.lastname}
               onChange={(e) =>
                 setValues((values) => ({
