@@ -5,9 +5,9 @@
 [Xuejia Yang](https://github.com/SixTRaps)
 
 ## Objective
-This is a web application to help users manage their money better. They can control their budget plan, expense with categories, reminders of left balance and even the expense data visualization in the app.
+This is a web application to help users manage their money better. They can control their budget plan, expense with categories, reminder of left balance and even the expense data visualization in the app.
 
-Users can start with budget plan for a new circle. Then they can create new transaction to record expense with different categories, specific dates and notes. Afterwards, they can check all transactions in this circle and delete any transaction records if there is anything wrong. Most importantly, they can use the data visualization pie chart to see they expense very clearly.
+Users can start with budget plan for a new circle. Then they can create new transactions to record expense with different categories, specific dates and notes. Afterwards, they can check all transactions in this circle and delete any transaction records if there is anything wrong. Most importantly, they can use the data visualization pie chart to see their expense very clearly.
 
 ## Screenshots
 ![HomePage](https://github.com/SixTRaps/moneymaster/blob/main/front/src/images/Homepage.png)
