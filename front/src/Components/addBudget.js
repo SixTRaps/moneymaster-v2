@@ -6,15 +6,26 @@ export default function Signin() {
 
   async function onSubmit(evt) {
     evt.preventDefault();
-    const data = {
-      budget: budget,
-    };
-    fetch("/api/startOver", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    window.location.href = "/";
+    if (
+      window.confirm(
+        "Be sure to start over? By confirming you will lose all your previous transaction records."
+      )
+    ) {
+      const data = {
+        budget: budget,
+      };
+      const res = await fetch("/api/startOver", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.status === 400) {
+        alert("Updating budget failed. Please refresh your page.");
+      } else if (res.status === 401) {
+        alert("Authentication required. Please sign in first.");
+      }
+      window.location.href = "/";
+    }
   }
 
   return (
@@ -32,7 +43,7 @@ export default function Signin() {
           />
         </label>
         <br />
-        <div className="d-flex justify-content-center">
+        <div className="submit-btn d-flex justify-content-center">
           <button className="btn btn-dark" type="submit">
             Submit
           </button>

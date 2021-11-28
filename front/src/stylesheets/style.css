@@ -35,7 +35,7 @@
 }
 
 .col-6 .homepage-animate {
-  width: 150%;
+  width: 100%;
 }
 
 .col-6 .link {
@@ -53,6 +53,7 @@
   border-radius: 10px;
   cursor: pointer;
   transition: width 0.5s;
+  margin-bottom: 10px;
 }
 
 .col-6 .link img {
@@ -103,7 +104,7 @@
 .signin .form {
   position: absolute;
   top: 30%;
-  right: 60%;
+  /*right: 60%;*/
   width: 600px;
 }
 
@@ -156,8 +157,8 @@
 
 .signup .form {
   position: absolute;
-  top: 30%;
-  left: 55%;
+  top: 25%;
+  left: 45%;
   width: 600px;
 }
 
@@ -220,7 +221,7 @@
   color: #000;
   text-decoration: none;
   font-family: Georgia, serif;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: bold;
 
   margin-left: 35px;
@@ -240,11 +241,10 @@
   border-radius: 15px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
   padding-bottom: 100px;
   padding-top: 30px;
   background: #f8f9fa;
-  height: 1000px;
+  height: 800px;
 }
 
 .view-port h3 {
@@ -313,4 +313,8 @@
   border-width: 2px;
   text-align: center;
   font-family: Georgia;
+}
+
+.submit-btn {
+  margin-top: 15px;
 }

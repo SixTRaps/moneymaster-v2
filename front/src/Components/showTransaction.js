@@ -14,7 +14,7 @@ function TransactionRecord(props) {
   }
 
   function deleteTransaction() {
-    if (window.confirm("Are you sure to delete this transaction?")) {
+    if (window.confirm("Be sure to delete this transaction?")) {
       fetch("/api/deleteTransaction", {
         method: "POST",
         headers: {
