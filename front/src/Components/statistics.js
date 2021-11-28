@@ -32,11 +32,10 @@ export default function Statistics(props) {
     },
   ];
 
-  // TD
   function typeData(type) {
     if (Object.keys(type).length === 0) return [];
     const data = [];
-    Object.keys(type).map((item) => {
+    Object.keys(type).forEach((item) => {
       const object = {};
       const r = (Math.random() * 255).toFixed(0);
       const g = (Math.random() * 255).toFixed(0);
