@@ -5,12 +5,14 @@
 [Xuejia Yang](https://github.com/SixTRaps)
 
 ## Objective
-This is a web application to help users manage their money better. They can control their budget, expense and real-time reminders of the money they have spent in each category in the app.
+This is a web application to help users manage their money better. They can control their budget plan, expense with categories, reminders of left balance and even the expense data visualization in the app.
+
+Users can start with budget plan for a new circle. Then they can create new transaction to record expense with different categories, specific dates and notes. Afterwards, they can check all transactions in this circle and delete any transaction records if there is anything wrong. Most importantly, they can use the data visualization pie chart to see they expense very clearly.
 
 ## Screenshots
-![HomePage]()
-![Show Transactions Page]()
-![Data Visualization Page]
+![HomePage](https://github.com/SixTRaps/moneymaster/blob/main/front/src/images/Homepage.png)
+![Show Transactions Page](https://github.com/SixTRaps/moneymaster/blob/main/front/src/images/ShowTrans.png)
+![Data Visualization Page](https://github.com/SixTRaps/moneymaster/blob/main/front/src/images/DataVisualization.png)
 
 ## Tech requirements
 * React/React-Router
@@ -21,6 +23,11 @@ This is a web application to help users manage their money better. They can cont
 ## Live Deployment
 
 ## Local Excution 
+* Clone the project form github to local repo
+* yarn install in the root folder
+* go to the front folder, yarn install again
+* run `yarn start` in front folder
+* run another `yarn run nodemon` in root folder to start backend server
 
 ## Reference to the class
 [CS5610](https://johnguerra.co/classes/webDevelopment_fall_2021/)
@@ -49,7 +56,7 @@ Both team members collaborated and contributed evenly on:
 * Page Beautification & Deployment
 
 ## MIT License
-[MIT License]()
+[MIT License](https://github.com/SixTRaps/moneymaster/blob/main/LICENSE)
 
 ## Release
 [Release V1.1]()
