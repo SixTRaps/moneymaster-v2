@@ -60,4 +60,4 @@ Both team members collaborated and contributed evenly on:
 [MIT License](https://github.com/SixTRaps/moneymaster/blob/main/LICENSE)
 
 ## Release
-[Release V1.1]()
+[Release V1.1](https://github.com/SixTRaps/moneymaster/releases/tag/v1.1)
