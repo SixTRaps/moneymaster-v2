@@ -21,6 +21,7 @@ Users can start with budget plan for a new circle. Then they can create new tran
 * node
 
 ## Live Deployment
+[Demo](https://web-dev-moneymaster.herokuapp.com/)
 
 ## Local Excution 
 * Clone the project form github to local repo
@@ -33,7 +34,7 @@ Users can start with budget plan for a new circle. Then they can create new tran
 [CS5610](https://johnguerra.co/classes/webDevelopment_fall_2021/)
 
 ## Video Demonstration
-[Demo Vedio]()
+[Vedio](https://youtu.be/vLhKPY_R3pg)
 
 ## Google Slides
 [Slides](https://docs.google.com/presentation/d/1hgdHsUFjpjYu2KklGWmH-T-y7AcUHsXIu2f6sNvxXGI/edit?usp=sharing)
