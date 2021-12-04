@@ -29,15 +29,38 @@ export default function Dashboard(props) {
         ) : (
           <h2>Welcome to the Money Master, {props.username}!</h2>
         )}
-        <div className="d-flex align-items-center flex-column justify-content-center">
-          <h3>Balance/Budget</h3>
-          <h3>
-            {balance}/{budget}
-          </h3>
+        <div>
+          <div className="d-flex align-items-center flex-column justify-content-center">
+            <div className="instructions">
+              <h4>Guidelines</h4>
+              <h4>
+                1. Please start by submitting your budget. To create a new
+                budget, enter the value and click the "Submit" button.
+              </h4>
+              <h4>
+                2. You can create new transaction record by clicking the "New
+                Transaction" button in the left sidebar.
+              </h4>
+              <h4>
+                3. You can view all of your transactions by clicking the "All
+                Transactions" button in the left sidebar.
+              </h4>
+              <h4>
+                4. You can view statistical pie charts created according to your
+                transactions by clicking the "Statistics" button in the left
+                sidebar.
+              </h4>
+            </div>
+            <h3>Balance/Budget</h3>
+            <h3>
+              {balance}/{budget}
+            </h3>
+          </div>
         </div>
         <AddBudget />
         <br />
         <img src={dashboardPic} alt="dashboard pic" />
+        <p>The image is retrieved from www.freepik.com</p>
       </div>
     </BasicLayout>
   );

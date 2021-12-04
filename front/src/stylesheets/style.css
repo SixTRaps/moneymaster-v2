@@ -90,6 +90,15 @@
   border-radius: 20px;
 }
 
+.signin .signin-animate p {
+  position: absolute;
+  top: 78vh;
+  right: 10vh;
+  font-size: 25px;
+  color: #b7b7b7;
+  font-weight: 100;
+}
+
 .signin p {
   font-size: 1.4rem;
   color: #b7b7b7;
@@ -142,6 +151,15 @@
   position: absolute;
   left: 0;
   border-radius: 20px;
+}
+
+.signup .signup-animate p {
+  position: absolute;
+  top: 83vh;
+  left: 10vh;
+  font-size: 25px;
+  color: #b7b7b7;
+  font-weight: 100;
 }
 
 .signup p {
@@ -263,6 +281,22 @@
 }
 
 .dashboard h3 {
+  font-weight: 100;
+}
+
+.dashboard .instructions h4 {
+  font-size: 18px;
+  color: #b7b7b7;
+  font-weight: 150;
+}
+
+.dashboard .instructions {
+  margin-bottom: 50px;
+}
+
+.dashboard p {
+  font-size: 20px;
+  color: #b7b7b7;
   font-weight: 100;
 }
 

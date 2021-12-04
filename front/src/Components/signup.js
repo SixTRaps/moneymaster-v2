@@ -128,6 +128,7 @@ export default function Signup() {
         </form>
         <div className="signup-animate">
           <img src={signupAnimate} alt="signin pic" />
+          <p>The image is retrieved from www.freepik.com</p>
         </div>
       </div>
     </div>

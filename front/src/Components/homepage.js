@@ -38,6 +38,7 @@ export default function Homepage(props) {
                 alt="homepage animate"
                 className="homepage-animate"
               />
+              <p>The image is retrieved from www.freepik.com</p>
             </div>
           </div>
         </div>

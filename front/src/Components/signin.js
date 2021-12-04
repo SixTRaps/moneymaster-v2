@@ -94,6 +94,7 @@ export default function Signin() {
         </form>
         <div className="signin-animate">
           <img src={signinAnimate} alt="signin pic" />
+          <p>The image is retrieved from www.freepik.com</p>
         </div>
       </div>
     </div>
