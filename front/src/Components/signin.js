@@ -11,6 +11,8 @@ export default function Signin() {
     password: "",
   });
 
+  // let navigate = useNavigate();
+
   async function onSubmit(evt) {
     evt.preventDefault();
     const data = {
@@ -24,10 +26,11 @@ export default function Signin() {
     });
     if (res.status === 200) {
       alert("Sign in successful!");
+      // navigate("/showTransactions");
+      window.location.href = "/showTransactions";
     } else {
       alert("Sign in failure, please check your username or password");
     }
-    window.location.href = "/";
   }
 
   return (

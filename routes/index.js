@@ -51,9 +51,20 @@ router.post("/startOver", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const user = await req.user;
+      const files = await masterDB.getMyTransactions({
+        username: user.username,
+      });
+      let sum = 0;
+      for (transaction of files) {
+        sum += parseFloat(transaction.amount);
+      }
+      console.log("spent", sum);
+      let balance = parseFloat(req.body.budget).toFixed(2) - sum;
+      console.log("balance", balance);
       const newBudget = {
         username: user.username,
         budget: req.body.budget,
+        balance: balance,
       };
       const updateRes = await masterDB.updateBudget(newBudget);
       if (updateRes === "Success") res.status(200).send();

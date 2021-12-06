@@ -30,7 +30,7 @@ export default function Signup() {
       alert("Username exists, please go to sign in");
     } else if (res.status === 200) {
       alert("Sign up successful!");
-      window.location.href = "/";
+      window.location.href = "/signin";
     }
   };
 

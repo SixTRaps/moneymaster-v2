@@ -161,11 +161,10 @@ function masterDB() {
       await db
         .collection("budgetBalance")
         .deleteOne({ username: query.username });
-      await db.collection("files").deleteMany({ username: query.username });
       const data = {
         username: query.username,
         budget: query.budget,
-        balance: query.budget,
+        balance: query.balance,
       };
       await db.collection("budgetBalance").insertOne(data);
       return "Success";

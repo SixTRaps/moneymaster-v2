@@ -242,10 +242,10 @@
   font-size: 1rem;
   font-weight: bold;
 
-  margin-left: 35px;
-  margin-right: 35px;
-  margin-top: 120px;
-  margin-bottom: 80px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .basicLayout .sidebar .sidebar-btn:hover {
@@ -307,31 +307,30 @@
   margin-top: 30px;
 }
 
-#root
-  > div
-  > div
-  > div
-  > div.col-10
-  > div
-  > div.container.auth
-  > form
-  > div
-  > button {
+.budget-modification {
+  margin-top: 30px;
+}
+
+#root > div > div > div.col-2.sidebar > div > div > form > div > button {
   width: 140px;
+}
+
+#root > div > div > div.col-2.sidebar > div > div > form > div > button:hover {
+  background: #489ac7;
+  border: none;
 }
 
 #root
   > div
   > div
+  > div.col-2.sidebar
   > div
-  > div.col-10
   > div
-  > div.container.auth
   > form
-  > div
-  > button:hover {
-  background: #489ac7;
-  border: none;
+  > label
+  > input[type="number"] {
+  height: 30px;
+  width: auto;
 }
 
 .delete-icon {
