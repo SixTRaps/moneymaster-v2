@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 
-const DEBUG = process.env.DEBUG || false;
-
 /* This is a basic layout component containing a navbar 
    and a sidebar. */
 export default function BasicLayout({ children }) {
@@ -63,12 +61,9 @@ function Sidebar() {
             parseFloat(data[0]).toFixed(2) !==
             parseFloat(values.budget).toFixed(2)
           ) {
-            // setBalance(parseFloat(data[0]).toFixed(2));
-            // setBudget(parseFloat(data[1]).toFixed(2));
             setValues({ budget: curBudget, balance: curBalance });
           }
         }
-        console.log("running lookup");
       }
     }
     lookup();
@@ -91,8 +86,6 @@ function Sidebar() {
     }
     setValues({ ...values, budget: budgetMonitor });
   }
-
-  if (DEBUG) console.log("render Sidebar", values.budget, values.balance);
 
   return (
     <div>

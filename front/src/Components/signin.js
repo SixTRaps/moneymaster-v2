@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Modal from "./modal.js";
 import logo from "../images/logo.png";
 import signinAnimate from "../images/signin-animate.jpg";
 
@@ -11,6 +10,7 @@ export default function Signin() {
     username: "",
     password: "",
   });
+  let [status, setStatus] = useState("");
 
   // let navigate = useNavigate();
 
@@ -26,11 +26,10 @@ export default function Signin() {
       body: JSON.stringify(data),
     });
     if (res.status === 200) {
-      alert("Sign in successful!");
-      // navigate("/showTransactions");
+      setStatus("Sign in successful, redirecting...");
       window.location.href = "/showTransactions";
     } else {
-      alert("Sign in failure, please check your username or password");
+      setStatus("Sign in failure, please check your username or password");
     }
   }
 
@@ -52,6 +51,7 @@ export default function Signin() {
       </nav>
       <div className="container signin-container d-flex align-items-center">
         <form className="form" onSubmit={onSubmit}>
+          <p>{status}</p>
           <h2 className="">Please enter your username and password below</h2>
           <br />
           <label className="d-flex justify-content-center">
