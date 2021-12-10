@@ -3,6 +3,7 @@ import DateTimePicker from "react-datetime-picker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _uniqueId from "lodash/uniqueId";
 import BasicLayout from "./basicLayout.js";
+import propTypes from "prop-types";
 
 /**
  * InputBox is a component that represents a input and label to create a new transaction.
@@ -155,3 +156,20 @@ export default function NewTransaction(props) {
     </BasicLayout>
   );
 }
+
+InputBox.propTypes = {
+  label: propTypes.string.isRequired,
+  value: propTypes.string.isRequired,
+  onChange: propTypes.func.isRequired,
+  type: propTypes.string,
+  feedback: propTypes.string,
+  required: propTypes.bool,
+};
+
+CreateTransaction.propTypes = {
+  user: propTypes.string.isRequired,
+};
+
+NewTransaction.propTypes = {
+  user: propTypes.string.isRequired,
+};

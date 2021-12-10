@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DataPie from "./pie";
 import BasicLayout from "./basicLayout.js";
+import propTypes from "prop-types";
 
 /* This is the Statistics component that display pie charts
    to the user regarding their datas. */
@@ -94,6 +95,10 @@ export default function Statistics(props) {
     </BasicLayout>
   );
 }
+
+Statistics.propTypes = {
+  expense: propTypes.object.isRequired,
+};
 
 async function getBalanceAndBudget() {
   const res = await fetch("./api/getBalanceAndBudget", {

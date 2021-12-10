@@ -1,5 +1,6 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
+import propTypes from "prop-types";
 
 export default function DataPie(props) {
   return (
@@ -115,3 +116,7 @@ export default function DataPie(props) {
     />
   );
 }
+
+DataPie.propTypes = {
+  data: propTypes.array.isRequired,
+};

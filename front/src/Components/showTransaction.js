@@ -3,6 +3,7 @@ import { TiDelete } from "react-icons/ti";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _ from "lodash";
 import BasicLayout from "./basicLayout.js";
+import propTypes from "prop-types";
 
 /**
  * TransactionRecord is a component that shows a exisiting transaction.
@@ -154,3 +155,25 @@ export default function ShowTransaction(props) {
     </BasicLayout>
   );
 }
+
+TransactionRecord.propTypes = {
+  _id: propTypes.string.isRequired,
+  category: propTypes.string.isRequired,
+  amount: propTypes.number.isRequired,
+  date: propTypes.number.isRequired,
+  merchant: propTypes.string.isRequired,
+  note: propTypes.string,
+  list: propTypes.array.isRequired,
+  setList: propTypes.func.isRequired,
+};
+
+TransactionList.propTypes = {
+  list: propTypes.array.isRequired,
+  setList: propTypes.func.isRequired,
+};
+
+ShowTransaction.propTypes = {
+  user: propTypes.string.isRequired,
+  list: propTypes.array.isRequired,
+  setList: propTypes.func.isRequired,
+};
