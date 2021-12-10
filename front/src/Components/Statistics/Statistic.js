@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DataPie from "./Pie";
+import DataPie from "./Pie.js";
 import BasicLayout from "../BasicLayout.js";
 
 /* This is the Statistics component that display pie charts
