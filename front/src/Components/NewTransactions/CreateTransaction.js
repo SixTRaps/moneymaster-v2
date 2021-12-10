@@ -1,43 +1,12 @@
 import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import "bootstrap/dist/css/bootstrap.min.css";
-import _uniqueId from "lodash/uniqueId";
-import BasicLayout from "./basicLayout.js";
-import propTypes from "prop-types";
-
-/**
- * InputBox is a component that represents a input and label to create a new transaction.
- */
-function InputBox(props) {
-  const [id] = useState(_uniqueId("input-"));
-
-  return (
-    <div className="form-floating my-3">
-      <input
-        className="form-control"
-        id={id}
-        value={props.value}
-        onChange={props.onChange}
-        placeholder={""}
-        type={props.type}
-        required={props.required || false}
-      />
-      <label htmlFor={id}>{props.label}</label>
-      <div
-        className={
-          "invalid-feedback" + (props.feedback === undefined ? " d-none" : "")
-        }
-      >
-        {props.feedback}
-      </div>
-    </div>
-  );
-}
+import InputBox from "./InputBox.js";
 
 /**
  * CreateTransaction is a component to submit a new transaction form.
  */
-function CreateTransaction(props) {
+export default function CreateTransaction(props) {
   const [merchant, setMerchant] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("housing");
@@ -135,33 +104,3 @@ function CreateTransaction(props) {
     </div>
   );
 }
-
-/**
- * NewTransaction is a component that creates a new expense transaction.
- */
-export default function NewTransaction(props) {
-  return (
-    <BasicLayout>
-      <div className="view-port container d-flex flex-column">
-        <div
-          className="text-center border-bottom py-3 position-relative"
-          style={{ fontSize: "20px", fontWeight: "bold" }}
-        >
-          <h3>Create New Transactions</h3>
-        </div>
-        <div className="flex-grow-1" id="panel_content">
-          <CreateTransaction />
-        </div>
-      </div>
-    </BasicLayout>
-  );
-}
-
-InputBox.propTypes = {
-  label: propTypes.string.isRequired,
-  value: propTypes.string.isRequired,
-  onChange: propTypes.func.isRequired,
-  type: propTypes.string,
-  feedback: propTypes.string,
-  required: propTypes.bool,
-};
