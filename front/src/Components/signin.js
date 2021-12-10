@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Modal from "./modal.js";
 import logo from "../images/logo.png";
 import signinAnimate from "../images/signin-animate.jpg";
 
