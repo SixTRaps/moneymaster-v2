@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import animate from "../images/animate.jpg";
 import arrow from "../images/arrow.png";
+import Modal from "./modal.js";
 
 /* This is the Homepage component that displays welcome message
    if the user has not signed in. Otherwise, it will display the
@@ -28,6 +29,7 @@ export default function Homepage() {
                 Sign up
                 <img src={arrow} alt="register-arrow" />
               </Link>
+              {/*<Modal></Modal>*/}
             </div>
           </div>
           <div className="col-6">

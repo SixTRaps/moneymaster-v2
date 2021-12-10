@@ -82,7 +82,7 @@ function Sidebar() {
       <div className="budget-modification">
         <h3 className="d-flex justify-content-center">Balance/Budget</h3>
         <h3 className="d-flex justify-content-center">
-          {balance}/{budget}
+          ${balance}/${budget}
         </h3>
         <form className="form" onSubmit={onSubmit}>
           <h4 className="d-flex justify-content-center">Reset Budget:</h4>
@@ -102,11 +102,11 @@ function Sidebar() {
           </div>
         </form>
       </div>
-      <NavLink to="/newTransaction" className="sidebar-btn">
-        New Transaction
-      </NavLink>
       <NavLink to="/showTransactions" className="sidebar-btn">
         All Transactions
+      </NavLink>
+      <NavLink to="/newTransaction" className="sidebar-btn">
+        New Transaction
       </NavLink>
       <NavLink to="/statistics" className="sidebar-btn">
         Statistics
