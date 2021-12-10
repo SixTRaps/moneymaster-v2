@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 
+const DEBUG = process.env.DEBUG || false;
+
 /* This is a basic layout component containing a navbar 
    and a sidebar. */
 export default function BasicLayout({ children }) {
@@ -41,22 +43,36 @@ export default function BasicLayout({ children }) {
 }
 
 function Sidebar() {
-  const [budget, setBudget] = useState(0);
-  const [balance, setBalance] = useState(0);
+  const [values, setValues] = useState({ budget: 0, balance: 0 });
+  const [mount, setMount] = useState(false);
   let budgetMonitor = 0;
 
   useEffect(() => {
     async function lookup() {
-      const data = await getBalanceAndBudget();
-      if (data) {
-        if (parseFloat(data[0]).toFixed(2) !== parseFloat(budget).toFixed(2)) {
-          setBalance(parseFloat(data[0]).toFixed(2));
-          setBudget(parseFloat(data[1]).toFixed(2));
+      if (!mount) {
+        setMount(true);
+        const before = new Date();
+
+        const data = await getBalanceAndBudget();
+        console.log("After getting budget ", new Date() - before);
+        if (data) {
+          const curBudget = parseFloat(data[1]).toFixed(2);
+          const curBalance = parseFloat(data[0]).toFixed(2);
+
+          if (
+            parseFloat(data[0]).toFixed(2) !==
+            parseFloat(values.budget).toFixed(2)
+          ) {
+            // setBalance(parseFloat(data[0]).toFixed(2));
+            // setBudget(parseFloat(data[1]).toFixed(2));
+            setValues({ budget: curBudget, balance: curBalance });
+          }
         }
+        console.log("running lookup");
       }
     }
     lookup();
-  });
+  }, [mount, values]);
 
   async function onSubmit(evt) {
     evt.preventDefault();
@@ -73,16 +89,17 @@ function Sidebar() {
     } else if (res.status === 401) {
       alert("Authentication required. Please sign in first.");
     }
-    setBudget(parseFloat(budgetMonitor).toFixed(2));
-    setBalance(parseFloat(budgetMonitor).toFixed(2));
+    setValues({ ...values, budget: budgetMonitor });
   }
+
+  if (DEBUG) console.log("render Sidebar", values.budget, values.balance);
 
   return (
     <div>
       <div className="budget-modification">
         <h3 className="d-flex justify-content-center">Balance/Budget</h3>
         <h3 className="d-flex justify-content-center">
-          ${balance}/${budget}
+          ${values.balance}/${values.budget}
         </h3>
         <form className="form" onSubmit={onSubmit}>
           <h4 className="d-flex justify-content-center">Reset Budget:</h4>
@@ -126,6 +143,6 @@ async function getBalanceAndBudget() {
     const budget = await data.budget;
     return [balance, budget];
   } else if (res.status === 404) {
-    return ["0", "0"];
+    return [0, 0];
   }
 }
