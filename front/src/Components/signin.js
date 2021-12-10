@@ -28,7 +28,7 @@ export default function Signin() {
     if (res.status === 200) {
       alert("Sign in successful!");
       // navigate("/showTransactions");
-      window.location.href = "/showTransactions";
+      window.location.href = "/dashboard";
     } else {
       alert("Sign in failure, please check your username or password");
     }

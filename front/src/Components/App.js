@@ -4,6 +4,7 @@ import HomePage from "./homepage";
 import Signin from "./signin";
 import Signup from "./signup";
 import "../stylesheets/style.css";
+import Dashboard from "./Dashboard.js";
 import NewTransaction from "./NewTransactions/NewTransaction.js";
 import ShowTransaction from "./ShowTransactions/ShowTransaction.js";
 import Statistics from "./Statistics/Statistic.js";
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" exact element={<HomePage />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/newTransaction" element={<NewTransaction />} />
         <Route path="/showTransactions" element={<ShowTransaction />} />
         <Route path="/statistics" element={<Statistics />} />

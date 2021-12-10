@@ -151,8 +151,31 @@ function masterDB() {
     }
   };
 
-  /* Function used to update budget value. */
-  masterDB.updateBudget = async (query) => {
+  /* Function used to reset budget value. */
+  masterDB.resetBudget = async (query) => {
+    let client;
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      await db
+        .collection("budgetBalance")
+        .deleteOne({ username: query.username });
+      await db.collection("files").deleteMany({ username: query.username });
+      const data = {
+        username: query.username,
+        budget: query.budget,
+        balance: query.budget,
+      };
+      await db.collection("budgetBalance").insertOne(data);
+      return "Success";
+    } finally {
+      client.close();
+    }
+  };
+
+  /* Function used to edit budget value. */
+  masterDB.editBudget = async (query) => {
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });

@@ -46,8 +46,28 @@ router.get("/getBalanceAndBudget", async (req, res) => {
   }
 });
 
-/* POST update budget */
-router.post("/startOver", async (req, res) => {
+/* POST reset budget */
+router.post("/resetBudget", async (req, res) => {
+  if (req.isAuthenticated()) {
+    try {
+      const user = await req.user;
+      const newBudget = {
+        username: user.username,
+        budget: req.body.budget,
+      };
+      const updateRes = await masterDB.resetBudget(newBudget);
+      if (updateRes === "Success") res.status(200).send();
+      else res.status(400).send();
+    } catch (e) {
+      res.status(400).send();
+    }
+  } else {
+    res.status(401).send("Auth required");
+  }
+});
+
+/* POST edit budget */
+router.post("/editBudget", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const user = await req.user;
@@ -66,7 +86,7 @@ router.post("/startOver", async (req, res) => {
         budget: req.body.budget,
         balance: balance,
       };
-      const updateRes = await masterDB.updateBudget(newBudget);
+      const updateRes = await masterDB.editBudget(newBudget);
       if (updateRes === "Success") res.status(200).send();
       else res.status(400).send();
     } catch (e) {

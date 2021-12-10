@@ -11,7 +11,7 @@ export default function BasicLayout({ children }) {
     <div className="basicLayout">
       <nav className="navbar navbar-light bg-light">
         <div className="navbar-brand">
-          <NavLink to="/showTransactions">
+          <NavLink to="/dashboard">
             <img
               src={logo}
               alt="moneyMaster logo"
@@ -44,55 +44,18 @@ export default function BasicLayout({ children }) {
 
 function Sidebar() {
   const [values, setValues] = useState({ budget: 0, balance: 0 });
-  const [mount, setMount] = useState(false);
-  let budgetMonitor = 0;
-
   useEffect(() => {
-    async function lookup() {
-      if (!mount) {
-        setMount(true);
-        const before = new Date();
-
-        const data = await getBalanceAndBudget();
-        console.log("After getting budget ", new Date() - before);
-        if (data) {
-          const curBudget = parseFloat(data[1]).toFixed(2);
-          const curBalance = parseFloat(data[0]).toFixed(2);
-
-          if (
-            parseFloat(data[0]).toFixed(2) !==
-            parseFloat(values.budget).toFixed(2)
-          ) {
-            // setBalance(parseFloat(data[0]).toFixed(2));
-            // setBudget(parseFloat(data[1]).toFixed(2));
-            setValues({ budget: curBudget, balance: curBalance });
-          }
-        }
-        console.log("running lookup");
-      }
-    }
-    lookup();
-  }, [mount, values]);
-
-  async function onSubmit(evt) {
-    evt.preventDefault();
-    const data = {
-      budget: budgetMonitor,
-    };
-    const res = await fetch("/api/startOver", {
-      method: "POST",
+    fetch("./api/getBalanceAndBudget", {
+      method: "GET",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (res.status === 400) {
-      alert("Updating budget failed. Please refresh your page.");
-    } else if (res.status === 401) {
-      alert("Authentication required. Please sign in first.");
-    }
-    setValues({ ...values, budget: budgetMonitor });
-  }
-
-  if (DEBUG) console.log("render Sidebar", values.budget, values.balance);
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setValues(res);
+      });
+  }, []);
 
   return (
     <div>
@@ -101,23 +64,6 @@ function Sidebar() {
         <h3 className="d-flex justify-content-center">
           ${values.balance}/${values.budget}
         </h3>
-        <form className="form" onSubmit={onSubmit}>
-          <h4 className="d-flex justify-content-center">Reset Budget:</h4>
-          <label className="d-flex justify-content-center">
-            <input
-              type="number"
-              required={true}
-              onChange={(e) => {
-                budgetMonitor = e.target.value;
-              }}
-            />
-          </label>
-          <div className="submit-btn d-flex justify-content-center">
-            <button className="btn btn-dark" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
       </div>
       <NavLink to="/showTransactions" className="sidebar-btn">
         All Transactions
@@ -130,19 +76,4 @@ function Sidebar() {
       </NavLink>
     </div>
   );
-}
-
-async function getBalanceAndBudget() {
-  const res = await fetch("./api/getBalanceAndBudget", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
-  if (res.status === 200) {
-    const data = await res.json();
-    const balance = await data.balance;
-    const budget = await data.budget;
-    return [balance, budget];
-  } else if (res.status === 404) {
-    return [0, 0];
-  }
 }
