@@ -6,8 +6,45 @@ import propTypes from "prop-types";
 /* This is the Statistics component that display pie charts
    to the user regarding their datas. */
 export default function Statistics(props) {
+  const [list, setList] = useState([]);
+  const [expense, setExpense] = useState({});
   const [budget, setBudget] = useState("0");
   const [balance, setBalance] = useState("0");
+
+  useEffect(() => {
+    const before = new Date();
+    console.log("getting all transactions");
+    fetch("/api/allTransactions", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log("got transactions ", new Date() - before);
+        setList(res);
+      });
+  }, []);
+
+  useEffect(() => {
+    setExpense({});
+    const categories = [
+      "housing",
+      "transportation",
+      "consumables",
+      "livingExpense",
+      "savings",
+      "debt",
+    ];
+    for (let category of categories) {
+      const array = list.filter((item) => item.category === category);
+      if (array.length === 0) continue;
+      setExpense((prev) => ({ ...prev, [category]: array }));
+    }
+  }, [list]);
 
   useEffect(() => {
     async function lookup() {
@@ -56,6 +93,8 @@ export default function Statistics(props) {
     return data;
   }
 
+  console.log("Rendering Statistics", list, expense, budget, balance);
+
   return (
     <BasicLayout>
       <div className="view-port container">
@@ -85,7 +124,7 @@ export default function Statistics(props) {
                 style={{ height: "60%" }}
               >
                 <div className="flex-container" style={{ width: "90%" }}>
-                  <DataPie data={typeData(props.expense)} />
+                  <DataPie data={typeData(expense)} />
                 </div>
               </div>
             </div>
@@ -95,10 +134,6 @@ export default function Statistics(props) {
     </BasicLayout>
   );
 }
-
-Statistics.propTypes = {
-  expense: propTypes.object.isRequired,
-};
 
 async function getBalanceAndBudget() {
   const res = await fetch("./api/getBalanceAndBudget", {

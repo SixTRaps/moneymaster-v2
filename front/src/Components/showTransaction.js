@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _ from "lodash";
@@ -139,6 +139,23 @@ function TransactionList(props) {
 }
 
 export default function ShowTransaction(props) {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/allTransactions", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setList(res);
+      });
+  }, []);
+
   return (
     <BasicLayout>
       <div className="view-port container d-flex flex-column">
@@ -149,7 +166,7 @@ export default function ShowTransaction(props) {
           <h3 className="border-bottom">Show All Transactions</h3>
         </div>
         <div className="flex-grow-1" id="panel_content">
-          <TransactionList list={props.list} setList={props.setList} />
+          <TransactionList list={list} setList={setList} />
         </div>
       </div>
     </BasicLayout>
@@ -168,12 +185,6 @@ TransactionRecord.propTypes = {
 };
 
 TransactionList.propTypes = {
-  list: propTypes.array.isRequired,
-  setList: propTypes.func.isRequired,
-};
-
-ShowTransaction.propTypes = {
-  user: propTypes.string.isRequired,
   list: propTypes.array.isRequired,
   setList: propTypes.func.isRequired,
 };

@@ -150,7 +150,7 @@ export default function NewTransaction(props) {
           <h3>Create New Transactions</h3>
         </div>
         <div className="flex-grow-1" id="panel_content">
-          <CreateTransaction user={props.user} />
+          <CreateTransaction />
         </div>
       </div>
     </BasicLayout>
@@ -164,12 +164,4 @@ InputBox.propTypes = {
   type: propTypes.string,
   feedback: propTypes.string,
   required: propTypes.bool,
-};
-
-CreateTransaction.propTypes = {
-  user: propTypes.string.isRequired,
-};
-
-NewTransaction.propTypes = {
-  user: propTypes.string.isRequired,
 };
