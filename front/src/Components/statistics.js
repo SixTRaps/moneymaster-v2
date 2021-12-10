@@ -21,16 +21,16 @@ export default function Statistics(props) {
 
   const balance_data = [
     {
+      id: "Expense",
+      label: "Expense",
+      value: (parseFloat(budget) - parseFloat(balance)).toFixed(2),
+      color: "hsl(320, 70%, 50%)",
+    },
+    {
       id: "Balance",
       label: "Balance",
       value: parseFloat(balance).toFixed(2),
       color: "hsl(25, 70%, 50%)",
-    },
-    {
-      id: "Budget",
-      label: "Budget",
-      value: parseFloat(budget).toFixed(2),
-      color: "hsl(320, 70%, 50%)",
     },
   ];
 
@@ -43,7 +43,7 @@ export default function Statistics(props) {
       const g = (Math.random() * 255).toFixed(0);
       const b = (Math.random() * 255).toFixed(0);
       let value = 0;
-      type[item].map((item) => (value += item.amount));
+      type[item].map((item) => (value += parseFloat(item.amount)));
 
       object["value"] = parseFloat(value).toFixed(2);
       object["id"] = item;
@@ -64,7 +64,7 @@ export default function Statistics(props) {
               style={{ height: "calc(100vh - 6rem)" }}
               className="col-6 px-0"
             >
-              <div className="pie-title">Balance/Budget</div>
+              <div className="pie-title">Expense/ Balance</div>
               <div
                 className="d-flex justify-content-center me-2"
                 style={{ height: "60%" }}
