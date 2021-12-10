@@ -13,6 +13,8 @@ export default function Signup() {
     lastname: "",
   });
 
+  let [status, setStatus] = useState("");
+
   const onSubmit = async (evt) => {
     evt.preventDefault();
     const data = {
@@ -27,9 +29,9 @@ export default function Signup() {
       body: JSON.stringify(data),
     });
     if (res.status === 409) {
-      alert("Username exists, please go to sign in");
+      setStatus("Username exists, please go to sign in");
     } else if (res.status === 200) {
-      alert("Sign up successful!");
+      setStatus("Sign up successful, redirecting...");
       window.location.href = "/signin";
     }
   };
@@ -52,6 +54,7 @@ export default function Signup() {
       </nav>
       <div className="container signin-container d-flex align-items-center">
         <form className="form" onSubmit={onSubmit}>
+          <p>{status}</p>
           <h2 className="">Please fill in following infos below</h2>
           <br />
           <label className="d-flex justify-content-center">

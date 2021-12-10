@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 
-const DEBUG = process.env.DEBUG || false;
-
 /* This is a basic layout component containing a navbar 
    and a sidebar. */
 export default function BasicLayout({ children }) {
