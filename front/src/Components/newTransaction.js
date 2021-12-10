@@ -66,7 +66,7 @@ function CreateTransaction(props) {
           });
         } else {
           alert("New transaction created");
-          window.location.href = "/allTransactions";
+          window.location.href = "/showTransactions";
         }
       })
       .catch((err) => {
