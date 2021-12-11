@@ -1,43 +1,40 @@
 import React from "react";
-import logo from "../images/logo.png";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import signupAnimate from "../images/signup-animate.jpg";
+import logo from "../../images/logo.png";
+import signinAnimate from "../../images/signin-animate.jpg";
 
-/* This is the Signup component that enables user to sign up an new account. */
-export default function Signup() {
+/* This is the Signin component that enables user to sign in. */
+export default function Signin() {
   const [values, setValues] = useState({
     username: "",
     password: "",
-    firstname: "",
-    lastname: "",
   });
-
   let [status, setStatus] = useState("");
 
-  const onSubmit = async (evt) => {
+  // let navigate = useNavigate();
+
+  async function onSubmit(evt) {
     evt.preventDefault();
     const data = {
       username: values.username,
       password: values.password,
-      firstname: values.firstname,
-      lastname: values.lastname,
     };
-    const res = await fetch("/api/signup", {
+    const res = await fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    if (res.status === 409) {
-      setStatus("Username exists, please go to sign in");
-    } else if (res.status === 200) {
-      setStatus("Sign up successful, redirecting...");
-      window.location.href = "/signin";
+    if (res.status === 200) {
+      setStatus("Sign in successful, redirecting...");
+      window.location.href = "/dashboard";
+    } else {
+      setStatus("Sign in failure, please check your username or password");
     }
-  };
+  }
 
   return (
-    <div className="signup">
+    <div className="signin">
       <nav className="navbar navbar-light bg-light">
         <div className="navbar-brand">
           <NavLink to="/">
@@ -55,7 +52,7 @@ export default function Signup() {
       <div className="container signin-container d-flex align-items-center">
         <form className="form" onSubmit={onSubmit}>
           <p>{status}</p>
-          <h2 className="">Please fill in following infos below</h2>
+          <h2 className="">Please enter your username and password below</h2>
           <br />
           <label className="d-flex justify-content-center">
             <p>Username:&nbsp;</p>
@@ -64,8 +61,8 @@ export default function Signup() {
               value={values.username}
               onChange={(e) =>
                 setValues((values) => ({
-                  ...values,
                   username: e.target.value,
+                  password: values.password,
                 }))
               }
               required={true}
@@ -79,38 +76,8 @@ export default function Signup() {
               value={values.password}
               onChange={(e) =>
                 setValues((values) => ({
-                  ...values,
+                  username: values.username,
                   password: e.target.value,
-                }))
-              }
-              required={true}
-            />
-          </label>
-          <br />
-          <label className="d-flex justify-content-center">
-            <p>Firstname:&nbsp;</p>
-            <input
-              type="text"
-              value={values.firstname}
-              onChange={(e) =>
-                setValues((values) => ({
-                  ...values,
-                  firstname: e.target.value,
-                }))
-              }
-              required={true}
-            />
-          </label>
-          <br />
-          <label className="d-flex justify-content-center">
-            <p>Lastname:&nbsp;</p>
-            <input
-              type="text"
-              value={values.lastname}
-              onChange={(e) =>
-                setValues((values) => ({
-                  ...values,
-                  lastname: e.target.value,
                 }))
               }
               required={true}
@@ -119,18 +86,18 @@ export default function Signup() {
           <br />
           <div className="d-flex justify-content-center">
             <button className="btn btn-dark" type="submit">
-              Sign Up
+              Sign in
             </button>
             <span>
-              Already has an account?&nbsp;
-              <NavLink to="/signin" className="btn btn-warning">
-                Sign In
+              No account yet?&nbsp;
+              <NavLink to="/signup" className="btn btn-warning">
+                Sign Up
               </NavLink>
             </span>
           </div>
         </form>
-        <div className="signup-animate">
-          <img src={signupAnimate} alt="signin pic" />
+        <div className="signin-animate">
+          <img src={signinAnimate} alt="signin pic" />
           <p>The image is retrieved from www.freepik.com</p>
         </div>
       </div>

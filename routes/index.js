@@ -47,7 +47,7 @@ router.get("/getBalanceAndBudget", async (req, res) => {
 });
 
 /* POST reset budget */
-router.post("/resetBudget", async (req, res) => {
+router.post("/startOver", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const user = await req.user;
@@ -67,7 +67,7 @@ router.post("/resetBudget", async (req, res) => {
 });
 
 /* POST edit budget */
-router.post("/editBudget", async (req, res) => {
+router.post("/updateBudget", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const user = await req.user;

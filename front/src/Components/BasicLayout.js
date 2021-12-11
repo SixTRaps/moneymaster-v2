@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 
@@ -17,8 +16,8 @@ export default function BasicLayout({ children }) {
               height="40"
               className="d-inline-block"
             />
+            <span className="brand">MONEY MASTER</span>
           </NavLink>
-          <span className="brand">MONEY MASTER</span>
         </div>
         <form
           action="/api/logout?_method=DELETE"
@@ -41,28 +40,8 @@ export default function BasicLayout({ children }) {
 }
 
 function Sidebar() {
-  const [values, setValues] = useState({ budget: 0, balance: 0 });
-  useEffect(() => {
-    fetch("./api/getBalanceAndBudget", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setValues(res);
-      });
-  }, []);
-
   return (
     <div>
-      <div className="budget-modification">
-        <h3 className="d-flex justify-content-center">Balance/Budget</h3>
-        <h3 className="d-flex justify-content-center">
-          ${values.balance}/${values.budget}
-        </h3>
-      </div>
       <NavLink to="/showTransactions" className="sidebar-btn">
         All Transactions
       </NavLink>

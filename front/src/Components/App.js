@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./homepage";
-import Signin from "./signin";
-import Signup from "./signup";
+import HomePage from "./Homepage.js";
+import Signin from "./Authentication/Signin.js";
+import Signup from "./Authentication/Signup.js";
 import "../stylesheets/style.css";
 import Dashboard from "./Dashboard.js";
 import NewTransaction from "./NewTransactions/NewTransaction.js";
