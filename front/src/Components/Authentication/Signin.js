@@ -50,7 +50,7 @@ export default function Signin() {
       <div className="container signin-container d-flex align-items-center">
         <form className="form col" onSubmit={onSubmit}>
           <p>{status}</p>
-          <h2 className="">Please enter your username and password below</h2>
+          <h2 className="">Please sign in your account</h2>
           <br />
           <label className="d-flex justify-content-center">
             <p>Username:&nbsp;</p>

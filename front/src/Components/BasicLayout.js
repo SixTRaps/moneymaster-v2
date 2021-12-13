@@ -33,23 +33,35 @@ export default function BasicLayout({ children }) {
             <Modal.Title>Guidelines</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>
-              1. Please start by submitting your budget. To create a new budget,
-              enter the value and click the "Submit" button.
-            </h4>
-            <h4>
-              2. You can create new transaction record by clicking the "New
-              Transaction" button in the left sidebar.
-            </h4>
-            <h4>
-              3. You can view all of your transactions by clicking the "All
-              Transactions" button in the left sidebar.
-            </h4>
-            <h4>
-              4. You can view statistical pie charts created according to your
-              transactions by clicking the "Statistics" button in the left
-              sidebar.
-            </h4>
+            <h4>Dashboard Page:</h4>
+            <div>
+              This page serves as a dashboard to show your current remaining
+              balance and budget for this circle. Please set up your initial
+              budget at the begining of the new circle. To create or reset a new
+              budget, please input the value and click the "Start Over" button.
+              Remember it will clear all the records. If you want to keep all
+              history records but just change the budget, please use the "Edit"
+              button.
+            </div>
+            <h4>All Transactions Page:</h4>
+            <div>
+              You can view all of your transactions here with all details of the
+              transaction: category, merchant name, amount, notes and date
+              information. Also, you can delete the transaction if you didn't
+              make it.
+            </div>
+            <h4>New Transaction Page:</h4>
+            <div>
+              You can create a new transaction here. Feel free to input the
+              category, merchant name, amount, note and date to create a new
+              transaction.
+            </div>
+            <h4>Statistics Page:</h4>
+            <div>
+              You can view statistical pie charts created according to the
+              transactions you created. It will help analyze your expense/
+              balance and expense category in this circle.
+            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={handleClose}>Close</Button>

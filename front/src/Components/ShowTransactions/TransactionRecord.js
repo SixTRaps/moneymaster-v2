@@ -57,7 +57,7 @@ export default function TransactionRecord(props) {
               className="delete-icon"
               size="1.5em"
               onClick={deleteTransaction}
-              style={{ color: "#60371E" }}
+              style={{ cursor: "pointer", color: "#60371E" }}
             />
           </p>
         </div>

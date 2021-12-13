@@ -241,7 +241,7 @@
   .signup .form {
     position: absolute;
     top: 25%;
-    left: 45%;
+    left: 60%;
     width: 600px;
   }
 
@@ -335,14 +335,11 @@
     font-weight: 100;
   }
 
-  .dashboard .instructions h4 {
+  .instructions h4 {
     font-size: 18px;
-    color: #b7b7b7;
     font-weight: 150;
-  }
-
-  .dashboard .instructions {
-    margin-bottom: 50px;
+    margin-top: 20px;
+    font-weight: bold;
   }
 
   .dashboard p {
@@ -361,10 +358,6 @@
 
   .budget-modification {
     margin-top: 30px;
-  }
-
-  .delete-icon {
-    cursor: pointer;
   }
 
   .pie-title {

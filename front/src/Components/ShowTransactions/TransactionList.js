@@ -23,7 +23,7 @@ export default function TransactionList(props) {
   }, []);
 
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(list.length / 5);
+  const totalPages = Math.ceil(list.length / 4);
 
   function prevPage() {
     if (page > 1) {
@@ -42,7 +42,7 @@ export default function TransactionList(props) {
       <div className="flex-grow-1 d-flex flex-column">
         <div className="my-3 mx-2 text-center flex-grow-1">
           <ul className="flex-container list-group list-group-flush d-flex justify-content-evenly">
-            {list.slice(page * 5 - 5, page * 5).map((i, index) => (
+            {list.slice(page * 4 - 4, page * 4).map((i, index) => (
               <TransactionRecord
                 key={"Transaction-" + index}
                 id={i.id}

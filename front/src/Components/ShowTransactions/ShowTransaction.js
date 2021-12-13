@@ -13,7 +13,7 @@ export default function ShowTransaction(props) {
         >
           <h3 className="border-bottom">Show All Transactions</h3>
         </div>
-        <div className="flex-grow-1" id="panel_content">
+        <div className="flex-grow-1">
           <TransactionList />
         </div>
       </div>
