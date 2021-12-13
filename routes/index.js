@@ -78,9 +78,7 @@ router.post("/updateBudget", async (req, res) => {
       for (transaction of files) {
         sum += parseFloat(transaction.amount);
       }
-      console.log("spent", sum);
       let balance = parseFloat(req.body.budget).toFixed(2) - sum;
-      console.log("balance", balance);
       const newBudget = {
         username: user.username,
         budget: req.body.budget,

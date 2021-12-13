@@ -74,7 +74,7 @@ export default function TransactionRecord(props) {
 }
 
 TransactionRecord.propTypes = {
-  _id: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
   category: propTypes.string.isRequired,
   amount: propTypes.number.isRequired,
   date: propTypes.number.isRequired,

@@ -11,8 +11,6 @@ export default function Statistics() {
   const [balance, setBalance] = useState("0");
 
   useEffect(() => {
-    const before = new Date();
-    console.log("getting all transactions");
     fetch("/api/allTransactions", {
       method: "GET",
       headers: {
@@ -23,13 +21,11 @@ export default function Statistics() {
         return res.json();
       })
       .then((res) => {
-        console.log("got transactions ", new Date() - before);
         setList(res);
       });
   }, []);
 
   useEffect(() => {
-    setExpense({});
     const categories = [
       "housing",
       "transportation",
@@ -91,8 +87,6 @@ export default function Statistics() {
 
     return data;
   }
-
-  console.log("Rendering Statistics", list, expense, budget, balance);
 
   return (
     <BasicLayout>
