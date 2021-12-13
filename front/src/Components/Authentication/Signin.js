@@ -48,9 +48,11 @@ export default function Signin() {
         </div>
       </nav>
       <div className="container signin-container d-flex align-items-center">
-        <form className="form col" onSubmit={onSubmit}>
+        <form className="form" onSubmit={onSubmit}>
           <p>{status}</p>
-          <h2 className="">Please sign in your account</h2>
+          <h2 className="d-flex justify-content-center">
+            Please sign in your account
+          </h2>
           <br />
           <label className="d-flex justify-content-center">
             <p>Username:&nbsp;</p>
@@ -92,12 +94,12 @@ export default function Signin() {
             <NavLink to="/signup">Sign Up</NavLink>
           </div>
         </form>
-        <div className="signin-animate col">
+        <div className="signin-animate">
           <img src={signinAnimate} alt="signin pic" />
-          <p id="pic-credit">
-            Image by <div className="space">s</div>
-            <a href="https://www.freepik.com/">Freepik</a>
-          </p>
+          <div id="pic-credit">
+            Image by <p className="space">s</p>
+            <a href="https://www.freepik.com/"> Freepik</a>
+          </div>
         </div>
       </div>
     </div>

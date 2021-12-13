@@ -36,10 +36,10 @@ export default function Homepage() {
               alt="homepage animate"
               className="homepage-animate"
             />
-            <p id="pic-credit">
-              Image by <div className="space">s</div>
+            <div id="pic-credit">
+              Image by <p className="space">s</p>
               <a href="https://www.freepik.com/">Freepik</a>
-            </p>
+            </div>
           </div>
         </div>
       </div>

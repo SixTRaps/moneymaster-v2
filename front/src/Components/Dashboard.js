@@ -96,10 +96,10 @@ export default function Dashboard() {
         <div>
           <div className="d-flex align-items-center flex-column justify-content-center">
             <img src={dashboardBottom} alt="dashboard bottom" />
-            <p id="pic-credit">
-              Image by <div className="space">s</div>
+            <div id="pic-credit">
+              Image by <p className="space">s</p>
               <a href="https://www.freepik.com/">Freepik</a>
-            </p>
+            </div>
             <h1>Welcome to the Money Master!</h1>
             <h2>Please set up your budget first</h2>
             <p>{msg}</p>

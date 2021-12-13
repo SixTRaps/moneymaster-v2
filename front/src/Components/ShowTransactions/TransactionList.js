@@ -23,7 +23,7 @@ export default function TransactionList() {
   }, []);
 
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(list.length / 4);
+  const totalPages = Math.ceil(list.length / 5);
 
   function prevPage() {
     if (page > 1) {
@@ -42,7 +42,7 @@ export default function TransactionList() {
       <div className="flex-grow-1 d-flex flex-column">
         <div className="my-3 mx-2 text-center flex-grow-1">
           <ul className="flex-container list-group list-group-flush d-flex justify-content-evenly">
-            {list.slice(page * 4 - 4, page * 4).map((i, index) => (
+            {list.slice(page * 5 - 5, page * 5).map((i, index) => (
               <TransactionRecord
                 key={"Transaction-" + index}
                 id={i.id}
@@ -57,23 +57,23 @@ export default function TransactionList() {
             ))}
           </ul>
           <div
-            className="row btn-group d-flex justify-content-center"
+            className="d-flex justify-content-evenly"
             role="group"
             aria-label="page navigation button"
           >
             <button
-              className="col-3 btn"
+              className="btn"
               id="custom-btn"
               onClick={prevPage}
               style={{ height: "10%" }}
             >
               Prev
             </button>
-            <div className="col-6 text-center">
+            <div>
               Page {page}/{totalPages}
             </div>
             <button
-              className="col-3 btn"
+              className="btn"
               id="custom-btn"
               onClick={nextPage}
               style={{ height: "10%" }}

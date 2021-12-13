@@ -55,7 +55,7 @@ export default function Signup() {
       <div className="container signin-container d-flex align-items-center">
         <form className="form" onSubmit={onSubmit}>
           <p>{status}</p>
-          <h2 className="">Welcome to the Money Master</h2>
+          <h2>Welcome to the Money Master</h2>
           <br />
           <label className="d-flex justify-content-center">
             <p>Username:&nbsp;</p>
@@ -129,10 +129,10 @@ export default function Signup() {
         </form>
         <div className="signup-animate">
           <img src={signupAnimate} alt="signin pic" />
-          <p id="pic-credit">
-            Image by <div className="space">s</div>
+          <div id="pic-credit">
+            Image by <p className="space">s</p>
             <a href="https://www.freepik.com/">Freepik</a>
-          </p>
+          </div>
         </div>
       </div>
     </div>
