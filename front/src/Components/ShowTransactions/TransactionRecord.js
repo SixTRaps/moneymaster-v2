@@ -51,12 +51,15 @@ export default function TransactionRecord(props) {
       >
         {(props.note ? props.category + ": " : "") + props.merchant}
         <div>
-          ${props.amount}
-          <TiDelete
-            className="delete-icon"
-            size="1.5em"
-            onClick={deleteTransaction}
-          />
+          <p style={{ color: "#A6341B" }}>
+            ${props.amount}{" "}
+            <TiDelete
+              className="delete-icon"
+              size="1.5em"
+              onClick={deleteTransaction}
+              style={{ color: "#60371E" }}
+            />
+          </p>
         </div>
       </li>
       <li

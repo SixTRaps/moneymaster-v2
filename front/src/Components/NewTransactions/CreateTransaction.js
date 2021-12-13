@@ -12,6 +12,7 @@ export default function CreateTransaction(props) {
   const [category, setCategory] = useState("housing");
   const [note, setNote] = useState("");
   const [date, setDate] = useState(new Date());
+  const [msg, setMsg] = useState("");
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -32,15 +33,15 @@ export default function CreateTransaction(props) {
       .then((resRaw) => {
         if (!resRaw.ok) {
           resRaw.text().then((res) => {
-            alert(res);
+            setMsg(res);
           });
         } else {
-          alert("New transaction created");
+          setMsg("New transaction created");
           window.location.href = "/showTransactions";
         }
       })
       .catch((err) => {
-        alert(err);
+        setMsg(err);
       });
   }
 
@@ -50,6 +51,7 @@ export default function CreateTransaction(props) {
         onSubmit={handleSubmit}
         className="flex-container d-flex flex-column"
       >
+        <p>{msg}</p>
         <div className="text-center my-3">
           <DateTimePicker onChange={setDate} value={date} clearIcon={null} />
         </div>
@@ -96,7 +98,7 @@ export default function CreateTransaction(props) {
           <label htmlFor="note">Note</label>
         </div>
         <div className="d-flex justify-content-center">
-          <button className="btn btn-warning" type="submit">
+          <button className="btn" id="custom-btn" type="submit">
             Save
           </button>
         </div>

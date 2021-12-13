@@ -40,7 +40,7 @@ export default function Signup() {
     <div className="signup">
       <nav className="navbar navbar-light bg-light">
         <div className="navbar-brand">
-          <NavLink to="/">
+          <NavLink to="/" className="brand">
             <img
               src={logo}
               alt="moneyMaster logo"
@@ -48,14 +48,14 @@ export default function Signup() {
               height="40"
               className="d-inline-block"
             />
+            <span className="brand"> MONEY MASTER </span>
           </NavLink>
-          <span className="brand">MONEY MASTER</span>
         </div>
       </nav>
       <div className="container signin-container d-flex align-items-center">
         <form className="form" onSubmit={onSubmit}>
           <p>{status}</p>
-          <h2 className="">Please fill in following infos below</h2>
+          <h2 className="">Welcome to the Money Master</h2>
           <br />
           <label className="d-flex justify-content-center">
             <p>Username:&nbsp;</p>
@@ -118,20 +118,21 @@ export default function Signup() {
           </label>
           <br />
           <div className="d-flex justify-content-center">
-            <button className="btn btn-dark" type="submit">
+            <button className="btn" id="custom-btn" type="submit">
               Sign Up
             </button>
-            <span>
-              Already has an account?&nbsp;
-              <NavLink to="/signin" className="btn btn-warning">
-                Sign In
-              </NavLink>
-            </span>
           </div>
+          <span className="d-flex justify-content-center">
+            Already has an account?&nbsp;
+            <NavLink to="/signin">Sign In</NavLink>
+          </span>
         </form>
         <div className="signup-animate">
           <img src={signupAnimate} alt="signin pic" />
-          <p>The image is retrieved from www.freepik.com</p>
+          <p id="pic-credit">
+            Image by <div className="space">s</div>
+            <a href="https://www.freepik.com/">Freepik</a>
+          </p>
         </div>
       </div>
     </div>

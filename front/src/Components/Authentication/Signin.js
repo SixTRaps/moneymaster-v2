@@ -12,8 +12,6 @@ export default function Signin() {
   });
   let [status, setStatus] = useState("");
 
-  // let navigate = useNavigate();
-
   async function onSubmit(evt) {
     evt.preventDefault();
     const data = {
@@ -37,7 +35,7 @@ export default function Signin() {
     <div className="signin">
       <nav className="navbar navbar-light bg-light">
         <div className="navbar-brand">
-          <NavLink to="/">
+          <NavLink to="/" className="brand">
             <img
               src={logo}
               alt="moneyMaster logo"
@@ -45,12 +43,12 @@ export default function Signin() {
               height="40"
               className="d-inline-block"
             />
+            <span className="brand"> MONEY MASTER </span>
           </NavLink>
-          <span className="brand">MONEY MASTER</span>
         </div>
       </nav>
       <div className="container signin-container d-flex align-items-center">
-        <form className="form" onSubmit={onSubmit}>
+        <form className="form col" onSubmit={onSubmit}>
           <p>{status}</p>
           <h2 className="">Please enter your username and password below</h2>
           <br />
@@ -85,20 +83,21 @@ export default function Signin() {
           </label>
           <br />
           <div className="d-flex justify-content-center">
-            <button className="btn btn-dark" type="submit">
+            <button className="btn" id="custom-btn" type="submit">
               Sign in
             </button>
-            <span>
-              No account yet?&nbsp;
-              <NavLink to="/signup" className="btn btn-warning">
-                Sign Up
-              </NavLink>
-            </span>
+          </div>
+          <div className="d-flex justify-content-center">
+            No account yet?&nbsp;
+            <NavLink to="/signup">Sign Up</NavLink>
           </div>
         </form>
-        <div className="signin-animate">
+        <div className="signin-animate col">
           <img src={signinAnimate} alt="signin pic" />
-          <p>The image is retrieved from www.freepik.com</p>
+          <p id="pic-credit">
+            Image by <div className="space">s</div>
+            <a href="https://www.freepik.com/">Freepik</a>
+          </p>
         </div>
       </div>
     </div>

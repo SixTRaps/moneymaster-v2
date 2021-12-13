@@ -1,8 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import BasicLayout from "./BasicLayout.js";
-import dashboardPic from "../images/dashboard-pic.png";
-import { Button, Modal } from "react-bootstrap";
+import dashboardBottom from "../images/dashboard-bottom.jpg";
 
 /* This is the dashboard component. It displays user's current
    balance and budget values. */
@@ -10,11 +9,8 @@ export default function Dashboard() {
   const [budget, setBudget] = useState(0);
   const [balance, setBalance] = useState(0);
   const [mount, setMount] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [msg, setMsg] = useState("");
 
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
   let budgetMonitor = 0;
 
   useEffect(() => {
@@ -99,73 +95,46 @@ export default function Dashboard() {
       <div className="dashboard d-flex align-items-center flex-column justify-content-center">
         <div>
           <div className="d-flex align-items-center flex-column justify-content-center">
-            <Button onClick={handleShow}>Instructions</Button>
-            <Modal
-              className="instructions"
-              show={showModal}
-              onHide={handleClose}
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>Guidelines</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <h4>
-                  1. Please start by submitting your budget. To create a new
-                  budget, enter the value and click the "Submit" button.
-                </h4>
-                <h4>
-                  2. You can create new transaction record by clicking the "New
-                  Transaction" button in the left sidebar.
-                </h4>
-                <h4>
-                  3. You can view all of your transactions by clicking the "All
-                  Transactions" button in the left sidebar.
-                </h4>
-                <h4>
-                  4. You can view statistical pie charts created according to
-                  your transactions by clicking the "Statistics" button in the
-                  left sidebar.
-                </h4>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button onClick={handleClose}>Close</Button>
-              </Modal.Footer>
-            </Modal>
+            <img src={dashboardBottom} alt="dashboard bottom" />
+            <p id="pic-credit">
+              Image by <div className="space">s</div>
+              <a href="https://www.freepik.com/">Freepik</a>
+            </p>
+            <h1>Welcome to the Money Master!</h1>
+            <h2>Please set up your budget first</h2>
             <p>{msg}</p>
             <h3>Remaining Balance: ${balance}</h3>
             <h3>Budget: ${budget}</h3>
-            <form className="form d-flex flex-column" onSubmit={onSubmitEdit}>
-              <h4 className="d-flex justify-content-center">
-                Change the budget:
-              </h4>
-              <label className="d-flex justify-content-center">
-                <input
-                  type="number"
-                  onChange={(e) => {
-                    budgetMonitor = e.target.value;
-                  }}
-                  required={true}
-                />
-              </label>
-              <br />
-              <div className="submit-btn d-flex justify-content-center">
-                <button className="btn btn-dark" type="submit">
-                  Edit
-                </button>
-              </div>
-            </form>
-            <form className="form d-flex flex-column" onSubmit={onSubmit}>
-              <div className="submit-btn d-flex justify-content-center">
-                <button className="btn btn-dark" type="submit">
-                  Start Over
-                </button>
-              </div>
-            </form>
+            <div className="d-flex justify-content-evenly">
+              <form className="form d-flex flex-column" onSubmit={onSubmitEdit}>
+                <label className="d-flex justify-content-center">
+                  <input
+                    type="number"
+                    onChange={(e) => {
+                      budgetMonitor = e.target.value;
+                    }}
+                    required={true}
+                  />
+                </label>
+                <br />
+                <div className="d-flex justify-content-evenly">
+                  <button className="btn" id="custom-btn-budget" type="submit">
+                    Edit
+                  </button>
+                  <button
+                    className="btn"
+                    id="custom-btn-budget"
+                    onClick={onSubmit}
+                  >
+                    Start Over
+                  </button>
+                </div>
+                {/*              </form>
+              <form onSubmit={onSubmit} style={{ "padding-top": "30px" }}>*/}
+              </form>
+            </div>
           </div>
         </div>
-        <br />
-        <img src={dashboardPic} alt="dashboard pic" />
-        <p>The image is retrieved from www.freepik.com</p>
       </div>
     </BasicLayout>
   );

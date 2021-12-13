@@ -62,7 +62,8 @@ export default function TransactionList(props) {
             aria-label="page navigation button"
           >
             <button
-              className="col-3 btn btn-secondary"
+              className="col-3 btn"
+              id="custom-btn"
               onClick={prevPage}
               style={{ height: "10%" }}
             >
@@ -72,7 +73,8 @@ export default function TransactionList(props) {
               Page {page}/{totalPages}
             </div>
             <button
-              className="col-3 btn btn-secondary"
+              className="col-3 btn"
+              id="custom-btn"
               onClick={nextPage}
               style={{ height: "10%" }}
             >

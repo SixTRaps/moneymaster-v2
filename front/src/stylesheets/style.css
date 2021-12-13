@@ -1,353 +1,379 @@
-.homepage-container {
-  width: 100%;
-  min-height: 90vh;
-}
+@media screen and (min-width: 800px) {
+  #root {
+    font-family: "Montserrat", sans-serif;
+  }
 
-.signin-container {
-  width: 100%;
-  min-height: 90vh;
-}
+  .homepage-container {
+    width: 100%;
+    min-height: 90vh;
+  }
 
-.brand {
-  font-family: Georgia, serif;
-}
+  #pic-credit {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+  }
 
-.col-6 {
-  height: 50vh;
-}
+  #pic-credit .space {
+    color: #fff;
+  }
 
-.col-6 h2 {
-  font-family: Georgia, serif;
-  font-size: 60px;
-}
+  #pic-credit a {
+    color: #668361;
+  }
 
-.col-6 h3 {
-  font-size: 35px;
-  color: #707070;
-  font-weight: 100;
-  margin: 20px 0 10px;
-}
+  .signin #pic-credit {
+    position: fixed;
+    right: 10px;
+    bottom: 0;
+  }
 
-.col-6 p {
-  font-size: 25px;
-  color: #b7b7b7;
-  font-weight: 100;
-}
+  .signin #pic-credit .space {
+    opacity: 0;
+  }
 
-.col-6 .homepage-animate {
-  width: 100%;
-}
+  .signup #pic-credit {
+    position: fixed;
+    height: 20px;
+    left: 10px;
+    top: 95vh;
+  }
 
-.col-6 .link {
-  font-family: serif;
-  text-decoration: none;
-  text-align: center;
-  width: 140px;
-  border: 0;
-  padding: 12px 10px;
-  outline: none;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.2rem;
-  background: linear-gradient(to right, #74bec1, #cfe9ea);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: width 0.5s;
-  margin-bottom: 10px;
-}
+  .signup #pic-credit .space {
+    opacity: 0;
+  }
 
-.col-6 .link img {
-  display: none;
-  width: 40px;
-}
+  .dashboard #pic-credit {
+    position: fixed;
+    right: 10px;
+    bottom: 0;
+  }
 
-.col-6 .link:hover img {
-  display: block;
-}
+  .dashboard #pic-credit .space {
+    opacity: 0;
+  }
 
-.col-6 .link:hover {
-  width: 160px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
+  .signin-container {
+    width: 100%;
+    min-height: 90vh;
+  }
 
-.left::after {
-  content: "";
-  width: 18px;
-  height: 380px;
-  background: linear-gradient(#ff469f, #ff6062);
-  position: relative;
-  left: -680px;
-  top: 6px;
-}
+  .brand {
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+  }
 
-.signin .signin-animate img {
-  width: 50%;
-  top: 23vh;
-  position: absolute;
-  right: 0;
-  border-radius: 20px;
-}
+  .col-6 {
+    height: 50vh;
+  }
 
-.signin .signin-animate p {
-  position: absolute;
-  top: 78vh;
-  right: 10vh;
-  font-size: 25px;
-  color: #b7b7b7;
-  font-weight: 100;
-}
+  .col-6 h2 {
+    font-size: 60px;
+  }
 
-.signin p {
-  font-size: 1.4rem;
-  color: #b7b7b7;
-  font-weight: 250;
-}
+  .col-6 h3 {
+    font-size: 35px;
+    font-weight: 100;
+    margin: 20px 0 10px;
+  }
 
-.signin h2 {
-  font-family: Georgia, serif;
-  font-size: 40px;
-}
+  .col-6 p {
+    font-size: 25px;
+    font-weight: 100;
+  }
 
-.signin .form {
-  position: absolute;
-  top: 30%;
-  /*right: 60%;*/
-  width: 600px;
-}
+  .col-6 .homepage-animate {
+    width: 100%;
+  }
 
-.signin .form::after {
-  content: "";
-  width: 18px;
-  height: 380px;
-  background: linear-gradient(#ff469f, #ff6062);
-  position: absolute;
-  left: -61px;
-  top: -29px;
-}
+  .col-6 .link {
+    text-decoration: none;
+    text-align: center;
+    width: 140px;
+    border: 0;
+    padding: 12px 10px;
+    outline: none;
+    color: #60371e;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #fafad2, #f9c743);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: width 0.5s;
+    margin-bottom: 10px;
+  }
 
-.signin .btn {
-  font-weight: bold;
-  font-family: Calibri;
-  width: 140px;
-  border: none;
-  margin-left: auto;
-}
+  #custom-btn {
+    text-decoration: none;
+    text-align: center;
+    width: 140px;
+    border: 0;
+    padding: 12px 10px;
+    outline: none;
+    color: #000;
+    background: #f9c743;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
 
-.signin .btn:hover {
-  background: #b0dddf;
-  color: #000;
-  border: none;
-}
+  #custom-btn:hover {
+    background: #d1bf91;
+    color: #fff;
+  }
 
-.signin span {
-  margin-left: auto;
-}
+  #custom-btn-navbar {
+    width: auto;
+    color: #fff;
+    background: #a6341b;
+    border: 0;
+  }
 
-.signup .signup-animate img {
-  width: 40%;
-  top: 20vh;
-  position: absolute;
-  left: 0;
-  border-radius: 20px;
-}
+  #custom-btn-navbar:hover {
+    width: auto;
+    color: #000;
+    background: #f9c743;
+    border: 0;
+  }
 
-.signup .signup-animate p {
-  position: absolute;
-  top: 83vh;
-  left: 10vh;
-  font-size: 25px;
-  color: #b7b7b7;
-  font-weight: 100;
-}
+  #custom-btn-budget {
+    margin-top: 20px;
+    width: 120px;
+    border-width: 1px;
+    background: #fff;
+    border: solid;
+    border-color: #f9c743;
+  }
 
-.signup p {
-  font-size: 1.4rem;
-  color: #b7b7b7;
-  font-weight: 250;
-}
+  #custom-btn-budget:hover {
+    border-color: #a6341b;
+  }
 
-.signup h2 {
-  font-family: Georgia, serif;
-  font-size: 40px;
-}
+  .col-6 .link img {
+    display: none;
+    width: 40px;
+  }
 
-.signup .form {
-  position: absolute;
-  top: 25%;
-  left: 45%;
-  width: 600px;
-}
+  .col-6 .link:hover img {
+    display: block;
+  }
 
-.signup .form::after {
-  content: "";
-  width: 18px;
-  height: 427px;
-  background: linear-gradient(#489ac7, #ff6062);
-  position: absolute;
-  left: 735px;
-  top: -4px;
-}
+  .col-6 .link:hover {
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 
-.signup .btn {
-  font-weight: bold;
-  font-family: Calibri;
-  width: 140px;
-  border: none;
-  margin-left: auto;
-}
+  .left::after {
+    content: "";
+    width: 18px;
+    height: 380px;
+    background: linear-gradient(#a6341b, #ff6062);
+    position: relative;
+    left: -580px;
+    top: 0px;
+  }
 
-.signup .btn:hover {
-  background: #489ac7;
-  border: none;
-}
+  .signin p {
+    font-size: 1.4rem;
+    font-weight: 250;
+  }
 
-.signup span {
-  margin-left: auto;
-}
+  .signin .signin-animate img {
+    width: 58%;
+    position: fixed;
+    top: 64px;
+  }
 
-.basicLayout .btn {
-  margin-right: 30px;
-  font-weight: bold;
-  font-family: Calibri;
-}
+  .signin h2 {
+    font-size: 40px;
+  }
 
-.basicLayout .row {
-  min-height: 93.6vh;
-}
+  .signin .form {
+    width: 600px;
+  }
 
-.basicLayout .sidebar {
-  background: #f8f9fa;
-  box-shadow: 3px 0px 3px #b7b7b7;
-  line-height: 100px;
-}
+  .signin .btn {
+    font-weight: bold;
+    width: 140px;
+    border: none;
+  }
 
-.basicLayout .sidebar .sidebar-btn {
-  width: auto;
-  height: 80px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  font-family: Georgia, serif;
-  background: #fff;
-  border: solid;
-  border-width: 2px;
-  border-radius: 20px;
+  .signin .btn:hover {
+    background: #b0dddf;
+    color: #000;
+    border: none;
+  }
 
-  text-align: center;
-  color: #000;
-  text-decoration: none;
-  font-family: Georgia, serif;
-  font-size: 1rem;
-  font-weight: bold;
+  .signin span {
+    margin-left: auto;
+  }
 
-  margin-left: 25px;
-  margin-right: 25px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
+  .signup .signup-animate img {
+    width: 58%;
+    top: 64px;
+    position: fixed;
+    left: -100px;
+  }
 
-.basicLayout .sidebar .sidebar-btn:hover {
-  box-shadow: 5px 5px 5px #b7b7b7;
-}
+  .signup .signup-animate p {
+    position: absolute;
+    top: 83vh;
+    left: 10vh;
+    font-size: 25px;
+    font-weight: 100;
+  }
 
-.view-port {
-  font-family: Calibri;
-  border: solid;
-  border-width: 2px;
-  border-radius: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 100px;
-  padding-top: 30px;
-  background: #f8f9fa;
-  height: 800px;
-}
+  .signup p {
+    font-size: 1.4rem;
+    font-weight: 250;
+  }
 
-.view-port h3 {
-  font-weight: bold;
-}
+  .signup h2 {
+    margin-left: 100px;
+    font-size: 36px;
+  }
 
-.view-port .btn {
-  width: 140px;
-}
+  .signup .form {
+    position: absolute;
+    top: 25%;
+    left: 45%;
+    width: 600px;
+  }
 
-.dashboard h2 {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  font-family: Georgia, serif;
-  font-size: 40px;
-}
+  .signup .btn {
+    font-weight: bold;
+    width: 140px;
+    border: none;
+  }
 
-.dashboard h3 {
-  font-weight: 100;
-}
+  .signup .btn:hover {
+    background: #489ac7;
+    border: none;
+  }
 
-.dashboard .instructions h4 {
-  font-size: 18px;
-  color: #b7b7b7;
-  font-weight: 150;
-}
+  .signup span {
+    margin-left: auto;
+  }
 
-.dashboard .instructions {
-  margin-bottom: 50px;
-}
+  .basicLayout .btn {
+    margin-right: 30px;
+    font-weight: bold;
+  }
 
-.dashboard p {
-  font-size: 20px;
-  color: #b7b7b7;
-  font-weight: 100;
-}
+  .basicLayout .row {
+    min-height: 93.6vh;
+  }
 
-.dashboard img {
-  width: 40%;
-  border: none;
-  border-radius: 30px;
-  margin-top: 30px;
-}
+  .basicLayout .sidebar {
+    background: #f8f9fa;
+    box-shadow: 3px 0px 3px #b7b7b7;
+    line-height: 100px;
+  }
 
-.budget-modification {
-  margin-top: 30px;
-}
+  .basicLayout .sidebar .sidebar-btn {
+    width: auto;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    border: solid;
+    border-width: 2px;
+    border-radius: 20px;
 
-#root > div > div > div.col-2.sidebar > div > div > form > div > button {
-  width: 140px;
-}
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
 
-#root > div > div > div.col-2.sidebar > div > div > form > div > button:hover {
-  background: #489ac7;
-  border: none;
-}
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
 
-#root
-  > div
-  > div
-  > div.col-2.sidebar
-  > div
-  > div
-  > form
-  > label
-  > input[type="number"] {
-  height: 30px;
-  width: auto;
-}
+  .basicLayout .sidebar .sidebar-btn:hover {
+    box-shadow: 5px 5px 5px #b7b7b7;
+  }
 
-.delete-icon {
-  cursor: pointer;
-}
+  .view-port {
+    border: solid;
+    border-width: 2px;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 50px;
+    padding-bottom: 100px;
+    padding-top: 30px;
+    background: #f8f9fa;
+    height: 700px;
+  }
 
-.pie-title {
-  width: 220px;
-  font-size: 1.6rem;
-  margin-left: 30px;
-  border: solid;
-  border-radius: 18px;
-  border-width: 2px;
-  text-align: center;
-  font-family: Georgia;
-}
+  .view-port h3 {
+    font-weight: bold;
+  }
 
-.submit-btn {
-  margin-top: 15px;
+  .view-port .btn {
+    width: 140px;
+  }
+
+  .dashboard h1 {
+    margin-top: 180px;
+  }
+
+  .dashboard h2 {
+    color: #60371e;
+  }
+
+  .dashboard h3 {
+    font-weight: 100;
+  }
+
+  .dashboard .instructions h4 {
+    font-size: 18px;
+    color: #b7b7b7;
+    font-weight: 150;
+  }
+
+  .dashboard .instructions {
+    margin-bottom: 50px;
+  }
+
+  .dashboard p {
+    font-size: 20px;
+    font-weight: 100;
+  }
+
+  .dashboard img {
+    position: fixed;
+    width: 90%;
+    top: 64px;
+    opacity: 0.1;
+    left: 205px;
+    z-index: -1;
+  }
+
+  .budget-modification {
+    margin-top: 30px;
+  }
+
+  .delete-icon {
+    cursor: pointer;
+  }
+
+  .pie-title {
+    width: 220px;
+    font-size: 1.6rem;
+    margin-left: 30px;
+    border: solid;
+    border-radius: 18px;
+    border-width: 2px;
+    text-align: center;
+  }
 }
