@@ -4,7 +4,7 @@ import BasicLayout from "../BasicLayout.js";
 
 /* This is the Statistics component that display pie charts
    to the user regarding their datas. */
-export default function Statistics(props) {
+export default function Statistics() {
   const [list, setList] = useState([]);
   const [expense, setExpense] = useState({});
   const [budget, setBudget] = useState("0");

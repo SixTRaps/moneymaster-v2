@@ -6,7 +6,7 @@ import InputBox from "./InputBox.js";
 /**
  * CreateTransaction is a component to submit a new transaction form.
  */
-export default function CreateTransaction(props) {
+export default function CreateTransaction() {
   const [merchant, setMerchant] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("housing");

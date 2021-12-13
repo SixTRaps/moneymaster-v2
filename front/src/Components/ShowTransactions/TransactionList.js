@@ -5,7 +5,7 @@ import TransactionRecord from "./TransactionRecord.js";
 /**
  * TransactionList is a component that shows all transactions.
  */
-export default function TransactionList(props) {
+export default function TransactionList() {
   const [list, setList] = useState([]);
   useEffect(() => {
     fetch("/api/allTransactions", {

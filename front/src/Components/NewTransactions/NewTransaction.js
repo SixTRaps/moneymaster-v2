@@ -6,7 +6,7 @@ import CreateTransaction from "./CreateTransaction.js";
 /**
  * NewTransaction is a component that creates a new expense transaction.
  */
-export default function NewTransaction(props) {
+export default function NewTransaction() {
   return (
     <BasicLayout>
       <div className="view-port container d-flex flex-column">

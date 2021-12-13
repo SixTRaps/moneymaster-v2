@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BasicLayout from "../BasicLayout.js";
 import TransactionList from "./TransactionList.js";
 
-export default function ShowTransaction(props) {
+export default function ShowTransaction() {
   return (
     <BasicLayout>
       <div className="view-port container d-flex flex-column">
