@@ -112,8 +112,7 @@ export default function Dashboard() {
               contentLabel="Instructions Modal"
               ariaHideApp={false}
             >
-              <button onClick={handleClose}> X </button>
-              <p className="instructions-title">Instructions</p>
+              <button onClick={handleClose}> Close </button>
               <p className="instructions-title">Dashboard Page:</p>
               <p>
                 This page serves as a dashboard to show your current remaining

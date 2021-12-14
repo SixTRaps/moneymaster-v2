@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 import logo from "../images/logo.png";
 
 /* This is a basic layout component containing a navbar 

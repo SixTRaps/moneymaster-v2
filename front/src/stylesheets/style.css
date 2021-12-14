@@ -386,8 +386,8 @@
 
   .instruction-modal button {
     position: relative;
-    left: 95%;
-    width: 30px;
+    left: 90%;
+    width: 80px;
     height: 30px;
     border-radius: 5px;
     font-weight: bold;
@@ -399,14 +399,14 @@
   }
 
   .instruction-button {
-    position: absolute;
-    right: 10%;
-    top: 10%;
+    position: relative;
+    left: 30%;
+    margin-top: 3%;
     background: #f9c743;
     border: none;
     border-radius: 10px;
     height: 40px;
-    width: 140px;
+    width: 180px;
     font-weight: bold;
   }
 
@@ -784,7 +784,7 @@
   .instruction-modal button {
     position: relative;
     left: 95%;
-    width: 30px;
+    width: 80px;
     height: 30px;
     border-radius: 5px;
     font-weight: bold;
@@ -796,14 +796,14 @@
   }
 
   .instruction-button {
-    position: absolute;
-    right: 10%;
-    top: 10%;
+    position: relative;
+    left: 30%;
+    margin-top: 3%;
     background: #f9c743;
     border: none;
     border-radius: 10px;
     height: 40px;
-    width: 140px;
+    width: 180px;
     font-weight: bold;
   }
 
