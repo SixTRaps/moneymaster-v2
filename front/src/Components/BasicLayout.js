@@ -36,8 +36,8 @@ export default function BasicLayout({ children }) {
           ariaHideApp={false}
         >
           <button onClick={handleClose}> X </button>
-          <h1>Instructions</h1>
-          <h2 className="instructions-title">Dashboard Page:</h2>
+          <p className="instructions-title">Instructions</p>
+          <p className="instructions-title">Dashboard Page:</p>
           <p>
             This page serves as a dashboard to show your current remaining
             balance and budget for this circle. Please set up your initial
@@ -47,20 +47,20 @@ export default function BasicLayout({ children }) {
             history records but just change the budget, please use the "Edit"
             button.
           </p>
-          <h2 className="instructions-title">All Transactions Page:</h2>
+          <p className="instructions-title">All Transactions Page:</p>
           <p>
             You can view all of your transactions here with all details of the
             transaction: category, merchant name, amount, notes and date
             information. Also, you can delete the transaction if you didn't make
             it.
           </p>
-          <h2 className="instructions-title">New Transaction Page:</h2>
+          <p className="instructions-title">New Transaction Page:</p>
           <p>
             You can create a new transaction here. Feel free to input the
             category, merchant name, amount, note and date to create a new
             transaction.
           </p>
-          <h2 className="instructions-title">Statistics Page:</h2>
+          <p className="instructions-title">Statistics Page:</p>
           <p>
             You can view statistical pie charts created according to the
             transactions you created. It will help analyze your expense/ balance

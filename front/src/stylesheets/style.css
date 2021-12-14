@@ -340,7 +340,7 @@
   }
 
   .instructions-title {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 150;
     margin-top: 20px;
     font-weight: bold;
@@ -373,11 +373,11 @@
   .instruction-modal {
     position: absolute;
     top: 7%;
-    left: 35%;
+    left: 30%;
     bottom: auto;
     margin-right: -50%;
     background: white;
-    width: 600px;
+    width: 800px;
     padding: 50px 50px 50px 50px;
     border-radius: 15px;
     border: solid;
