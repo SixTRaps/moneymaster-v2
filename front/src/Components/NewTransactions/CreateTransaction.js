@@ -66,7 +66,7 @@ export default function CreateTransaction() {
           />
         </div>
         <div>
-          <label htmlFor="select" style={{ "padding-right": "10px" }}>
+          <label htmlFor="select" style={{ paddingRight: "10px" }}>
             Category:
           </label>
           <select
