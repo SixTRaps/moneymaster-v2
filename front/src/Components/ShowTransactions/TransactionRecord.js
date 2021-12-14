@@ -44,31 +44,33 @@ export default function TransactionRecord(props) {
   }
 
   return (
-    <div className="mb-3 position-relative">
-      <li
-        className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
-        style={{ fontWeight: "bold" }}
-      >
-        {(props.note ? props.category + ": " : "") + props.merchant}
-        <div>
-          <p style={{ color: "#A6341B" }}>
-            ${props.amount}{" "}
-            <TiDelete
-              className="delete-icon"
-              size="1.5em"
-              onClick={deleteTransaction}
-              style={{ cursor: "pointer", color: "#60371E" }}
-            />
-          </p>
-        </div>
-      </li>
-      <li
-        className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
-        style={{ fontSize: "15px" }}
-      >
-        {props.note ? props.note : props.category}
-        <div style={{ fontStyle: "italic" }}>{parseDate(props.date)}</div>
-      </li>
+    <div>
+      <ul>
+        <li
+          className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
+          style={{ fontWeight: "bold" }}
+        >
+          {(props.note ? props.category + ": " : "") + props.merchant}
+          <div>
+            <p style={{ color: "#A6341B" }}>
+              ${props.amount}{" "}
+              <TiDelete
+                className="delete-icon"
+                size="1.5em"
+                onClick={deleteTransaction}
+                style={{ cursor: "pointer", color: "#60371E" }}
+              />
+            </p>
+          </div>
+        </li>
+        <li
+          className="list-group-item d-flex justify-content-between align-item-center list-group-item-light"
+          style={{ fontSize: "15px" }}
+        >
+          {props.note ? props.note : props.category}
+          <div style={{ fontStyle: "italic" }}>{parseDate(props.date)}</div>
+        </li>
+      </ul>
     </div>
   );
 }

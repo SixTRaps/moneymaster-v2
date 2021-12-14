@@ -33,7 +33,7 @@ export default function BasicLayout({ children }) {
             <Modal.Title>Guidelines</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Dashboard Page:</h4>
+            <div className="instructions-title">Dashboard Page:</div>
             <div>
               This page serves as a dashboard to show your current remaining
               balance and budget for this circle. Please set up your initial
@@ -43,20 +43,20 @@ export default function BasicLayout({ children }) {
               history records but just change the budget, please use the "Edit"
               button.
             </div>
-            <h4>All Transactions Page:</h4>
+            <div className="instructions-title">All Transactions Page:</div>
             <div>
               You can view all of your transactions here with all details of the
               transaction: category, merchant name, amount, notes and date
               information. Also, you can delete the transaction if you didn't
               make it.
             </div>
-            <h4>New Transaction Page:</h4>
+            <div className="instructions-title">New Transaction Page:</div>
             <div>
               You can create a new transaction here. Feel free to input the
               category, merchant name, amount, note and date to create a new
               transaction.
             </div>
-            <h4>Statistics Page:</h4>
+            <div className="instructions-title">Statistics Page:</div>
             <div>
               You can view statistical pie charts created according to the
               transactions you created. It will help analyze your expense/
@@ -67,6 +67,7 @@ export default function BasicLayout({ children }) {
             <Button onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
+
         <form
           action="/api/logout?_method=DELETE"
           method="POST"
@@ -94,10 +95,10 @@ function Sidebar() {
         Dashboard
       </NavLink>
       <NavLink to="/showTransactions" className="sidebar-btn">
-        All Transactions
+        All Trans
       </NavLink>
       <NavLink to="/newTransaction" className="sidebar-btn">
-        New Transaction
+        New Trans
       </NavLink>
       <NavLink to="/statistics" className="sidebar-btn">
         Statistics

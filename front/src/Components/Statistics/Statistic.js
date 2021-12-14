@@ -10,6 +10,7 @@ export default function Statistics() {
   const [budget, setBudget] = useState(0);
   const [balance, setBalance] = useState(0);
   const [unCheck, setUnCheck] = useState(true);
+  const [content, setContent] = useState([]);
 
   useEffect(() => {
     fetch("/api/allTransactions", {
@@ -93,37 +94,43 @@ export default function Statistics() {
 
   return (
     <BasicLayout>
-      <div className="view-port container">
-        <div className="d-flex flex-column">
-          <h1>Statistics Analyzation</h1>
-          <div className="row">
+      <div className="view-port container d-flex flex-column">
+        <div
+          className="text-center border-bottom py-3 position-relative"
+          style={{ fontSize: "20px", fontWeight: "bold" }}
+        >
+          <h1>Create New Transactions</h1>
+          <div style={{ height: "calc(100vh - 6rem)" }}>
             <div
-              style={{ height: "calc(100vh - 6rem)" }}
-              className="col-6 px-0"
+              className="d-flex justify-content-evenly"
+              role="group"
+              aria-label="pie category"
             >
-              <div className="pie-title">Expense/ Balance</div>
-              <div
-                className="d-flex justify-content-center me-2"
-                style={{ height: "60%" }}
+              <button
+                className="custom-btn"
+                onClick={() => {
+                  setContent(balance_data);
+                }}
+                style={{ width: "25%", height: "40%" }}
               >
-                <div className="flex-container" style={{ width: "90%" }}>
-                  <DataPie data={balance_data} />
-                </div>
-              </div>
+                Show Expense/ Balance Pie
+              </button>
+              <button
+                className="custom-btn"
+                onClick={() => {
+                  setContent(() => typeData(expense));
+                }}
+                style={{ width: "25%", height: "40%" }}
+              >
+                Show Expense Category Pie
+              </button>
             </div>
             <div
-              style={{ height: "calc(100vh - 6rem)" }}
-              className="col-6 px-0"
+              className="d-flex justify-content-center"
+              style={{ height: "70%" }}
+              aria-hidden="true"
             >
-              <div className="pie-title">Expense Category</div>
-              <div
-                className="d-flex justify-content-center me-2"
-                style={{ height: "60%" }}
-              >
-                <div className="flex-container" style={{ width: "90%" }}>
-                  <DataPie data={typeData(expense)} />
-                </div>
-              </div>
+              <DataPie data={content} />
             </div>
           </div>
         </div>

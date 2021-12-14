@@ -45,7 +45,7 @@ export default function TransactionList() {
       <div className="flex-grow-1 d-flex flex-column">
         <div className="my-3 mx-2 text-center flex-grow-1">
           <p>{msg}</p>
-          <ul className="flex-container list-group list-group-flush d-flex justify-content-evenly">
+          <div className="flex-container list-group list-group-flush d-flex justify-content-evenly">
             {list.slice(page * 5 - 5, page * 5).map((i, index) => (
               <TransactionRecord
                 key={"Transaction-" + index}
@@ -59,7 +59,7 @@ export default function TransactionList() {
                 setList={setList}
               />
             ))}
-          </ul>
+          </div>
           <div
             className="d-flex justify-content-evenly"
             role="group"

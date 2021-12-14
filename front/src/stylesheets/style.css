@@ -324,7 +324,7 @@
     padding-bottom: 100px;
     padding-top: 30px;
     background: #f8f9fa;
-    height: 650px;
+    height: 800px;
   }
 
   .dashboard h1 {
@@ -339,7 +339,7 @@
     font-weight: 100;
   }
 
-  .instructions h4 {
+  .instructions-title {
     font-size: 18px;
     font-weight: 150;
     margin-top: 20px;

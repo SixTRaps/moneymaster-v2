@@ -57,15 +57,21 @@ export default function CreateTransaction() {
             onChange={setDate}
             value={date}
             clearIcon={null}
-            aria-label="Date"
-            role="presentation"
+            calendarAriaLabel="new_calendar_select"
+            dayAriaLabel="new_day_select"
+            monthAriaLabel="new_month_select"
+            nativeInputAriaLabel="new_input_select"
+            yearAriaLabel="new_year_select"
+            amPmAriaLabel="am/pm label"
           />
         </div>
-        <label htmlFor="select">Category</label>
-        <div className="form-floating">
+        <div>
+          <label htmlFor="select" style={{ "padding-right": "10px" }}>
+            Category:
+          </label>
           <select
             name="Category"
-            id="cate"
+            id="select"
             onChange={(evt) => setCategory(evt.target.value)}
             required={true}
             feedback="Please choose from one of the categories"
