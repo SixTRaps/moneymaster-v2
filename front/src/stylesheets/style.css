@@ -373,7 +373,7 @@
   .instruction-modal {
     position: absolute;
     top: 7%;
-    left: 30%;
+    left: 25%;
     bottom: auto;
     margin-right: -50%;
     background: white;
@@ -386,7 +386,7 @@
 
   .instruction-modal button {
     position: relative;
-    left: 90%;
+    left: 85%;
     width: 80px;
     height: 30px;
     border-radius: 5px;
@@ -783,7 +783,7 @@
 
   .instruction-modal button {
     position: relative;
-    left: 95%;
+    left: 90%;
     width: 80px;
     height: 30px;
     border-radius: 5px;
