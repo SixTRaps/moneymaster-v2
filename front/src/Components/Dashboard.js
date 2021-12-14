@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import BasicLayout from "./BasicLayout.js";
 import dashboardBottom from "../images/dashboard-bottom.jpg";
+import Modal from "react-modal";
 
 /* This is the dashboard component. It displays user's current
    balance and budget values. */
@@ -10,6 +11,9 @@ export default function Dashboard() {
   const [balance, setBalance] = useState(0);
   const [mount, setMount] = useState(false);
   const [msg, setMsg] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   let budgetMonitor = 0;
 
@@ -98,6 +102,48 @@ export default function Dashboard() {
       <div className="dashboard d-flex align-items-center flex-column justify-content-center">
         <div>
           <div className="d-flex align-items-center flex-column justify-content-center">
+            <button className="instruction-button" onClick={handleShow}>
+              Instructions
+            </button>
+            <Modal
+              className="instruction-modal"
+              isOpen={showModal}
+              onRequestClose={handleClose}
+              contentLabel="Instructions Modal"
+              ariaHideApp={false}
+            >
+              <button onClick={handleClose}> X </button>
+              <p className="instructions-title">Instructions</p>
+              <p className="instructions-title">Dashboard Page:</p>
+              <p>
+                This page serves as a dashboard to show your current remaining
+                balance and budget for this circle. Please set up your initial
+                budget at the begining of the new circle. To create or reset a
+                new budget, please input the value and click the "Start Over"
+                button. Remember it will clear all the records. If you want to
+                keep all history records but just change the budget, please use
+                the "Edit" button.
+              </p>
+              <p className="instructions-title">All Transactions Page:</p>
+              <p>
+                You can view all of your transactions here with all details of
+                the transaction: category, merchant name, amount, notes and date
+                information. Also, you can delete the transaction if you didn't
+                make it.
+              </p>
+              <p className="instructions-title">New Transaction Page:</p>
+              <p>
+                You can create a new transaction here. Feel free to input the
+                category, merchant name, amount, note and date to create a new
+                transaction.
+              </p>
+              <p className="instructions-title">Statistics Page:</p>
+              <p>
+                You can view statistical pie charts created according to the
+                transactions you created. It will help analyze your expense/
+                balance and expense category in this circle.
+              </p>
+            </Modal>
             <h1>Welcome to the Money Master!</h1>
             <h2>Please set up your budget first</h2>
             <p>{msg}</p>

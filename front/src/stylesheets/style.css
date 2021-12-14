@@ -1,7 +1,7 @@
 /* small screen */
 @media screen and (min-width: 800px) {
   #root {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Tahoma", sans-serif;
   }
 
   .homepage-container {
@@ -397,12 +397,29 @@
   .instruction-modal button:hover {
     background: #d1bf91;
   }
+
+  .instruction-button {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    background: #f9c743;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 140px;
+    font-weight: bold;
+  }
+
+  .instruction-button:hover {
+    background: #a6341b;
+    color: white;
+  }
 }
 
 /* large screen */
 @media screen and (min-width: 1800px) {
   #root {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Tahoma", sans-serif;
   }
 
   .homepage-container {
@@ -776,5 +793,22 @@
 
   .instruction-modal button:hover {
     background: #d1bf91;
+  }
+
+  .instruction-button {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    background: #f9c743;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 140px;
+    font-weight: bold;
+  }
+
+  .instruction-button:hover {
+    background: #a6341b;
+    color: white;
   }
 }
