@@ -193,7 +193,7 @@
     height: 380px;
     background: linear-gradient(#a6341b, #ff6062);
     position: relative;
-    left: -580px;
+    left: -680px;
     top: 0px;
   }
 
@@ -368,6 +368,34 @@
     border-radius: 18px;
     border-width: 2px;
     text-align: center;
+  }
+
+  .instruction-modal {
+    position: absolute;
+    top: 7%;
+    left: 35%;
+    bottom: auto;
+    margin-right: -50%;
+    background: white;
+    width: 600px;
+    padding: 50px 50px 50px 50px;
+    border-radius: 15px;
+    border: solid;
+    border-width: 1px;
+  }
+
+  .instruction-modal button {
+    position: relative;
+    left: 95%;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    background: #f9c743;
+  }
+
+  .instruction-modal button:hover {
+    background: #d1bf91;
   }
 }
 
@@ -720,5 +748,33 @@
     border-radius: 18px;
     border-width: 2px;
     text-align: center;
+  }
+
+  .instruction-modal {
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    bottom: auto;
+    margin-right: -50%;
+    background: white;
+    width: 800px;
+    padding: 50px 50px 50px 50px;
+    border-radius: 15px;
+    border: solid;
+    border-width: 1px;
+  }
+
+  .instruction-modal button {
+    position: relative;
+    left: 95%;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    background: #f9c743;
+  }
+
+  .instruction-modal button:hover {
+    background: #d1bf91;
   }
 }

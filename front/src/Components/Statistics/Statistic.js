@@ -127,7 +127,7 @@ export default function Statistics() {
             </div>
             <div
               className="d-flex justify-content-center"
-              style={{ height: "70%" }}
+              style={{ height: "55%" }}
               aria-hidden="true"
             >
               <DataPie data={content} />
