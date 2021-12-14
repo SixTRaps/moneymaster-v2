@@ -53,7 +53,13 @@ export default function CreateTransaction() {
       >
         <p>{msg}</p>
         <div className="text-center my-3">
-          <DateTimePicker onChange={setDate} value={date} clearIcon={null} />
+          <DateTimePicker
+            onChange={setDate}
+            value={date}
+            clearIcon={null}
+            aria-label="Date"
+            role="presentation"
+          />
         </div>
         <label htmlFor="select">Category</label>
         <div className="form-floating">
@@ -98,7 +104,7 @@ export default function CreateTransaction() {
           <label htmlFor="note">Note</label>
         </div>
         <div className="d-flex justify-content-center">
-          <button className="btn" id="custom-btn" type="submit">
+          <button className="custom-btn" type="submit">
             Save
           </button>
         </div>

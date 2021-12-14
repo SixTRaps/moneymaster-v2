@@ -8,13 +8,13 @@ import arrow from "../images/arrow.png";
    Dashboard. */
 export default function Homepage() {
   return (
-    <div>
+    <div role="main">
       <div className="container homepage-container d-flex align-items-center">
         <div className="row">
           <div className="col-6 d-flex align-items-center left">
             <div className="d-flex flex-column">
-              <h2>Money Master</h2>
-              <h3>Your personal budget keeper</h3>
+              <h1>Money Master</h1>
+              <h2>Your personal budget keeper</h2>
               <p>
                 Records all your daily expenses and displays them in data and
                 diagrams!

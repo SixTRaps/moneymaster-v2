@@ -7,8 +7,9 @@ import BasicLayout from "../BasicLayout.js";
 export default function Statistics() {
   const [list, setList] = useState([]);
   const [expense, setExpense] = useState({});
-  const [budget, setBudget] = useState("0");
-  const [balance, setBalance] = useState("0");
+  const [budget, setBudget] = useState(0);
+  const [balance, setBalance] = useState(0);
+  const [unCheck, setUnCheck] = useState(true);
 
   useEffect(() => {
     fetch("/api/allTransactions", {
@@ -44,13 +45,15 @@ export default function Statistics() {
   useEffect(() => {
     async function lookup() {
       const data = await getBalanceAndBudget();
-      if (data) {
-        setBalance(data[0]);
-        setBudget(data[1]);
+      if (unCheck && data) {
+        setUnCheck(false);
+        setBalance(parseFloat(data[0]).toFixed(2));
+        setBudget(parseFloat(data[1]).toFixed(2));
+        setExpense(parseFloat(data[1]) - parseFloat(data[0]));
       }
     }
     lookup();
-  }, [balance, budget]);
+  }, [unCheck, balance, budget]);
 
   const balance_data = [
     {
@@ -92,6 +95,7 @@ export default function Statistics() {
     <BasicLayout>
       <div className="view-port container">
         <div className="d-flex flex-column">
+          <h1>Statistics Analyzation</h1>
           <div className="row">
             <div
               style={{ height: "calc(100vh - 6rem)" }}
@@ -139,6 +143,6 @@ async function getBalanceAndBudget() {
     const budget = await data.budget;
     return [balance, budget];
   } else if (res.status === 404) {
-    return ["0", "0"];
+    return [0, 0];
   }
 }

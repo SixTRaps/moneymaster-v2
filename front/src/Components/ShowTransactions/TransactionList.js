@@ -7,7 +7,9 @@ import TransactionRecord from "./TransactionRecord.js";
  */
 export default function TransactionList() {
   const [list, setList] = useState([]);
+  const [msg, setMsg] = useState("");
   useEffect(() => {
+    setMsg("Loading data...");
     fetch("/api/allTransactions", {
       method: "GET",
       headers: {
@@ -19,6 +21,7 @@ export default function TransactionList() {
       })
       .then((res) => {
         setList(res);
+        setMsg("");
       });
   }, []);
 
@@ -41,6 +44,7 @@ export default function TransactionList() {
     <div className="flex-container d-flex flex-column">
       <div className="flex-grow-1 d-flex flex-column">
         <div className="my-3 mx-2 text-center flex-grow-1">
+          <p>{msg}</p>
           <ul className="flex-container list-group list-group-flush d-flex justify-content-evenly">
             {list.slice(page * 5 - 5, page * 5).map((i, index) => (
               <TransactionRecord
@@ -62,8 +66,7 @@ export default function TransactionList() {
             aria-label="page navigation button"
           >
             <button
-              className="btn"
-              id="custom-btn"
+              className="custom-btn"
               onClick={prevPage}
               style={{ height: "10%" }}
             >
@@ -73,8 +76,7 @@ export default function TransactionList() {
               Page {page}/{totalPages}
             </div>
             <button
-              className="btn"
-              id="custom-btn"
+              className="custom-btn"
               onClick={nextPage}
               style={{ height: "10%" }}
             >

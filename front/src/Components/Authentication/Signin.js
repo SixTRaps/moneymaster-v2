@@ -32,7 +32,7 @@ export default function Signin() {
   }
 
   return (
-    <div className="signin">
+    <div className="signin" role="main">
       <nav className="navbar navbar-light bg-light">
         <div className="navbar-brand">
           <NavLink to="/" className="brand">
@@ -50,9 +50,9 @@ export default function Signin() {
       <div className="container signin-container d-flex align-items-center">
         <form className="form" onSubmit={onSubmit}>
           <p>{status}</p>
-          <h2 className="d-flex justify-content-center">
+          <h1 className="d-flex justify-content-center">
             Please sign in your account
-          </h2>
+          </h1>
           <br />
           <label className="d-flex justify-content-center">
             <p>Username:&nbsp;</p>
@@ -85,7 +85,7 @@ export default function Signin() {
           </label>
           <br />
           <div className="d-flex justify-content-center">
-            <button className="btn" id="custom-btn" type="submit">
+            <button className="custom-btn" type="submit">
               Sign in
             </button>
           </div>

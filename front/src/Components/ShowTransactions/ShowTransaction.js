@@ -11,7 +11,7 @@ export default function ShowTransaction() {
           className="text-center py-3 position-relative"
           style={{ fontSize: "20px", fontWeight: "bold" }}
         >
-          <h3 className="border-bottom">Show All Transactions</h3>
+          <h1 className="border-bottom">Show All Transactions</h1>
         </div>
         <div className="flex-grow-1">
           <TransactionList />

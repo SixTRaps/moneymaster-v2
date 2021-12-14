@@ -16,8 +16,10 @@ export default function Dashboard() {
   useEffect(() => {
     async function lookup() {
       if (!mount) {
+        setMsg("Loading data...");
         setMount(true);
         const data = await getBalanceAndBudget();
+
         if (data) {
           const curBudget = parseFloat(data[1]).toFixed(2);
           const curBalance = parseFloat(data[0]).toFixed(2);
@@ -27,6 +29,7 @@ export default function Dashboard() {
           ) {
             setBudget(curBudget);
             setBalance(curBalance);
+            setMsg("");
           }
         }
       }
@@ -95,11 +98,6 @@ export default function Dashboard() {
       <div className="dashboard d-flex align-items-center flex-column justify-content-center">
         <div>
           <div className="d-flex align-items-center flex-column justify-content-center">
-            <img src={dashboardBottom} alt="dashboard bottom" />
-            <div id="pic-credit">
-              Image by <p className="space">s</p>
-              <a href="https://www.freepik.com/">Freepik</a>
-            </div>
             <h1>Welcome to the Money Master!</h1>
             <h2>Please set up your budget first</h2>
             <p>{msg}</p>
@@ -107,7 +105,10 @@ export default function Dashboard() {
             <h3>Budget: ${budget}</h3>
             <div className="d-flex justify-content-evenly">
               <form className="form d-flex flex-column" onSubmit={onSubmitEdit}>
-                <label className="d-flex justify-content-center">
+                <label
+                  className="d-flex justify-content-center"
+                  aria-label="new budget value"
+                >
                   <input
                     type="number"
                     onChange={(e) => {
@@ -118,20 +119,19 @@ export default function Dashboard() {
                 </label>
                 <br />
                 <div className="d-flex justify-content-evenly">
-                  <button className="btn" id="custom-btn-budget" type="submit">
+                  <button className="custom-btn-budget" type="submit">
                     Edit
                   </button>
-                  <button
-                    className="btn"
-                    id="custom-btn-budget"
-                    onClick={onSubmit}
-                  >
+                  <button className="custom-btn-budget" onClick={onSubmit}>
                     Start Over
                   </button>
                 </div>
-                {/*              </form>
-              <form onSubmit={onSubmit} style={{ "padding-top": "30px" }}>*/}
               </form>
+            </div>
+            <img src={dashboardBottom} alt="dashboard bottom" />
+            <div id="pic-credit">
+              Image by <p className="space">s</p>
+              <a href="https://www.freepik.com/">Freepik</a>
             </div>
           </div>
         </div>

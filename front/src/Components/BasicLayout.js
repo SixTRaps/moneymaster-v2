@@ -25,9 +25,9 @@ export default function BasicLayout({ children }) {
             MONEY MASTER{" "}
           </NavLink>
         </div>
-        <Button id="custom-btn-navbar" onClick={handleShow}>
+        <button className="custom-btn-navbar" onClick={handleShow}>
           Instructions
-        </Button>
+        </button>
         <Modal className="instructions" show={showModal} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Guidelines</Modal.Title>
@@ -72,12 +72,12 @@ export default function BasicLayout({ children }) {
           method="POST"
           className="ms-auto"
         >
-          <button className="btn" id="custom-btn-navbar" type="submit">
+          <button className="custom-btn-navbar" type="submit">
             LOG OUT
           </button>
         </form>
       </nav>
-      <div className="row">
+      <div className="row" role="main">
         <div className="col-2 sidebar">
           <Sidebar />
         </div>

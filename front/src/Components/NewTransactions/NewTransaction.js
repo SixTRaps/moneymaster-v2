@@ -14,7 +14,7 @@ export default function NewTransaction() {
           className="text-center border-bottom py-3 position-relative"
           style={{ fontSize: "20px", fontWeight: "bold" }}
         >
-          <h3>Create New Transactions</h3>
+          <h1>Create New Transactions</h1>
         </div>
         <div className="flex-grow-1" id="panel_content">
           <CreateTransaction />

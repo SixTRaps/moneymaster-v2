@@ -37,7 +37,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup">
+    <div className="signup" role="main">
       <nav className="navbar navbar-light bg-light">
         <div className="navbar-brand">
           <NavLink to="/" className="brand">
@@ -55,7 +55,7 @@ export default function Signup() {
       <div className="container signin-container d-flex align-items-center">
         <form className="form" onSubmit={onSubmit}>
           <p>{status}</p>
-          <h2>Welcome to the Money Master</h2>
+          <h1>Welcome to Money Master</h1>
           <br />
           <label className="d-flex justify-content-center">
             <p>Username:&nbsp;</p>
@@ -118,7 +118,7 @@ export default function Signup() {
           </label>
           <br />
           <div className="d-flex justify-content-center">
-            <button className="btn" id="custom-btn" type="submit">
+            <button className="custom-btn" type="submit">
               Sign Up
             </button>
           </div>
