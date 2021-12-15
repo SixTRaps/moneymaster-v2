@@ -35,6 +35,8 @@ export default function Dashboard() {
             setBalance(curBalance);
             setMsg("");
           }
+        } else {
+          setMsg("");
         }
       }
     }
