@@ -37,7 +37,7 @@ Users can start with budget plan for a new circle. Then they can create new tran
 [CS5610](https://johnguerra.co/classes/webDevelopment_fall_2021/)
 
 ## Video Demonstration
-[Vedio]()
+[Vedio](https://youtu.be/YctKTCVArGQ)
 
 ## Google Slides
 [Slides](https://docs.google.com/presentation/d/1ULFZpBVP6Q69mi3TDJt6Q-axsghSmW2P4ZVARuTo0EY/edit?usp=sharing)
