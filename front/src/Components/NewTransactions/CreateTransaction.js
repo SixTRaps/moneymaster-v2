@@ -40,7 +40,6 @@ export default function CreateTransaction() {
           });
         } else {
           setMsg("New transaction created");
-          // window.location.href = "showTransactions";
           navigate("/showTransactions");
         }
       })

@@ -11,8 +11,6 @@ export default function Statistics() {
   const [balance, setBalance] = useState(0);
   const [unCheck, setUnCheck] = useState(true);
   const [content, setContent] = useState([]);
-  // const [check, setCheck] = useState(true);
-  // const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("/api/allTransactions", {
