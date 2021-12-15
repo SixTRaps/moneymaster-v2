@@ -25,7 +25,7 @@ export default function Signin() {
     });
     if (res.status === 200) {
       setStatus("Sign in successful, redirecting...");
-      window.location.href = "/dashboard";
+      window.location.href = "dashboard";
     } else {
       setStatus("Sign in failure, please check your username or password");
     }

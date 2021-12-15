@@ -8,7 +8,7 @@ export default function BasicLayout({ children }) {
     <div className="basicLayout">
       <nav className="navbar navbar-light bg-light">
         <div className="navbar-brand">
-          <NavLink to="/dashboard" className="brand">
+          <NavLink to="dashboard" className="brand">
             <img
               src={logo}
               alt="moneyMaster logo"

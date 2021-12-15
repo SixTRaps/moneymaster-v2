@@ -32,7 +32,7 @@ export default function Signup() {
       setStatus("Username exists, please go to sign in");
     } else if (res.status === 200) {
       setStatus("Sign up successful, redirecting...");
-      window.location.href = "/signin";
+      window.location.href = "signin";
     }
   };
 
