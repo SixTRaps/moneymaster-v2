@@ -11,6 +11,8 @@ export default function Statistics() {
   const [balance, setBalance] = useState(0);
   const [unCheck, setUnCheck] = useState(true);
   const [content, setContent] = useState([]);
+  // const [check, setCheck] = useState(true);
+  // const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("/api/allTransactions", {
@@ -50,7 +52,6 @@ export default function Statistics() {
         setUnCheck(false);
         setBalance(parseFloat(data[0]).toFixed(2));
         setBudget(parseFloat(data[1]).toFixed(2));
-        setExpense(parseFloat(data[1]) - parseFloat(data[0]));
       }
     }
     lookup();
