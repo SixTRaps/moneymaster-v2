@@ -1,4 +1,4 @@
-# Money Master
+# Money Master - V2
 
 ## Author
 [Anni Lin](https://github.com/Annie0207)  
@@ -10,18 +10,21 @@ This is a web application to help users manage their money better. They can cont
 Users can start with budget plan for a new circle. Then they can create new transactions to record expense with different categories, specific dates and notes. Afterwards, they can check all transactions in this circle and delete any transaction records if there is anything wrong. Most importantly, they can use the data visualization pie chart to see their expense very clearly.
 
 ## Screenshots
-![HomePage](https://github.com/SixTRaps/moneymaster/blob/main/front/src/images/Homepage.png)
-![Show Transactions Page](https://github.com/SixTRaps/moneymaster/blob/main/front/src/images/ShowTrans.png)
-![Data Visualization Page](https://github.com/SixTRaps/moneymaster/blob/main/front/src/images/DataVisualization.png)
+![HomePage](https://github.com/SixTRaps/moneymaster-v2/blob/main/front/src/images/Homepage.png)
+![Dashboard Page](https://github.com/SixTRaps/moneymaster-v2/blob/main/front/src/images/dashboard.png)
+![Data Visualization Page](https://github.com/SixTRaps/moneymaster-v2/blob/main/front/src/images/pie2.png)
 
 ## Tech requirements
 * React/React-Router
+* JavaScript/ Bootsrap
+* Node.js/ Express
 * passport
 * mongodb
 * node
+* SVG
 
 ## Live Deployment
-[Demo](https://web-dev-moneymaster.herokuapp.com/)
+[Demo]()
 
 ## Local Excution 
 * Clone the project form github to local repo
@@ -34,30 +37,13 @@ Users can start with budget plan for a new circle. Then they can create new tran
 [CS5610](https://johnguerra.co/classes/webDevelopment_fall_2021/)
 
 ## Video Demonstration
-[Vedio](https://youtu.be/vLhKPY_R3pg)
+[Vedio]()
 
 ## Google Slides
-[Slides](https://docs.google.com/presentation/d/1hgdHsUFjpjYu2KklGWmH-T-y7AcUHsXIu2f6sNvxXGI/edit?usp=sharing)
-
-## Division of works and tasks
-Both team members collaborated and contributed evenly on:
-* Project Design & Structure
-* MongoDB Deisgn and Implementation
-* React Routering and Router (Data Point)
-* CSS Styling
-
-### Anni Lin
-* Create Transaction Page (Component New Component and Input Form) & Related Router/Database
-* Show Transaction Page (Component Transaction List and Every Transaction Record) & Related Router/Database
-* Data Visualization Page (Component Statistics and Pie) & Related Router/ Database
-
-### Xuejia Yang
-* Dashboard Page (Component dashboard and addBudget) & Related Router/Database
-* Authentication (Component Signin and Signup) & Related Router/Database
-* Page Beautification & Deployment
+[Slides](https://docs.google.com/presentation/d/1ULFZpBVP6Q69mi3TDJt6Q-axsghSmW2P4ZVARuTo0EY/edit?usp=sharing)
 
 ## MIT License
-[MIT License](https://github.com/SixTRaps/moneymaster/blob/main/LICENSE)
+[MIT License](https://github.com/SixTRaps/moneymaster-v2/blob/main/LICENSE)
 
 ## Release
-[Release V1.1](https://github.com/SixTRaps/moneymaster/releases/tag/v1.1)
+[Release V1.1]()
