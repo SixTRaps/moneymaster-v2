@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.png";
 import signinAnimate from "../../images/signin-animate.jpg";
 
@@ -11,6 +11,8 @@ export default function Signin() {
     password: "",
   });
   let [status, setStatus] = useState("");
+
+  let navigate = useNavigate();
 
   async function onSubmit(evt) {
     evt.preventDefault();
@@ -25,7 +27,8 @@ export default function Signin() {
     });
     if (res.status === 200) {
       setStatus("Sign in successful, redirecting...");
-      window.location.href = "dashboard";
+      // window.location.href = "dashboard";
+      navigate("/dashboard");
     } else {
       setStatus("Sign in failure, please check your username or password");
     }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DateTimePicker from "react-datetime-picker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import InputBox from "./InputBox.js";
@@ -13,6 +14,8 @@ export default function CreateTransaction() {
   const [note, setNote] = useState("");
   const [date, setDate] = useState(new Date());
   const [msg, setMsg] = useState("");
+
+  let navigate = useNavigate();
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -37,7 +40,8 @@ export default function CreateTransaction() {
           });
         } else {
           setMsg("New transaction created");
-          window.location.href = "showTransactions";
+          // window.location.href = "showTransactions";
+          navigate("/showTransactions");
         }
       })
       .catch((err) => {

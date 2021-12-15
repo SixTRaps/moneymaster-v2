@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../images/logo.png";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import signupAnimate from "../../images/signup-animate.jpg";
 
 /* This is the Signup component that enables user to sign up an new account. */
@@ -14,6 +14,8 @@ export default function Signup() {
   });
 
   let [status, setStatus] = useState("");
+
+  let navigate = useNavigate();
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
@@ -32,7 +34,8 @@ export default function Signup() {
       setStatus("Username exists, please go to sign in");
     } else if (res.status === 200) {
       setStatus("Sign up successful, redirecting...");
-      window.location.href = "signin";
+      // window.location.href = "signin";
+      navigate("/signin");
     }
   };
 
