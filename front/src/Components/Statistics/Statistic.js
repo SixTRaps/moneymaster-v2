@@ -98,7 +98,7 @@ export default function Statistics() {
           className="text-center border-bottom py-3 position-relative"
           style={{ fontSize: "20px", fontWeight: "bold" }}
         >
-          <h1>Create New Transactions</h1>
+          <h1>Statistics Analyzation</h1>
           <div style={{ height: "calc(100vh - 6rem)" }}>
             <div
               className="d-flex justify-content-evenly"
