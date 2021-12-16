@@ -28,6 +28,7 @@ export default function Statistics() {
   }, []);
 
   useEffect(() => {
+     // I feel that const declarations like this should be extracted outside, so you can prevent redeclaring of this array.
     const categories = [
       "housing",
       "transportation",
@@ -79,7 +80,8 @@ export default function Statistics() {
       const g = (Math.random() * 255).toFixed(0);
       const b = (Math.random() * 255).toFixed(0);
       let value = 0;
-      type[item].map((item) => (value += parseFloat(item.amount)));
+      type[item].map((item) => (value += parseFloat(item.amount))); 
+       // I might be misunderstanding, but I think a forEach loop may be better here since you are not returning anything
 
       object["value"] = parseFloat(value).toFixed(2);
       object["id"] = item;
