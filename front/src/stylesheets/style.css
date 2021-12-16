@@ -1,3 +1,8 @@
+/* 
+I think it would be better is this file is split into smaller files according to components
+I think media queries should still work as long as you have the correct specificity
+*/
+
 /* small screen */
 @media screen and (min-width: 800px) {
   #root {
