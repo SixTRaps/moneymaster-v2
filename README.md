@@ -47,3 +47,11 @@ Users can start with budget plan for a new circle. Then they can create new tran
 
 ## Release
 [Release V1.1]()
+
+## Code Review From Zhenghao Lin
+Hello Anni!
+Great job for your project!
+I like your visualization for yoru data implemented by pie charts. I shows clearly how much each category of transaction occupies.
+There is just a little defect that your instruction can not be scrolled by a scroll bar.
+In my browser it can still display all the text content. However, I'm afraid it may not work properely in a browser with a lower resolution.
+And the small delect button on each transaction can not be selected by keyboard.
