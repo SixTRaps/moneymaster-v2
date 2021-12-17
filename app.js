@@ -34,4 +34,12 @@ app.use(methodOverride("_method"));
 
 app.use("/api", indexRouter);
 
+// Currently your website fails if I hit refresh anywhere other than root path
+// It's because express is trying to match undefined path and gets a 404
+// You can catch and reroute 404s back to react with something like this
+// Put this as the very last route, and it will be matched last
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "front/build/index.html")
+})
+
 module.exports = app;
